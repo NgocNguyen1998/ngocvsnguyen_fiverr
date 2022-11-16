@@ -1,8 +1,3 @@
-import {
-  AppstoreOutlined,
-  MailOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
 import { Menu } from "antd";
 import React, { useState } from "react";
 import { useEffect } from "react";
@@ -13,36 +8,28 @@ import { menuCongViec } from "../../storeToolKit/CongViec";
 const SubMenuJobList = () => {
   const { jobsList } = useCongViec();
   const handleItemDetail = (job) => {
-    return job.dsNhomChiTietLoai.map((ds) => {
-      return ds.dsChiTietLoai.map((detail) => {
+    return job?.dsNhomChiTietLoai?.map((ds) => {
+      return ds.dsChiTietLoai?.map((detail, index) => {
         return {
-          label: detail.tenChiTiet,
-          key: detail.tenChiTiet,
+          label: ds.dsChiTietLoai[index].tenChiTiet,
+          key: Math.random() * 1000,
         };
       });
     });
   };
+
   const handleItemList = () => {
     return jobsList.map((job) => {
-      const result = handleItemDetail(job);
-      console.log("result", result);
+      const menu = handleItemDetail(job);
+      console.log("menu", menu);
       return {
         label: job.tenLoaiCongViec,
         key: job.tenLoaiCongViec,
-        children: job.dsNhomChiTietLoai.map((ds) => {
-          return ds.dsChiTietLoai.map((detail) => {
-            console.log("detail", detail.tenChiTiet);
-            return {
-              label: detail.tenChiTiet,
-              key: detail.tenChiTiet,
-            };
-          });
-        }),
+        children: menu.map((item) => item.map((label) => label)),
       };
     });
   };
   const items = handleItemList();
-  console.log(items);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -56,8 +43,9 @@ const SubMenuJobList = () => {
 
   return (
     <Menu
+      defaultSelectedKeys={["1"]}
       onClick={onClick}
-      selectedKeys={[current]}
+      // selectedKeys={[current]}
       mode="horizontal"
       items={items}
     />
