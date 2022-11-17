@@ -28,14 +28,14 @@ export const { reducer: congViecReducer, actions: congViecActions } =
           state.jobsList = action.payload;
         })
         //
-        .addCase(congViec.pending, (state) => {
+        .addCase(congViecPhanTrangTimKiem.pending, (state) => {
           state.isFetchingItem = true;
         })
-        .addCase(congViec.fulfilled, (state, action) => {
+        .addCase(congViecPhanTrangTimKiem.fulfilled, (state, action) => {
           state.isFetchingItem = false;
           state.itemRender = action.payload;
         })
-        .addCase(congViec.rejected, (state, action) => {
+        .addCase(congViecPhanTrangTimKiem.rejected, (state, action) => {
           state.isFetchingItem = false;
           state.itemRender = action.payload;
         });
@@ -54,12 +54,15 @@ export const menuCongViec = createAsyncThunk(
   }
 );
 
-export const congViec = createAsyncThunk("congViec/congViec", async () => {
-  try {
-    const result = await congViecServices.congViec();
-    console.log(result.data.content);
-    return result.data.content;
-  } catch (err) {
-    console.log(err.response.data.content);
+export const congViecPhanTrangTimKiem = createAsyncThunk(
+  "congViec/congViecPhanTrangTimKiem",
+  async (data) => {
+    try {
+      const result = await congViecServices.congViecPhanTrangTimKiem(data);
+      console.log(result.data.content.data);
+      return result.data.content.data;
+    } catch (err) {
+      console.log(err.response.data.content);
+    }
   }
-});
+);
