@@ -16,10 +16,10 @@ const SubMenuJobList = () => {
   return (
     <Menu mode="horizontal" >
       {jobsList.map((job) => {
-        return <Menu.SubMenu key={job.id} title={job.tenLoaiCongViec} >
+        return <Menu.SubMenu key={job.tenLoaiCongViec} title={job.tenLoaiCongViec} >
           {job.dsNhomChiTietLoai.map(item => {
             return  item.dsChiTietLoai.map(data=>{
-              return   <Menu.Item key={data.id} >
+              return   <Menu.Item key={Math.floor(Math.random() * 10000) + 1000} >
               {data.tenChiTiet}
             </Menu.Item>
             })
