@@ -48,6 +48,7 @@ const SubMenuJobList = () => {
       // selectedKeys={[current]}
       mode="horizontal"
       items={items}
+      className="w-full"
     />
   );
 };
