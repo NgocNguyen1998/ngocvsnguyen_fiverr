@@ -7,6 +7,8 @@ const initialState = {
   isFetchingJobList: false,
   isFetchingItem: false,
   itemRender: [],
+  isFetchingJobDetail: false,
+  jobDetail: [],
 };
 export const { reducer: congViecReducer, actions: congViecActions } =
   createSlice({
@@ -38,6 +40,18 @@ export const { reducer: congViecReducer, actions: congViecActions } =
         .addCase(congViecPhanTrangTimKiem.rejected, (state, action) => {
           state.isFetchingItem = false;
           state.itemRender = action.payload;
+        })
+        // get job details
+        .addCase(layCongViecChiTiet.pending, (state) => {
+          state.isFetchingJobDetail = true;
+        })
+        .addCase(layCongViecChiTiet.fulfilled, (state, action) => {
+          state.isFetchingJobDetail = false;
+          state.jobDetail = action.payload;
+        })
+        .addCase(layCongViecChiTiet.rejected, (state, action) => {
+          state.isFetchingJobDetail = false;
+          state.jobDetail = action.payload;
         });
     },
   });
@@ -63,6 +77,19 @@ export const congViecPhanTrangTimKiem = createAsyncThunk(
       return result.data.content.data;
     } catch (err) {
       console.log(err.response.data.content);
+    }
+  }
+);
+
+export const layCongViecChiTiet = createAsyncThunk(
+  "congViec/layCongViecChiTiet",
+  async (id) => {
+    try {
+      const result = await congViecServices.layCongViecChiTiet(id);
+      console.log(result.data.content);
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
     }
   }
 );

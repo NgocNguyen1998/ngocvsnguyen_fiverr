@@ -1,8 +1,7 @@
-import Search from "antd/lib/input/Search";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { congViecPhanTrangTimKiem } from "../../storeToolKit/CongViec/congViecReducer";
 import { NavLogin } from "../Molecules/NavLogin/NavLogin";
@@ -14,11 +13,12 @@ import { Footer } from "../Molecules/Footer";
 
 export const JobList = () => {
   const dispatch = useDispatch();
-  const onSearch = () => {};
+
   const onChange = (checked) => {
     console.log(`switch to ${checked}`);
   };
   const [number, setNumber] = useState(1);
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(congViecPhanTrangTimKiem(number));
   }, [number]);
@@ -26,28 +26,6 @@ export const JobList = () => {
   console.log(itemRender);
   return (
     <Components className=" mx-auto">
-      <header className="  border-b-2 ">
-        <nav className="container mx-auto flex justify-between py-6 ">
-          <div className="flex">
-            <NavLink className="mr-5 text-2xl font-bold text-black" to="/home">
-              Fiverr
-            </NavLink>
-
-            <div className="w-[500px] font-semibold bg-black rounded">
-              <Search
-                size="large"
-                placeholder="What services are you looking for today?"
-                onSearch={onSearch}
-                enterButton
-                allowClear
-              />
-            </div>
-          </div>
-          <NavLogin />
-        </nav>
-      </header>
-
-      <SubMenuJobList />
       <div className="flex flex-row justify-between mt-10 container mx-auto">
         <div></div>
         <div className="flex flex-row justify-between mt-10 container mx-auto">
@@ -86,7 +64,10 @@ export const JobList = () => {
       </div>
       <div className="row grid grid-cols-4 gap-8 mt-10 container mx-auto">
         {itemRender?.map((list) => (
-          <div className="card h-[370px]">
+          <div
+            className="card h-[370px] "
+            onClick={() => navigate(`/jobDetail/${list.id}`)}
+          >
             <img
               className="w-full h-[180px] flex-shrink-0"
               src={list.hinhAnh}
@@ -119,7 +100,7 @@ export const JobList = () => {
                 >
                   <div className="flex justify-between mx-5 h-[45px] items-center flex-shrink-0">
                     <div>
-                      <i class="fa-solid fa-heart"></i>
+                      <i className="fa-solid fa-heart"></i>
                     </div>
                     <div className="footer-right">
                       <span>STARTING AT</span> {""}

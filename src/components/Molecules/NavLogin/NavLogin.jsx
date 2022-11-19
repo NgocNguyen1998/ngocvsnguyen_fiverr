@@ -11,7 +11,7 @@ export const NavLogin = () => {
         Sign In
       </NavLink>
       <button
-        className="text-green-500 font-bold border-green-300 rounded-md border-2 px-5 py-1"
+        className="hover:text-white hover:bg-green-500 transition-all hover:border-transparent duration-500 text-green-500 font-bold border-green-300 rounded-md border-2 px-5 py-1"
         to="/"
       >
         Join
