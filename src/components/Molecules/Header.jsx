@@ -16,7 +16,7 @@ export const Header = () => {
               Fiverr
             </NavLink>
 
-            <div className="w-[500px] font-semibold rounded">
+            <div className="w-[500px] font-semibold rounded inputEle">
               <Search
                 // size="large"
                 placeholder="What services are you looking for today?"
