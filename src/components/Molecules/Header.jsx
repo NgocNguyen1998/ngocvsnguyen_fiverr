@@ -1,10 +1,15 @@
 import { Select } from "antd";
 import Search from "antd/lib/input/Search";
-import { NavLink } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { NavLink, useNavigate } from "react-router-dom";
 import SubMenuJobList from "../JobList/SubMenuJobList";
 
 export const Header = () => {
-  const onSearch = () => { };
+  const navigate = useNavigate();
+  
+  const onSearch = (data) => {
+      navigate(`/jobList/${data}`)
+   };
   return (
     
     <header className="bg-white  text-black fixed w-full z-10">
