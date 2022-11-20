@@ -11,6 +11,8 @@ api.interceptors.request.use((config) => {
     headers: {
       // Authorization: "Bearer " + localStorage.getItem("TOKEN"),
       TokenCybersoft,
+      token:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE1MjkiLCJlbWFpbCI6InN0cmluZ0BnbWFpbC5jb20iLCJyb2xlIjoiVVNFUiIsIm5iZiI6MTY2ODk1NTMyMywiZXhwIjoxNjY5NTYwMTIzfQ.fGye9iDMyEAnSYRZgYauToyVVjkXXxIzORlkNJWtTcE",
     },
     baseURL,
   };
