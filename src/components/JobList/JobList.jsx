@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { congViecPhanTrangTimKiem } from "../../storeToolKit/CongViec/congViecReducer";
 import { NavLogin } from "../Molecules/NavLogin/NavLogin";
@@ -13,7 +13,8 @@ import { Footer } from "../Molecules/Footer";
 
 export const JobList = () => {
   const dispatch = useDispatch();
-
+  const params = useParams();
+  console.log("params: ", params.jobName);
   const onChange = (checked) => {
     console.log(`switch to ${checked}`);
   };

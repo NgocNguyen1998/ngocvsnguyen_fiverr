@@ -14,3 +14,13 @@ code {
     monospace;
 }
 
+.container{
+  width: 90%;
+  margin:auto
+}
+.ant-menu-overflow{
+  justify-content: center;
+}
+.anticon svg{
+  display: block !important;
+}
