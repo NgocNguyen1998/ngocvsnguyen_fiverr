@@ -1,7 +1,7 @@
 import { api } from "../constants/api";
 
 export const thueCongViecServices = {
-  thueCongViec: () => {
-    return api.post(`thue-cong-viec`);
+  thueCongViecPost: (data) => {
+    return api.post(`thue-cong-viec`, data);
   },
 };
