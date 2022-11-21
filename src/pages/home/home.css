@@ -194,3 +194,51 @@ padding-right: 7px;
     top: 45%;
     left: 45%;
 }
+
+.home-slick-item .dot .slick-dots {
+    position: absolute;
+    bottom: 94px;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+}
+.home-slick-item .dot .slick-dots li.slick-active button:before {
+    opacity: .75;
+    color: green;
+}
+.home-slick-item .dot .slick-dots li button:before {
+    font-size: 10px;
+    color: rgb(200, 130, 143);
+}
+.home-market img{
+    display: block;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 15px
+}
+.home-market span{
+    color: #222325;
+    text-align: center;
+    position: relative;
+    font-size: 18px;
+    display: block;
+}
+.home-market  a{
+    position: relative;
+}
+.home-market  a::after {
+    content: "";
+    position: absolute;
+    top: 60%;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    transform: translateX(50%);
+    width: 68px;
+    height: 2px;
+    background-color: #c5c6c9;
+    display: block;
+}
+
