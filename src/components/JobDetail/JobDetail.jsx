@@ -507,7 +507,7 @@ export const JobDetail = () => {
                           maNguoiBinhLuan: 1608,
                           ngayBinhLuan: "20/11/2022",
                           saoBinhLuan: 5,
-                          maCongViec: 1,
+                          maCongViec: +id,
                         })
                       );
                     })}
