@@ -19,6 +19,14 @@ export const JobList = () => {
     console.log(`switch to ${checked}`);
   };
   const [number, setNumber] = useState(1);
+  useEffect(() => {
+    const inputcheck = document.body.querySelector('.inputcheck')
+    const backgroundcheck = document.body.querySelector('.backgroundcheck')
+    const subcheck = document.body.querySelector('.subcheck')
+    inputcheck.style.display = 'block';
+    subcheck.style.display = 'block';
+    backgroundcheck.style.backgroundColor = 'white';
+  })
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(congViecPhanTrangTimKiem(number));

@@ -14,7 +14,8 @@ const SubMenuJobList = () => {
   }, []);
 
   return (
-    <Menu mode="horizontal" >
+ <div className="subcheck" style={{display:'none'}}>
+     <Menu mode="horizontal" >
       {jobsList.map((job) => {
         return <Menu.SubMenu key={job.tenLoaiCongViec} title={job.tenLoaiCongViec} >
           {job.dsNhomChiTietLoai.map(item => {
@@ -26,7 +27,8 @@ const SubMenuJobList = () => {
           })}
         </Menu.SubMenu>
       })}
-    </Menu>
+    </Menu> 
+ </div>
   );
 };
 export default SubMenuJobList;

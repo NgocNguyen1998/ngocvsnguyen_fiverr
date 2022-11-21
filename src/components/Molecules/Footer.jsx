@@ -5,173 +5,166 @@ import styled from "styled-components";
 export const Footer = () => {
   return (
     <div>
-      <Foot className=" dark:bg-gray-800 text-gray-100 ">
-        <div className=" container grid grid-cols-2 mx-auto gap-x-3 gap-y-8 sm:grid-cols-3 md:grid-cols-5">
+      <Foot className=" bg-white-800 text-gray-100 ">
+        <div className=" container grid grid-cols-2 mx-auto gap-x-3 gap-y-8 sm:grid-cols-3 md:grid-cols-5 pt-16 pb-4">
           <div className="flex flex-col space-y-5">
-            <h2 className="font-medium">Category</h2>
-            <div className="flex flex-col space-y-2 text-base text-gray-400">
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+            <h2 className="font-bold" style={{fontSize:'20px'}}>Category</h2>
+            <div className="flex flex-col space-y-2 text-gray-400" style={{fontSize:'17px'}}>
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400 " rel="noopener noreferrer" to="#">
                 Graphics & Design
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Digital Marketing
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400 " rel="noopener noreferrer" to="#">
                 Writing & Translation
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Video & Animation
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Music & Audio
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Programming & Tech
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Data
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Business
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Lifestyle
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Sitemap
               </Link>
             </div>
           </div>
           <div className="flex flex-col space-y-5">
-            <h2 className="font-medium">About</h2>
-            <div className="flex flex-col space-y-2 text-base text-gray-400">
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+            <h2 className="font-bold" style={{fontSize:'20px'}}>About</h2>
+            <div className="flex flex-col space-y-2  text-gray-400" style={{fontSize:'17px'}}>
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Careers
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Press & News
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Partnerships
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Privacy Policy
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Terms of Service
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Intellectual Property Claims
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className=" text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Investor Relations
               </Link>
             </div>
           </div>
           <div className="flex flex-col space-y-5">
-            <h2 className="font-medium">Support</h2>
-            <div className="flex flex-col space-y-2 text-base text-gray-400">
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+            <h2 className="font-bold" style={{fontSize:'20px'}}>Support</h2>
+            <div className="flex flex-col space-y-2 text-gray-400" style={{fontSize:'17px'}}>
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Help & Support
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Trust & Safety
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Selling on Fiverr
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Buying on Fiverr
               </Link>
             </div>
           </div>
           <div className="flex flex-col space-y-5">
-            <h2 className="font-medium">Community</h2>
-            <div className="flex flex-col space-y-2 text-base text-gray-400">
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+            <h2 className="font-bold" style={{fontSize:'20px'}}>Community</h2>
+            <div className="flex flex-col space-y-2 text-gray-400" style={{fontSize:'17px'}}>
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Events
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Blog
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Forum
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Community Standards
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Podcast
               </Link>
 
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Influencers
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Affiliates
               </Link>
 
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Become a Seller
               </Link>
             </div>
           </div>
           <div className="flex flex-col space-y-5">
-            <h2 className="font-medium">More From Fiverr</h2>
-            <div className="flex flex-col space-y-2 text-base text-gray-400">
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+            <h2 className="font-bold" style={{fontSize:'20px'}}>More From Fiverr</h2>
+            <div className="flex flex-col space-y-2 text-gray-400" style={{fontSize:'17px'}}>
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Fiverr Business
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Fiverr Pro
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Fiverr Studios
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Fiverr Logo Maker
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Fiverr Guides
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Get Inspired
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Fiverr Select
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 ClearVoice
                 <br />
                 <span className="text-gray-300">Content Marketing</span>
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Fiverr Workspace
                 <br />
                 <span className="text-gray-300"> Invoice Software</span>
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Learn
                 <br />
                 <span className="text-gray-300"> Online Courses</span>
               </Link>
-              <Link className="text-gray-400" rel="noopener noreferrer" to="#">
+              <Link className="text-gray-500 pb-2 hover:text-pink-400" rel="noopener noreferrer" to="#">
                 Working Not Working
               </Link>
             </div>
           </div>
         </div>
-        <div
-          style={{ borderTop: "1px solid #9ca3af" }}
-          className="flex items-center justify-between py-5  px-6 mt-12 text-base text-black"
-        >
-          <div className="left items-center flex text-gray-400">
-            {/* <div className="">
-              <svg fill="#7A7D85">
-                <path d="m82.9 13.1h-3.2c-2.1 0-3.2 1.5-3.2 4.1v9.3h-6.1v-13.4h-2.6c-2.1 0-3.2 1.5-3.2 4.1v9.3h-6.1v-18.4h6.1v2.8c1-2.2 2.4-2.8 4.4-2.8h7.4v2.8c1-2.2 2.4-2.8 4.4-2.8h2v5zm-25.6 5.6h-12.6c.3 2.1 1.6 3.2 3.8 3.2 1.6 0 2.8-.7 3.1-1.8l5.4 1.5c-1.3 3.2-4.6 5.1-8.5 5.1-6.6 0-9.6-5.1-9.6-9.5 0-4.3 2.6-9.4 9.2-9.4 7 0 9.3 5.2 9.3 9.1 0 .9 0 1.4-.1 1.8zm-5.9-3.5c-.1-1.6-1.3-3-3.3-3-1.9 0-3.1.8-3.4 3zm-23.1 11.3h5.3l6.7-18.3h-6.1l-3.2 10.7-3.4-10.8h-6.1zm-24.9 0h6v-13.4h5.7v13.4h6v-18.4h-11.6v-1.1c0-1.2.9-2 2.3-2h3.5v-5h-4.4c-4.5 0-7.5 2.7-7.5 6.6v1.5h-3.4v5h3.4z"></path>
-              </svg>
-            </div> */}
-            <p className="text-gray-400 font-bold text-3xl pb-2 mb-0">
+        <div style={{ borderTop: "1px solid #9ca3af" }} className=" py-5  px-6 mt-12 text-base text-black" >
+         <div className="flex items-center justify-between container">
+         <div className="left items-center flex text-gray-400">
+            <p className="text-gray-500 font-bold text-3xl pb-2 mb-0">
               fiverr{" "}
             </p>
             <div className="text-gray-400 ml-8">
@@ -179,15 +172,12 @@ export const Footer = () => {
             </div>
           </div>
           <div className="right flex gap-5">
-            <div className="flex items-center gap-7 text-xl mr-7 text-gray-400">
-              <i className="fa-brands fa-twitter"></i>
-
-              <i className="fa-brands fa-facebook"></i>
-
-              <i className="fa-brands fa-linkedin"></i>
-
-              <i className="fa-brands fa-linkedin"></i>
-              <i className="fa-brands fa-instagram"></i>
+            <div className="flex items-center gap-7 text-2xl mr-7 text-gray-500 ">
+              <i className="fa-brands fa-twitter hover:text-pink-400 transition-all"></i>
+              <i className="fa-brands fa-facebook hover:text-pink-400 transition-all"></i>
+              <i className="fa-brands fa-linkedin hover:text-pink-400 transition-all"></i>
+              <i className="fa-brands fa-pinterest hover:text-pink-400 transition-all"></i>
+              <i className="fa-brands fa-instagram hover:text-pink-400 transition-all"></i>
             </div>
             <div className="flex gap-8">
               <button className="text-gray-400 flex gap-3 items-center">
@@ -203,10 +193,10 @@ export const Footer = () => {
                     stroke-width="0.2"
                   ></path>
                 </svg>
-                <span className="label">English</span>
+                <span className="label font-semibold hover:text-pink-400">English</span>
               </button>
-              <button className="text-gray-400">$ USD</button>
-              <span className="text-gray-400 text-xl">
+              <button className="text-gray-400 font-semibold hover:text-pink-400">$ USD</button>
+              <span className="text-gray-400 text-xl hover:text-pink-400">
                 <svg
                   width="32"
                   height="32"
@@ -228,6 +218,7 @@ export const Footer = () => {
               </span>
             </div>
           </div>
+         </div>
         </div>
       </Foot>
     </div>
@@ -238,5 +229,6 @@ export const Foot = styled.footer`
   font-size: 16px;
   Link {
     color: gray;
+
   }
 `;
