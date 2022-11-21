@@ -25,7 +25,14 @@ export const JobDetail = () => {
   const { register, handleSubmit } = useForm({
     defaultValues: {},
   });
-
+  useEffect(() => {
+    const inputcheck = document.body.querySelector('.inputcheck')
+    const backgroundcheck = document.body.querySelector('.backgroundcheck')
+    const subcheck = document.body.querySelector('.subcheck')
+    inputcheck.style.display = 'block';
+    subcheck.style.display = 'block';
+    backgroundcheck.style.backgroundColor = 'white';
+  })
   useEffect(() => {
     dispatch(layCongViecChiTiet(id));
     dispatch(binhLuanTheoCongViec(id));

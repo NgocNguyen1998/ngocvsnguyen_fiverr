@@ -6,7 +6,7 @@ const HomeServiceDetail = () => {
  
   return (
     <div className='bg-pink-50 home-service-detail'>
-      <div className='container grid grid-cols-2 py-20'>
+      <div className='container lg:grid grid-cols-2 py-20'>
         <div className='left col-span-1 pr-40'>
           <h2 className='text-4xl font-bold'>A whole world of freelance
           <p> talent at your fingertips</p></h2>
@@ -65,12 +65,12 @@ const HomeServiceDetail = () => {
                   setVideo(video + 1)
                 }}/>
                 </picture>
-                <video controls className="orca-video" style={{ display: `${video % 2 === 0 ? 'block' : 'none'}` }}  poster preload="metadata" ><source src="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/vmvv3czyk2ifedefkau7" type="video/mp4" /></video>
+               
 
               </div>
             </div>
           </div>
-
+          <video crossorigin="anonymous" controls className="orca-video" style={{ display: `${video % 2 === 0 ? 'block' : 'none'}` }}  poster preload="metadata" ><source src="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/vmvv3czyk2ifedefkau7" type="video/mp4" /></video>
         </div>
       </div>
     </div>

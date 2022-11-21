@@ -1,9 +1,7 @@
 import { Select } from "antd";
 import Search from "antd/lib/input/Search";
-import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import SubMenuJobList from "../JobList/SubMenuJobList";
-
 export const Header = () => {
   const navigate = useNavigate();
 
@@ -11,7 +9,7 @@ export const Header = () => {
     navigate(`/jobList/${data}`);
   };
   return (
-    <header className="bg-white  text-black fixed w-full z-10">
+    <header className="bg-transparent text-black fixed w-full z-10 backgroundcheck header-section">
       <div className="container flex justify-between h-20 mx-auto">
         <NavLink
           to="/"
@@ -26,6 +24,8 @@ export const Header = () => {
             onSearch={onSearch}
             enterButton
             allowClear
+            className="inputcheck"
+            style={{display:'none'}}
           />
         </div>
         <div className="flex">
@@ -81,7 +81,7 @@ export const Header = () => {
         </button>
       </div>
       <hr />
-      <div className=" text-center header-submenu">
+      <div className=" text-center header-submenu" >
         <SubMenuJobList />
       </div>
     </header>
