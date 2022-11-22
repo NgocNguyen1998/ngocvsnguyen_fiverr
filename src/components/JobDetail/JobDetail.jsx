@@ -22,17 +22,21 @@ export const JobDetail = () => {
   const { jobDetail } = useCongViec();
   console.log(jobDetail);
   const { commentByJob } = useComment();
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     defaultValues: {},
   });
   useEffect(() => {
-    const inputcheck = document.body.querySelector('.inputcheck')
-    const backgroundcheck = document.body.querySelector('.backgroundcheck')
-    const subcheck = document.body.querySelector('.subcheck')
-    inputcheck.style.display = 'block';
-    subcheck.style.display = 'block';
-    backgroundcheck.style.backgroundColor = 'white';
-  })
+    const inputcheck = document.body.querySelector(".inputcheck");
+    const backgroundcheck = document.body.querySelector(".backgroundcheck");
+    const subcheck = document.body.querySelector(".subcheck");
+    inputcheck.style.display = "block";
+    subcheck.style.display = "block";
+    backgroundcheck.style.backgroundColor = "white";
+  });
   useEffect(() => {
     dispatch(layCongViecChiTiet(id));
     dispatch(binhLuanTheoCongViec(id));
@@ -65,7 +69,15 @@ export const JobDetail = () => {
     console.log(key);
   };
   const [expandIconPosition, setExpandIconPosition] = useState("end");
-
+  // get date
+  const getTodayDate = () => {
+    const today = new Date();
+    const date = today.getDate();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    return `${date}-${month}-${year}`;
+  };
+  // render TabContent
   const handleTabContent = (job) => (
     <div className="px-8 pt-3 pb-5 text-base text-gray-400">
       <div className=" text-[20px] flex justify-between text-[#333]">
@@ -145,7 +157,7 @@ export const JobDetail = () => {
               id: 0,
               maCongViec: +id,
               maNguoiThue: Math.floor(Math.random() * 1000),
-              ngayThue: "20/11/2022",
+              ngayThue: getTodayDate(),
               hoanThanh: false,
             });
             dispatch(
@@ -153,7 +165,7 @@ export const JobDetail = () => {
                 id: 0,
                 maCongViec: +id,
                 maNguoiThue: Math.floor(Math.random() * 1000),
-                ngayThue: "20/11/2022",
+                ngayThue: getTodayDate(),
                 hoanThanh: false,
               })
             );
@@ -177,36 +189,34 @@ export const JobDetail = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-
+  // slider carousel
   const handleSliders = (job) => {
     return (
       <Slider {...settings}>
-        <div className="  mt-9">
-          <img className="w-full " src={job.congViec.hinhAnh} alt="..." />
+        <div className="wrap-content  mt-9">
+          <div className="wrap-img">
+            <img className="w-full " src={job.congViec.hinhAnh} alt="..." />
+          </div>
         </div>
-        <div className="  mt-9">
-          <img
-            className="w-full "
-            src="http://picsum.photos/614/409"
-            alt="..."
-          />
+        <div className="wrap-content  mt-9">
+          <div className="wrap-img ">
+            <img
+              className="w-full "
+              src="http://picsum.photos/610/409"
+              alt="..."
+            />
+          </div>
         </div>
       </Slider>
     );
   };
-  useEffect(() => {
-    window.onscroll = () => {
-      // if (
-      //   document.body.scrollTop > 20 ||
-      //   document.documentElement.scrollTop > 20
-      // ) {
-      //   document.body.querySelector(".right").style.position = "fixed";
-      // } else {
-      //   document.body.querySelector(".right").style.position = "relative";
-      // }
-    };
-  }, []);
-
+  // get user from localStorage
+  const handleGetUser = () => {
+    const userLogin = JSON.parse(localStorage.getItem("userLogin"));
+    if (userLogin) {
+      return userLogin.id;
+    }
+  };
   return (
     <Wrapper className="container mx-auto mb-[300px]">
       {jobDetail.map((job, index) => (
@@ -499,33 +509,39 @@ export const JobDetail = () => {
                 <div className="mt-5">
                   <form
                     onSubmit={handleSubmit((data) => {
-                      console.log({
-                        noiDung: data.cmt,
-                        id: id,
-                        maNguoiBinhLuan: 120,
-                        ngayBinhLuan: "20 / 11 / 2022",
-                        saoBinhLuan: 5,
-                        maCongViec: id,
-                      });
+                      // console.log({
+                      //   noiDung: data.cmt,
+                      //   id: id,
+                      //   maNguoiBinhLuan: handleGetUser(),
+                      //   ngayBinhLuan: getTodayDate(),
+                      //   saoBinhLuan: 5,
+                      //   maCongViec: id,
+                      // });
                       dispatch(
                         postBinhLuan({
                           noiDung: data.cmt,
-                          // id: +id,
-                          maNguoiBinhLuan: 1608,
-                          ngayBinhLuan: "20/11/2022",
+                          id: +id,
+                          maNguoiBinhLuan: handleGetUser(),
+                          ngayBinhLuan: getTodayDate(),
                           saoBinhLuan: 5,
                           maCongViec: +id,
                         })
                       );
                     })}
                   >
-                    <textarea
-                      {...register("cmt")}
-                      className="w-full border-2 rounded-md p-3"
-                      name="cmt"
-                      cols="30"
-                      rows="5"
-                    />
+                    <div>
+                      <textarea
+                        {...register("cmt", {
+                          required: "Please Enter Your Comment !",
+                        })}
+                        className="w-full border-2 rounded-md p-3"
+                        name="cmt"
+                        cols="30"
+                        rows="5"
+                        placeholder="Enter Your Comment ..."
+                      />
+                      <p className="text-red-400">{errors?.cmt?.message}</p>
+                    </div>
                     <button className="bg-blue-400 text-white mt-5 py-3 px-5 rounded-md hover:bg-blue-500">
                       Add Comment
                     </button>
@@ -535,7 +551,9 @@ export const JobDetail = () => {
             </div>
           </div>
           <div>
-            <div className="right flex-1 mt-[150px] border-2 h-[500px] w-full">
+            <div
+              className={`  right flex-1 mt-[150px] border-2 h-[500px]  w-full`}
+            >
               <Tabs
                 className="flex justify-around"
                 defaultActiveKey="1"
@@ -573,18 +591,17 @@ export const JobDetail = () => {
 };
 
 const Wrapper = styled.div`
-  /* .wrapper {
-    width: 105%;
-    .overload {
+  .wrap-content {
+    .wrap-img {
       overflow: hidden;
       img {
         transition: all 0.5s;
       }
       &:hover img {
-        scale: 1.1;
+        scale: 1.05;
       }
     }
-  } */
+  }
   .slick-arrow {
     align-items: center;
     border-radius: 50%;
@@ -594,7 +611,7 @@ const Wrapper = styled.div`
     background-color: white;
     box-shadow: 0 0 2px rgba(0 0 0 / 80%) !important;
     font-weight: 800;
-    z-index: 10;
+    z-index: 1;
     &::before {
       opacity: 1;
       font-family: "Courier New", Courier, monospace;
@@ -631,9 +648,9 @@ const Wrapper = styled.div`
   .left {
     left: 0%;
   }
-  .right {
+  /* .right {
     right: 0%;
-  }
+  } */
 
   .anticon.anticon-right.ant-collapse-arrow {
     transform: rotate(90deg) !important;

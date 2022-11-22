@@ -1,16 +1,49 @@
-import { Select } from "antd";
+import { Modal, Select } from "antd";
 import Search from "antd/lib/input/Search";
 import { NavLink, useNavigate } from "react-router-dom";
+import { showModal } from "../../pages/Login/Login";
 import SubMenuJobList from "../JobList/SubMenuJobList";
+import Login from "../../pages/Login/Login";
+import { useState } from "react";
+import styled from "styled-components";
 export const Header = () => {
   const navigate = useNavigate();
 
   const onSearch = (data) => {
     navigate(`/jobList/${data}`);
   };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  const getUserLogin = () => {
+    const userLogin = localStorage.getItem("userLogin");
+    if (userLogin) {
+      return (
+        <div className="flex gap-3 items-end ">
+          <img
+            className="rounded-full"
+            src="http://picsum.photos/40/40"
+            alt="avatar"
+          />
+          <p className="mb-0">{JSON.parse(userLogin).name}</p>
+          <span>
+            <i className="fa-sharp fa-solid fa-caret-down"></i>
+          </span>
+        </div>
+      );
+    }
+  };
   return (
-    <header className="bg-transparent text-black fixed w-full z-10 backgroundcheck header-section">
-      <div className="container flex justify-between h-20 mx-auto">
+    <Head className="bg-transparent text-black fixed w-full z-10 backgroundcheck header-section">
+      <div className="container wrap flex justify-between h-20 mx-auto">
         <NavLink
           to="/"
           aria-label="Back to homepage"
@@ -25,7 +58,7 @@ export const Header = () => {
             enterButton
             allowClear
             className="inputcheck"
-            style={{display:'none'}}
+            style={{ display: "none" }}
           />
         </div>
         <div className="flex">
@@ -52,8 +85,25 @@ export const Header = () => {
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex">
             <button className="self-center px-8 py-3 rounded text-black font-medium">
-              Sign in
+              {localStorage.getItem("userLogin") ? (
+                getUserLogin()
+              ) : (
+                <p onClick={showModal}>Sign in</p>
+              )}
             </button>
+            <div>
+              <Modal
+                // title="Login"
+                open={isModalOpen}
+                onOk={handleOk}
+                onCancel={handleCancel}
+                okText="123"
+                footer={null}
+                width="400px"
+              >
+                {Login()}
+              </Modal>
+            </div>
             <button
               className="hover:text-white hover:bg-green-500 transition-all hover:border-transparent duration-500 text-green-500 font-bold border-green-300 rounded-md border-2 px-5 py-1"
               to="/"
@@ -81,9 +131,19 @@ export const Header = () => {
         </button>
       </div>
       <hr />
-      <div className=" text-center header-submenu" >
+      <div className=" text-center header-submenu">
         <SubMenuJobList />
       </div>
-    </header>
+    </Head>
   );
 };
+
+const Head = styled.header`
+  .wrapper {
+    .flex {
+      .ant-modal-footer {
+        display: none !important;
+      }
+    }
+  }
+`;

@@ -3,6 +3,7 @@ import { JobDetail } from "../components/JobDetail/JobDetail";
 import { JobList } from "../components/JobList";
 import MainLayout from "../components/layouts/MainLayout";
 import Home from "../pages/home/Home";
+import Login from "../pages/Login/Login";
 
 const Router = () => {
   const routing = useRoutes([
@@ -12,12 +13,16 @@ const Router = () => {
       children: [
         { path: "jobList/:jobName", element: <JobList /> },
         { path: "jobDetail/:id", element: <JobDetail /> },
-        { path: "", element:<Navigate to="home" />},
+        { path: "", element: <Navigate to="home" /> },
         {
           path: "home",
           element: <Home />,
         },
       ],
+    },
+    {
+      path: "/login",
+      element: <Login />,
     },
   ]);
 

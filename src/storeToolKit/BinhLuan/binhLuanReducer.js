@@ -47,7 +47,7 @@ export const postBinhLuan = createAsyncThunk(
       const result = await binhLuanService.postBinhLuan(data);
       console.log("data", data);
       console.log("result", result.data.content);
-      // await dispatch(binhLuanTheoCongViec(data.id));
+      await dispatch(binhLuanTheoCongViec(data.id));
       // console.log(data.idNum);
       alert("thành công");
       return result.data.content;
