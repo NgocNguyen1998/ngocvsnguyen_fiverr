@@ -1,0 +1,58 @@
+.categories-banner .categories-banner-wrapper {
+    position: relative;
+
+}
+
+.categories-banner .categories-banner {
+    position: absolute;
+    top: 28%;
+    left: 40%;
+}
+
+.categories-banner .categories-banner .banner-content .title {
+    font-size: 33px;
+    color: #fff;
+    margin-bottom: 3px;
+}
+
+.categories-banner .categories-banner .banner-content .subtitle {
+    font-size: 22px;
+
+}
+
+.categories-banner .categories-banner .banner-content button {
+    border: 1px solid #fff;
+    padding: 13px 30px 1px 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* .categories-banner{
+    position: relative;
+} */
+.categories-banner video {
+    position: absolute;
+    top: -350px;
+    width: 48vw;
+    height: 60vh;
+    left: 25%;
+}
+.video-close{
+    position: relative;
+}
+.categories-banner .close{
+    position: absolute;
+    left: 72%;
+    top: -340px;
+    padding: 2px 4px;
+    cursor: pointer;
+}
+.categorie-section .item{
+    width: 100px;
+}
+.categorie-section .item a{
+    border-radius: 5px;
+    background-color: pink;
+}
