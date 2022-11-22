@@ -12,11 +12,9 @@ import {
   useComment,
 } from "../../storeToolKit/BinhLuan";
 import { useForm } from "react-hook-form";
-import {
-  thueCongViec,
-  thueCongViecReducer,
-} from "../../storeToolKit/ThueCongViec/thueCongViecReducer";
-
+import { thueCongViecPost } from "../../storeToolKit/ThueCongViec/thueCongViecReducer";
+import Slider from "react-slick";
+//
 export const JobDetail = () => {
   const { Panel } = Collapse;
   const { id } = useParams();
@@ -80,13 +78,13 @@ export const JobDetail = () => {
       <div className="flex gap-5">
         <div>
           <span className="mr-1">
-            <i class="fa-regular fa-clock"></i>
+            <i className="fa-regular fa-clock"></i>
           </span>
           <span>30 Days Delivery</span>
         </div>
         <div className="flex">
           <span
-            class="nFghBOe revisions-icon self-center mr-1"
+            className="nFghBOe revisions-icon self-center mr-1"
             aria-hidden="true"
             style={{ width: "16px", height: "16px" }}
           >
@@ -107,19 +105,19 @@ export const JobDetail = () => {
       <div className="mt-6">
         <div className="flex">
           <span className="text-green-500">
-            <i class="fa-sharp fa-solid fa-check"></i>
+            <i className="fa-sharp fa-solid fa-check"></i>
           </span>
           <span className="ml-5">Design customization</span>
         </div>
         <div className="flex">
           <span className="text-gray-400">
-            <i class="fa-sharp fa-solid fa-check"></i>
+            <i className="fa-sharp fa-solid fa-check"></i>
           </span>
           <span className="ml-5">Content Upload</span>
         </div>
         <div className="flex">
           <span className="text-green-500">
-            <i class="fa-sharp fa-solid fa-check"></i>
+            <i className="fa-sharp fa-solid fa-check"></i>
           </span>
           <span className="ml-5">Responsive Design</span>
         </div>
@@ -131,7 +129,7 @@ export const JobDetail = () => {
         </div>
         <div className="flex">
           <span className="text-gray-400">
-            <i class="fa-sharp fa-solid fa-check"></i>
+            <i className="fa-sharp fa-solid fa-check"></i>
           </span>
           <span className="ml-5">Page</span>
         </div>
@@ -151,7 +149,7 @@ export const JobDetail = () => {
               hoanThanh: false,
             });
             dispatch(
-              thueCongViecReducer({
+              thueCongViecPost({
                 id: 0,
                 maCongViec: +id,
                 maNguoiThue: Math.floor(Math.random() * 1000),
@@ -163,7 +161,7 @@ export const JobDetail = () => {
           }}
           className="hover:bg-green-400 bg-green-500 text-white w-full py-2 rounded-lg font-bold"
         >
-          <span className="mr-2">Cotinue</span>
+          <span className="mr-2">Continue</span>
           <span>(${job.congViec.giaTien})</span>
         </button>
       </div>
@@ -172,28 +170,65 @@ export const JobDetail = () => {
       </p>
     </div>
   );
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  const handleSliders = (job) => {
+    return (
+      <Slider {...settings}>
+        <div className="  mt-9">
+          <img className="w-full " src={job.congViec.hinhAnh} alt="..." />
+        </div>
+        <div className="  mt-9">
+          <img
+            className="w-full "
+            src="http://picsum.photos/614/409"
+            alt="..."
+          />
+        </div>
+      </Slider>
+    );
+  };
+  useEffect(() => {
+    window.onscroll = () => {
+      // if (
+      //   document.body.scrollTop > 20 ||
+      //   document.documentElement.scrollTop > 20
+      // ) {
+      //   document.body.querySelector(".right").style.position = "fixed";
+      // } else {
+      //   document.body.querySelector(".right").style.position = "relative";
+      // }
+    };
+  }, []);
+
   return (
-    <Component className="container mx-auto mb-[300px]">
+    <Wrapper className="container mx-auto mb-[300px]">
       {jobDetail.map((job, index) => (
-        <div key={index} className="  flex ">
-          <div className="flex-cols w-[60%] pr-[114px]">
-            <div className="left text-base pr-[115px]">
+        <div key={index} className="  flex justify-between">
+          <div className="flex-cols mt-[130px] w-[60%] pr-[114px]">
+            <div className="left text-base ">
               <h3 className=" mt-5">
                 <Link to="">{job.tenLoaiCongViec}</Link>
                 <span className="mx-2 color text-gray-400">
-                  <i class="fa-solid fa-greater-than"></i>
+                  <i className="fa-solid fa-greater-than"></i>
                 </span>
                 <Link to="">{job.tenLoaiCongViec}</Link>
 
                 <span className="mx-2 color text-gray-400">
-                  <i class="fa-solid fa-greater-than"></i>
+                  <i className="fa-solid fa-greater-than"></i>
                 </span>
                 <Link to="">{job.tenChiTietLoai}</Link>
               </h3>
               <h1 className="text-3xl w-300px    text-[#333]">
                 {job.congViec.tenCongViec}
               </h1>
-              <div className="flex">
+              <div className="flex gap-1">
                 <img
                   className="w-8 rounded-full"
                   src={job.avatar}
@@ -213,20 +248,8 @@ export const JobDetail = () => {
                   {job.congViec.nguoiTao} Orders in Queue
                 </span>
               </div>
-              <div className="wrapper h-[400px] relative">
-                <div className="overload flex relative mt-9">
-                  <span className="slick left mx-2 color text-gray-400">
-                    <i class="fa-solid fa-less-than"></i>
-                  </span>
-                  <img
-                    className="w-[600px] block"
-                    src={job.congViec.hinhAnh}
-                    alt="..."
-                  />
-                  <span className="slick right mx-2 color text-gray-400">
-                    <i class="fa-solid fa-greater-than"></i>
-                  </span>
-                </div>
+              <div className="wrapper h-[450px] ">
+                <div>{handleSliders(job)}</div>
               </div>
             </div>
             <div className="aboutThisGig mt-12 text-gray-400 text-base">
@@ -245,7 +268,9 @@ export const JobDetail = () => {
               <p className="text-black">Thing offer:</p>
               <ul>
                 {job.congViec.moTaNgan.split("+").map((item) => (
-                  <li> - {item}</li>
+                  <React.Fragment key={Math.random() * 1000}>
+                    <li> - {item}</li>
+                  </React.Fragment>
                 ))}
               </ul>
               <p className="text-black">
@@ -328,7 +353,7 @@ export const JobDetail = () => {
                     {job.congViec.saoCongViec}
                   </span>
                 </div>
-                <div className=" text-base flex gap-2 text-gray-400">
+                <div className=" text-base flex gap-2 items-end text-gray-400">
                   <span className="self-end ">
                     Sort By <strong>Most relevant</strong>{" "}
                   </span>
@@ -401,9 +426,6 @@ export const JobDetail = () => {
                 <div className="flex-1">
                   <p className="justify-between flex text-black font-semibold">
                     <span>Rating breakdown</span>
-                    <span className="text-yellow-400">
-                      5 <i className="fa-solid fa-star "></i>
-                    </span>
                   </p>
                   <p className="justify-between flex text-gray-400 mb-1">
                     <span>Seller communication level</span>
@@ -477,15 +499,22 @@ export const JobDetail = () => {
                 <div className="mt-5">
                   <form
                     onSubmit={handleSubmit((data) => {
-                      console.log({});
+                      console.log({
+                        noiDung: data.cmt,
+                        id: id,
+                        maNguoiBinhLuan: 120,
+                        ngayBinhLuan: "20 / 11 / 2022",
+                        saoBinhLuan: 5,
+                        maCongViec: id,
+                      });
                       dispatch(
                         postBinhLuan({
                           noiDung: data.cmt,
-                          id: id,
-                          maNguoiBinhLuan: 120,
-                          ngayBinhLuan: 20 / 11 / 2022,
+                          // id: +id,
+                          maNguoiBinhLuan: 1608,
+                          ngayBinhLuan: "20/11/2022",
                           saoBinhLuan: 5,
-                          maCongViec: id,
+                          maCongViec: +id,
                         })
                       );
                     })}
@@ -506,7 +535,7 @@ export const JobDetail = () => {
             </div>
           </div>
           <div>
-            <div className="right flex-1 mt-7 border-2 h-[500px]">
+            <div className="right flex-1 mt-[150px] border-2 h-[500px] w-full">
               <Tabs
                 className="flex justify-around"
                 defaultActiveKey="1"
@@ -539,11 +568,11 @@ export const JobDetail = () => {
           </div>
         </div>
       ))}
-    </Component>
+    </Wrapper>
   );
 };
 
-const Component = styled.div`
+const Wrapper = styled.div`
   /* .wrapper {
     width: 105%;
     .overload {
@@ -556,7 +585,29 @@ const Component = styled.div`
       }
     }
   } */
-
+  .slick-arrow {
+    align-items: center;
+    border-radius: 50%;
+    padding: 22px;
+    display: flex !important;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 0 2px rgba(0 0 0 / 80%) !important;
+    font-weight: 800;
+    z-index: 10;
+    &::before {
+      opacity: 1;
+      font-family: "Courier New", Courier, monospace;
+    }
+  }
+  .slick-next::before {
+    content: ">";
+    color: #616060;
+  }
+  .slick-prev::before {
+    content: "<";
+    color: #616060;
+  }
   .input {
     display: none;
   }

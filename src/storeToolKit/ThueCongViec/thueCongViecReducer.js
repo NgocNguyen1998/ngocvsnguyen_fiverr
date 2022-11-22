@@ -10,11 +10,11 @@ export const { reducer: thueCongViecReducer, actions: thueCongViecActions } =
     extraReducers: (builder) => {},
   });
 
-export const thueCongViec = createAsyncThunk(
-  "thueCongViec/thueCongViec",
+export const thueCongViecPost = createAsyncThunk(
+  "thueCongViec/thueCongViecPost",
   async (data) => {
     try {
-      const result = await thueCongViecServices.thueCongViec(data);
+      const result = await thueCongViecServices.thueCongViecPost(data);
       alert("thành công");
       console.log(result.data.content);
     } catch (err) {

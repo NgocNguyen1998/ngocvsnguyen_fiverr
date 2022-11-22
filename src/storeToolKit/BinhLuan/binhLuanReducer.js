@@ -32,7 +32,7 @@ export const binhLuanTheoCongViec = createAsyncThunk(
   async (id) => {
     try {
       const result = await binhLuanService.binhLuanTheoCongViec(id);
-      console.log(result.data.content);
+      console.log("RESULT", result.data.content);
       return result.data.content;
     } catch (err) {
       console.log(err.response.data);
@@ -46,9 +46,11 @@ export const postBinhLuan = createAsyncThunk(
     try {
       const result = await binhLuanService.postBinhLuan(data);
       console.log("data", data);
-      // dispatch(binhLuanTheoCongViec(data.idNum));
+      console.log("result", result.data.content);
+      // await dispatch(binhLuanTheoCongViec(data.id));
       // console.log(data.idNum);
       alert("thành công");
+      return result.data.content;
     } catch (err) {
       console.log(err.response.data);
     }

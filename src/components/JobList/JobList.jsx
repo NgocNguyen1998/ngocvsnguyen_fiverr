@@ -34,11 +34,11 @@ export const JobList = () => {
   const { itemRender } = useCongViec();
   console.log(itemRender);
   return (
-    <Components className=" mx-auto">
-      <div className="flex flex-row justify-between mt-10 container mx-auto">
+    <Components className=" mx-auto mt-[200px]">
+      <div className="flex flex-row justify-between mt-10 container mx-0 w-full">
         <div></div>
-        <div className="flex flex-row justify-between mt-10 container mx-auto">
-          <div className="flex gap-2">
+        <div className="flex flex-row justify-between mt-10 pb-8 mx-0 px-0  container ">
+          <div className="flex gap-2 ">
             <select className="border-2">
               <option value="">Category</option>
             </select>
@@ -134,9 +134,7 @@ export const JobList = () => {
           defaultCurrent={1}
         />
       </div>
-      <div className="mt-8 container mx-auto">
-        <Footer />
-      </div>
+      <div className="mt-8 container mx-auto">{/* <Footer /> */}</div>
     </Components>
   );
 };
