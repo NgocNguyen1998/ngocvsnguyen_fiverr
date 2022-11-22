@@ -9,7 +9,7 @@ export const Header = () => {
     navigate(`/jobList/${data}`);
   };
   return (
-    <header className="bg-transparent text-black fixed w-full z-10 backgroundcheck header-section">
+    <header className="bg-transparent text-black w-full z-10 backgroundcheck header-section">
       <div className="container flex justify-between h-20 mx-auto">
         <NavLink
           to="/"
