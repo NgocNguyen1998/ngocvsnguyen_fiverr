@@ -42,8 +42,8 @@ export const Header = () => {
     }
   };
   return (
-    <Head className="bg-transparent text-black fixed w-full z-10 backgroundcheck header-section">
-      <div className="container wrap flex justify-between h-20 mx-auto">
+    <header className="bg-transparent text-black w-full z-10 backgroundcheck header-section">
+      <div className="container flex justify-between h-20 mx-auto">
         <NavLink
           to="/"
           aria-label="Back to homepage"
@@ -134,7 +134,7 @@ export const Header = () => {
       <div className=" text-center header-submenu">
         <SubMenuJobList />
       </div>
-    </Head>
+    </header>
   );
 };
 

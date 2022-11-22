@@ -19,6 +19,8 @@ const Home = () => {
     const inputcheck = document.body.querySelector('.inputcheck')
     const backgroundcheck = document.body.querySelector('.backgroundcheck')
     const subcheck = document.body.querySelector('.subcheck')
+    const headersection = document.body.querySelector('.header-section')    
+    headersection.style.position = 'fixed';
     if (scrollTop === 0 ) {
       inputcheck.style.display = 'none';
       subcheck.style.display = 'none';

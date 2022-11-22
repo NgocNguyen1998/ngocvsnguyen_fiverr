@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { CheckOutlined } from "@ant-design/icons";
 const HomeServiceDetail = () => {
   const [video, setVideo] = useState(1);
- 
   return (
     <div className='bg-pink-50 home-service-detail'>
       <div className='container lg:grid grid-cols-2 py-20'>
