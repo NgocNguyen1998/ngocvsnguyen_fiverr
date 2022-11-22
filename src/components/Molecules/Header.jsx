@@ -88,7 +88,9 @@ export const Header = () => {
               {localStorage.getItem("userLogin") ? (
                 getUserLogin()
               ) : (
-                <p onClick={showModal}>Sign in</p>
+                <p className=" mb-0" onClick={showModal}>
+                  Sign in
+                </p>
               )}
             </button>
             <div>
