@@ -1,14 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import React from "react";
 import { congViecServices } from "../../services/CongViecServices";
 
 const initialState = {
   jobsList: [],
+  itemRender: [],
+  jobDetail: [],
+  jobType:[],
+  jobTypeDetail:[],
   isFetchingJobList: false,
   isFetchingItem: false,
-  itemRender: [],
   isFetchingJobDetail: false,
-  jobDetail: [],
+  isFetchingjobType: false,
+  isFetchingjobTypeDetail: false,
 };
 export const { reducer: congViecReducer, actions: congViecActions } =
   createSlice({
@@ -52,7 +55,31 @@ export const { reducer: congViecReducer, actions: congViecActions } =
         .addCase(layCongViecChiTiet.rejected, (state, action) => {
           state.isFetchingJobDetail = false;
           state.jobDetail = action.payload;
-        });
+        })
+        // getTypeWork
+        .addCase(getTypeWork.pending, (state) => {
+          state.isFetchingjobType = true;
+        })
+        .addCase(getTypeWork.fulfilled, (state, action) => {
+          state.isFetchingjobType = false;
+          state.jobType = action.payload;
+        })
+        .addCase(getTypeWork.rejected, (state, action) => {
+          state.isFetchingjobType = false;
+          state.jobType = action.payload;
+        })
+          // getTypeWorkDetail
+          .addCase(getTypeWorkDetail.pending, (state) => {
+            state.isFetchingjobTypeDetail = true;
+          })
+          .addCase(getTypeWorkDetail.fulfilled, (state, action) => {
+            state.isFetchingjobTypeDetail = false;
+            state.jobTypeDetail = action.payload;
+          })
+          .addCase(getTypeWorkDetail.rejected, (state, action) => {
+            state.isFetchingjobTypeDetail = false;
+            state.jobTypeDetail = action.payload;
+          })
     },
   });
 export const menuCongViec = createAsyncThunk(
@@ -87,6 +114,30 @@ export const layCongViecChiTiet = createAsyncThunk(
     try {
       const result = await congViecServices.layCongViecChiTiet(id);
       console.log(result.data.content);
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+);
+export const getTypeWork = createAsyncThunk(
+  "congViec/getTypeWork",
+  async (key) => {
+    try {
+      const result = await congViecServices.getTypeWork(key);
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+);
+
+
+export const getTypeWorkDetail = createAsyncThunk(
+  "congViec/getTypeWorkDetail",
+  async (type) => {
+    try {
+      const result = await congViecServices.getTypeWorkDetail(type);
       return result.data.content;
     } catch (err) {
       console.log(err.response.data);
