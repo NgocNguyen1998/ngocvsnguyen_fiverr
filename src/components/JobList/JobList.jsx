@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { congViecPhanTrangTimKiem } from "../../storeToolKit/CongViec/congViecReducer";
-import { NavLogin } from "../Molecules/NavLogin/NavLogin";
 import SubMenuJobList from "./SubMenuJobList";
 import { Switch } from "antd";
 import { useCongViec } from "../../storeToolKit/CongViec";
@@ -20,13 +19,13 @@ export const JobList = () => {
   };
   const [number, setNumber] = useState(1);
   useEffect(() => {
-    const inputcheck = document.body.querySelector('.inputcheck')
-    const backgroundcheck = document.body.querySelector('.backgroundcheck')
-    const subcheck = document.body.querySelector('.subcheck')
-    inputcheck.style.display = 'block';
-    subcheck.style.display = 'block';
-    backgroundcheck.style.backgroundColor = 'white';
-  })
+    const inputcheck = document.body.querySelector(".inputcheck");
+    const backgroundcheck = document.body.querySelector(".backgroundcheck");
+    const subcheck = document.body.querySelector(".subcheck");
+    inputcheck.style.display = "block";
+    subcheck.style.display = "block";
+    backgroundcheck.style.backgroundColor = "white";
+  });
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(congViecPhanTrangTimKiem(number));
