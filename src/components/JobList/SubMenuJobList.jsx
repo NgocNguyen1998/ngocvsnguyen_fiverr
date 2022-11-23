@@ -14,21 +14,25 @@ const SubMenuJobList = () => {
   }, []);
 
   return (
- <div className="subcheck" style={{display:'none'}}>
-     <Menu mode="horizontal" >
-      {jobsList.map((job) => {
-        return <Menu.SubMenu key={job.tenLoaiCongViec} title={job.tenLoaiCongViec} >
-          {job.dsNhomChiTietLoai.map(item => {
-            return  item.dsChiTietLoai.map(data=>{
-              return   <Menu.Item key={Math.floor(Math.random() * 10000) + 1000} >
-              {data.tenChiTiet}
-            </Menu.Item>
-            })
-          })}
-        </Menu.SubMenu>
-      })}
-    </Menu> 
- </div>
+    <div className="subcheck" style={{ display: "none" }}>
+      <Menu mode="horizontal">
+        {jobsList.map((job) => {
+          return (
+            <Menu.SubMenu key={job.tenLoaiCongViec} title={job.tenLoaiCongViec}>
+              {job.dsNhomChiTietLoai.map((item) => {
+                return item.dsChiTietLoai.map((data) => {
+                  return (
+                    <Menu.Item key={Math.floor(Math.random() * 10000) + 1000}>
+                      {data.tenChiTiet}
+                    </Menu.Item>
+                  );
+                });
+              })}
+            </Menu.SubMenu>
+          );
+        })}
+      </Menu>
+    </div>
   );
 };
 export default SubMenuJobList;

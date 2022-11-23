@@ -1,4 +1,4 @@
-import { Modal, Select } from "antd";
+import { Dropdown, Menu, Modal, Select, Space, Typography } from "antd";
 import Search from "antd/lib/input/Search";
 import { NavLink, useNavigate } from "react-router-dom";
 import { showModal } from "../../pages/Login/Login";
@@ -6,7 +6,15 @@ import SubMenuJobList from "../JobList/SubMenuJobList";
 import Login from "../../pages/Login/Login";
 import { useState } from "react";
 import styled from "styled-components";
+import {
+  CaretDownOutlined,
+  DownOutlined,
+  SmileOutlined,
+} from "@ant-design/icons";
+import { Fragment } from "react";
+
 export const Header = () => {
+  const [user, setUser] = useState(false);
   const navigate = useNavigate();
 
   const onSearch = (data) => {
@@ -27,17 +35,88 @@ export const Header = () => {
     const userLogin = localStorage.getItem("userLogin");
     if (userLogin) {
       return (
-        <div className="flex gap-3 items-end ">
+        <Div className="flex gap-3 items-center ">
           <img
             className="rounded-full"
             src="http://picsum.photos/40/40"
             alt="avatar"
           />
           <p className="mb-0">{JSON.parse(userLogin).name}</p>
-          <span>
-            <i className="fa-sharp fa-solid fa-caret-down"></i>
-          </span>
-        </div>
+          <p className="flex flex-cols m-0">
+            <span
+              className="items-end down"
+              onClick={() => {
+                document.body.querySelector(".info").style.display = "block";
+              }}
+            >
+              <i class="fa-sharp fa-solid fa-caret-down"></i>
+            </span>
+            <div className="w-[180px] h-[470px] ml-[-10px] info  text-base text-white rounded-md bg-blue-400 absolute mt-8">
+              <div className="relative ribbon">
+                <p
+                  className="absolute right-2 top-[-20px]"
+                  onClick={() =>
+                    (document.body.querySelector(".info").style.display =
+                      "none")
+                  }
+                >
+                  x
+                </p>
+                <div>
+                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                    <p className="mb-0 px-4">Profile</p>
+                  </p>
+                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                    <p className="mb-0 px-4">Post a Request</p>
+                  </p>
+                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                    <p className="mb-0 px-4">Refer a friend</p>
+                  </p>
+                </div>
+                <hr />
+                <div>
+                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                    <p className="mb-0 px-4">Become a Seller</p>
+                  </p>
+                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                    <p className="mb-0 px-4">Settings</p>
+                  </p>
+                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                    <p className="mb-0 px-4">Billing</p>
+                  </p>
+                </div>
+                <hr />
+                <div>
+                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                    <p className="mb-0 px-4">English</p>
+                  </p>
+                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                    <p className="mb-0 px-4">$ USD</p>
+                  </p>
+                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                    <p className="mb-0 px-4">Help & Support</p>
+                  </p>
+                </div>
+                <hr />
+                <div>
+                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                    <p
+                      className="mb-0 px-4"
+                      onClick={() => {
+                        if (localStorage.getItem("userLogin")) {
+                          localStorage.removeItem("userLogin");
+                          setUser(!user);
+                        }
+                      }}
+                    >
+                      Log out
+                    </p>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </p>
+        </Div>
       );
     }
   };
@@ -140,12 +219,25 @@ export const Header = () => {
   );
 };
 
-const Head = styled.header`
-  .wrapper {
-    .flex {
-      .ant-modal-footer {
-        display: none !important;
-      }
-    }
+const Div = styled.div`
+  .down {
+    position: relative;
+  }
+  / .info {
+    /* position: relative; */
+    display: none;
+  }
+  .ribbon::before {
+    content: "";
+    position: absolute;
+    top: -29px;
+    left: 7px;
+    border-top: 7px solid transparent;
+    border-left: 7px solid transparent;
+    border-bottom: 7px solid #60a5fa;
+    border-right: 7px solid transparent;
+  }
+  .tagp:hover {
+    background-color: #20549526;
   }
 `;
