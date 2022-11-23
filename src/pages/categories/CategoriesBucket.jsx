@@ -64,7 +64,7 @@ const CategoriesBucket = () => {
                             </div>
                             <div>
                                 <img src={list.congViec.hinhAnh} alt='...' className="object-cover w-full mb-4 sm:h-96 rounded-md " style={{ height: '220px' }} />
-                                <h2 className="pb-2 text-xl font-semibold">{list.congViec.tenCongViec.length > 60 ? list.congViec.tenCongViec.substr(0, 60) + '...' : list.congViec.tenCongViec}</h2>
+                                <h2 className="pb-2 text-xl font-semibold">{list.congViec.tenCongViec.length > 40 ? list.congViec.tenCongViec.substr(0, 40) + '...' : list.congViec.tenCongViec}</h2>
                                 <p className="text-sm dark:text-gray-400">{list.congViec.moTaNgan.length > 80 ? list.congViec.moTaNgan.substr(0, 80) + '...' : list.congViec.moTaNgan}</p>
                                 <p> <Rate disabled defaultValue={list.congViec.saoCongViec} style={{ fontSize: '15px' }} /> ({list.congViec.danhGia})</p>
                             </div>
