@@ -45,8 +45,8 @@
 .categories-banner .close{
     position: absolute;
     left: 72%;
-    top: -340px;
-    padding: 2px 4px;
+    top: -325px;
+    padding: 2px 5px;
     cursor: pointer;
 }
 .categorie-section .item{
