@@ -15,7 +15,7 @@ const Router = () => {
         { path: "jobDetail/:id", element: <JobDetail /> },
         { path: "", element:<Navigate to="home" />},
         {path: "home", element: <Home />},
-        {path: "categories", element: <Categories />},
+        {path: "categories/:ids", element: <Categories />},
       ],
     },
   ]);

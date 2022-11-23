@@ -7,7 +7,6 @@ import HomeServiceDetail from './HomeServiceDetail'
 import HomeSlickItem from './HomeSlickItem'
 
 const Home = () => {
-
   useEffect(() => {
     window.addEventListener('scroll', isSticky);
     return () => {

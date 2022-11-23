@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import CategoriesBanner from './CategoriesBanner'
 import './categories.css'
 import CategoriesSection from './CategoriesSection'
+import CategoriesBucket from './CategoriesBucket'
 const Categories = () => {
     useEffect(() => {
         const inputcheck = document.body.querySelector('.inputcheck')
@@ -16,6 +17,7 @@ const Categories = () => {
     <div className='py-9'>
         <CategoriesBanner/>
         <CategoriesSection/>
+        <CategoriesBucket/>
     </div>
   )
 }
