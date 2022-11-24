@@ -4,6 +4,7 @@ import { JobList } from "../components/JobList";
 import MainLayout from "../components/layouts/MainLayout";
 import Categories from "../pages/categories/Categories";
 import Home from "../pages/home/Home";
+import InfoUser from "../pages/infoUser/InfoUser";
 import Login from "../pages/Login/Login";
 
 const Router = () => {
@@ -17,6 +18,7 @@ const Router = () => {
         { path: "", element:<Navigate to="home" />},
         {path: "home", element: <Home />},
         {path: "categories/:ids", element: <Categories />},
+        {path: "infoUser/:idUser", element: <InfoUser />},
 
       ],
     },
