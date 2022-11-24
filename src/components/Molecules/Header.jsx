@@ -41,7 +41,7 @@ export const Header = () => {
             src="http://picsum.photos/40/40"
             alt="avatar"
           />
-          <p className="mb-0">{JSON.parse(userLogin).name}</p>
+          <p className="mb-0" onClick={()=> navigate(`/infoUser/${JSON.parse(userLogin).id}`)}>{JSON.parse(userLogin).name}</p>
           <p className="flex flex-cols m-0">
             <span
               className="items-end down"
@@ -63,7 +63,7 @@ export const Header = () => {
                   x
                 </p>
                 <div>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                  <p className="flex justify-start tagp gap-5 mt-4 items-center"  onClick={()=> navigate(`/infoUser/${JSON.parse(userLogin).id}`)}>
                     <p className="mb-0 px-4">Profile</p>
                   </p>
                   <p className="flex justify-start tagp gap-5 mt-4 items-center">
@@ -103,6 +103,7 @@ export const Header = () => {
                     <p
                       className="mb-0 px-4"
                       onClick={() => {
+                        navigate('')
                         if (localStorage.getItem("userLogin")) {
                           localStorage.removeItem("userLogin");
                           setUser(!user);
