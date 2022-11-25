@@ -38,3 +38,15 @@ export const getInfoUser = createAsyncThunk(
     }
   }
 );
+export const editInfoUser = createAsyncThunk(
+  "NguoiDung/editInfoUser",
+  async (data) => {
+    try {
+      const result = await NguoiDungServices.editInfoUser(data);
+
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+);

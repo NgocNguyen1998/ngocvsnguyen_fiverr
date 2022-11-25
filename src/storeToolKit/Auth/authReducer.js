@@ -3,7 +3,9 @@ import { authService } from "../../services/AuthService";
 
 const initialState = {
   isFetchingSignIn: false,
+  isFetchingSignUp: false,
   userInfo: [],
+  dataSignUp:[],
 };
 
 export const { reducer: authReducer, actions: authActions } = createSlice({
@@ -16,13 +18,23 @@ export const { reducer: authReducer, actions: authActions } = createSlice({
         state.isFetchingSignIn = true;
       })
       .addCase(signIn.fulfilled, (state, action) => {
-        state.isFetchingSignIn = true;
+        state.isFetchingSignIn = false;
         state.userInfo = action.payload;
       })
       .addCase(signIn.rejected, (state, action) => {
-        state.isFetchingSignIn = true;
+        state.isFetchingSignIn = false;
         state.userInfo = action.payload;
-      });
+      })
+      // .addCase(signUp.pending, (state, action) => {
+      //   state.isFetchingSignUp = true;
+      // })
+      // .addCase(signUp.fulfilled, (state, action) => {
+      //   state.isFetchingSignUp = true;
+      //   state.dataSignUp=action.payload ;
+      // })
+      // .addCase(signUp.rejected, (state, action) => {
+      //   state.isFetchingSignUp = true;
+      // });
   },
 });
 
@@ -42,8 +54,8 @@ export const signIn = createAsyncThunk("auth/signIn", async (data) => {
 export const signUp = createAsyncThunk("auth/signUp", async (data) => {
   try {
     const result = await authService.signUp(data);
-    console.log(result.data.content);
     alert("thành công");
+    return result.data.content
   } catch (err) {
     console.log(err.response.data);
     alert(err.response.data.content);

@@ -2,10 +2,12 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Rate } from 'antd';
+import { Rate, Modal } from 'antd';
 import './infouser.css';
 import { useNguoiDung, getInfoUser } from '../../storeToolKit/NguoiDung';
 import { deleteRentList, getRentList, useThueCongViec } from '../../storeToolKit/ThueCongViec';
+import { useState } from 'react';
+import EditInfo from './EditInfo';
 const InfoUser = () => {
     const navigate = useNavigate();
     const params = useParams();
@@ -14,7 +16,16 @@ const InfoUser = () => {
     const { rentList } = useThueCongViec();
     console.log("rentList: ", rentList);
     console.log("infoUser: ", infoUser);
-    
+    const [isModalOpenRegister, setIsModalOpenRegister] = useState(false);
+    const showModalRegister = () => {
+        setIsModalOpenRegister(true);
+    };
+    const handleOkRegister = () => {
+        setIsModalOpenRegister(false);
+    };
+    const handleCancelRegister = () => {
+        setIsModalOpenRegister(false);
+    };
     useEffect(() => {
         const inputcheck = document.body.querySelector(".inputcheck");
         const backgroundcheck = document.body.querySelector(".backgroundcheck");
@@ -38,9 +49,22 @@ const InfoUser = () => {
 
                             </div>
                             <div className='pt-6 flex flex-col content-center items-center'>
-                                <img src={!infoUser.avatar ? "https://wiki-travel.com.vn/uploads/post/thanhhuong-164523114546-hoa-dao.jpg":infoUser.avatar} alt='...' className="object-cover   rounded-full " style={{ height: '200px', width: '200px' }} />
+                                <img src={!infoUser.avatar ? "https://wiki-travel.com.vn/uploads/post/thanhhuong-164523114546-hoa-dao.jpg" : infoUser.avatar} alt='...' className="object-cover   rounded-full " style={{ height: '200px', width: '200px' }} />
                                 <p className='pt-6 text-black font-medium text-2xl mb-1'>{infoUser.name}</p>
-                                <button className='cursor-pointer hover:text-green-400'> <i class="fa-solid fa-pencil"></i></button>
+                                <button onClick={() => {
+                                    showModalRegister();
+                                }} className='cursor-pointer hover:text-green-400'> <i class="fa-solid fa-pencil"></i></button>
+                                <div>
+                                    <Modal
+                                        open={isModalOpenRegister}
+                                        onOk={handleOkRegister}
+                                        onCancel={handleCancelRegister}
+                                        footer={null}
+                                        width="600px"
+                                    >
+                                        <EditInfo params = {params.idUser}/>
+                                    </Modal>
+                                </div>
                             </div>
                             <hr />
                             <div className="flex flex-wrap justify-between content-center items-center ">
@@ -194,36 +218,36 @@ const InfoUser = () => {
                         <button className="px-6 py-2 rounded-sm shadow-sm dark:bg-green-400 dark:text-gray-900">Create a New Gig</button>
                     </div>
                     <div className='work  bg-white  px-4  pb-2'>
-                        {rentList.map((job,index)=>{
+                        {rentList.map((job, index) => {
                             return <div className='border-t-2 border-black pb-2' key={index}>
-                            <div className='grid grid-cols-4 gap-x-3 items-center pt-2'>
-                                 <div className='col-span-1'>
-                                     <img src={job.congViec.hinhAnh} alt=".." className='rounded-lg w-full' style={{height:'160px'}}/>
-                                 </div>
-                                 <div className='col-span-3'>
-     
-                                     <div>
-                                         <h1 className='text-xl mb-0 pb-1'>{job.congViec.tenCongViec} </h1>
-                                         <p className='mb-0 pb-1'><span className='font-medium '>Rent date :</span> {job.ngayThue}</p>
-                                         <p className='mb-0 pb-1'>{job.congViec.moTaNgan} </p>
-                                         <p className='mb-0'><Rate disabled defaultValue={job.congViec.saoCongViec} style={{ fontSize: '15px' }} /></p>
-                                     </div>
-     
-                                 </div>
-                             </div>
-                             <div className=' flex justify-end pb-2'>
-                                 <button className='border-2  py-1 px-4 rounded-md border-pink-400 hover:text-white hover:bg-pink-300 transition-all duration-300 mr-4'  onClick={() => navigate(`/jobDetail/${job.congViec.id}`)}>View detail</button>
-                                 {/* <button className='border-2 py-1 px-4 rounded-md border-pink-400 hover:text-white hover:bg-pink-300 transition-all duration-300 mx-4'>Edit</button> */}
-                                 <button className='border-2 py-1 px-4 text-red-500 font-medium rounded-md border-pink-400 hover:bg-pink-300 transition-all duration-300'  onClick={() => {
-                                 dispatch(deleteRentList(job.id))
-                                
-                              }}>X</button>
-                             </div>
+                                <div className='grid grid-cols-4 gap-x-3 items-center pt-2'>
+                                    <div className='col-span-1'>
+                                        <img src={job.congViec.hinhAnh} alt=".." className='rounded-lg w-full' style={{ height: '160px' }} />
+                                    </div>
+                                    <div className='col-span-3'>
+
+                                        <div>
+                                            <h1 className='text-xl mb-0 pb-1'>{job.congViec.tenCongViec} </h1>
+                                            <p className='mb-0 pb-1'><span className='font-medium '>Rent date :</span> {job.ngayThue}</p>
+                                            <p className='mb-0 pb-1'>{job.congViec.moTaNgan} </p>
+                                            <p className='mb-0'><Rate disabled defaultValue={job.congViec.saoCongViec} style={{ fontSize: '15px' }} /></p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div className=' flex justify-end pb-2'>
+                                    <button className='border-2  py-1 px-4 rounded-md border-pink-400 hover:text-white hover:bg-pink-300 transition-all duration-300 mr-4' onClick={() => navigate(`/jobDetail/${job.congViec.id}`)}>View detail</button>
+                                    {/* <button className='border-2 py-1 px-4 rounded-md border-pink-400 hover:text-white hover:bg-pink-300 transition-all duration-300 mx-4'>Edit</button> */}
+                                    <button className='border-2 py-1 px-4 text-red-500 font-medium rounded-md border-pink-400 hover:bg-pink-300 transition-all duration-300' onClick={() => {
+                                        dispatch(deleteRentList(job.id))
+
+                                    }}>X</button>
+                                </div>
                             </div>
                         })}
-                       
+
                     </div>
-                    
+
                 </div>
             </div>
         </div>
