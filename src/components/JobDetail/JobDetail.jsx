@@ -156,7 +156,7 @@ export const JobDetail = () => {
             console.log({
               id: 0,
               maCongViec: +id,
-              maNguoiThue: Math.floor(Math.random() * 1000),
+              maNguoiThue: handleGetUser(),
               ngayThue: getTodayDate(),
               hoanThanh: false,
             });
@@ -164,7 +164,7 @@ export const JobDetail = () => {
               thueCongViecPost({
                 id: 0,
                 maCongViec: +id,
-                maNguoiThue: Math.floor(Math.random() * 1000),
+                maNguoiThue: handleGetUser(),
                 ngayThue: getTodayDate(),
                 hoanThanh: false,
               })

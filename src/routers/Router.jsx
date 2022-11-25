@@ -19,10 +19,6 @@ const Router = () => {
         { path: "categories", element: <Categories /> },
       ],
     },
-    {
-      path: "/login",
-      element: <Login />,
-    },
   ]);
 
   return routing;

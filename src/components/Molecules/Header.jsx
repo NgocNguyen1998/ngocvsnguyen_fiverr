@@ -12,6 +12,7 @@ import {
   SmileOutlined,
 } from "@ant-design/icons";
 import { Fragment } from "react";
+import Register from "../../pages/register/Register";
 
 export const Header = () => {
   const [user, setUser] = useState(false);
@@ -22,6 +23,7 @@ export const Header = () => {
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenRegister, setIsModalOpenRegister] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -30,6 +32,15 @@ export const Header = () => {
   };
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+  const showModalRegister = () => {
+    setIsModalOpenRegister(true);
+  };
+  const handleOkRegister = () => {
+    setIsModalOpenRegister(false);
+  };
+  const handleCancelRegister = () => {
+    setIsModalOpenRegister(false);
   };
   const getUserLogin = () => {
     const userLogin = localStorage.getItem("userLogin");
@@ -64,7 +75,12 @@ export const Header = () => {
                 </p>
                 <div>
                   <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">Profile</p>
+                    <p
+                      className="mb-0 px-4"
+                      onClick={() => navigate("/userInfo")}
+                    >
+                      Profile
+                    </p>
                   </p>
                   <p className="flex justify-start tagp gap-5 mt-4 items-center">
                     <p className="mb-0 px-4">Post a Request</p>
@@ -178,16 +194,29 @@ export const Header = () => {
                 open={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
-                okText="123"
                 footer={null}
                 width="400px"
               >
-                {Login()}
+                <Login />
+              </Modal>
+            </div>
+            <div>
+              <Modal
+                // title="Login"
+                open={isModalOpenRegister}
+                onOk={handleOkRegister}
+                onCancel={handleCancelRegister}
+                footer={null}
+                width="600px"
+              >
+                <Register />
               </Modal>
             </div>
             <button
               className="hover:text-white hover:bg-green-500 transition-all hover:border-transparent duration-500 text-green-500 font-bold border-green-300 rounded-md border-2 px-5 py-1"
-              to="/"
+              onClick={() => {
+                showModalRegister();
+              }}
             >
               Join
             </button>
