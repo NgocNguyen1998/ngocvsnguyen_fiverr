@@ -23,7 +23,6 @@ const InfoUser = () => {
     });
     useEffect(() => {
         dispatch(getInfoUser(params.idUser));
-        
         dispatch(getRentList())
     }, [params.idUser])
     return (
@@ -193,6 +192,7 @@ const InfoUser = () => {
                         <button className="px-6 py-2 rounded-sm shadow-sm dark:bg-green-400 dark:text-gray-900">Create a New Gig</button>
                     </div>
                     <div className='work  bg-white pt-6 px-4 border-t-2 border-black pb-2'>
+                        {/* {} */}
                         <div className='grid grid-cols-4 gap-x-3'>
                             <div className='col-span-1'>
                                 <img src="https://wiki-travel.com.vn/uploads/post/thanhhuong-164523114546-hoa-dao.jpg" alt=".." className='rounded-lg' />
