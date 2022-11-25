@@ -2,25 +2,12 @@ import React from 'react'
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { Select } from "antd";
 import moment from "moment";
 import { editInfoUser, useNguoiDung } from '../../storeToolKit/NguoiDung';
 import { useEffect } from 'react';
 import _ from 'lodash';
-import { useSelectorAuth } from '../../storeToolKit/Auth/useSelectorAuth';
-
 const EditInfo = (props) => {
-    // const dataSignUp = JSON.parse(localStorage.getItem("dataSignUp"))
-    //   console.log("dataSignUp: ", dataSignUp);
     const { infoUser } = useNguoiDung();
-    // console.log("infoUser: ", infoUser);
-    // const passwordCheck =(dataSignUp.filter(pass => pass.email ===infoUser.email )).map(item=>{ return item.password}) 
-    // const password= passwordCheck.join()
-    // console.log("password: ", password);
-    // console.log("passwordCheck: ", passwordCheck);
-
-
     const dispatch = useDispatch();
     const {
         handleSubmit,
@@ -31,7 +18,6 @@ const EditInfo = (props) => {
         mode: "onBlur",
     });
     const { email, phone, skill, name, birthday, gender, certification, role } = infoUser;
-    console.log("skill: ", skill);
     const { params } = props
     useEffect(() => {
         reset({
@@ -59,20 +45,13 @@ const EditInfo = (props) => {
                     }
                     const d = [data.skill]
                     if (d .join() !== skill.join()) {
-                        
                         data.skill = [data.skill]
                     }
                     const c = [data.certification]
                     if (c.join() !== certification.join()) {
-                       
                         data.certification = [data.certification]
                     }
-                    
-                    console.log("ata.skill: ", data.skill);
-                    console.log("ata.cer: ", data.certification);
-                    console.log('data', { ...data, id: 0 });
                     let data1 = { ...data, id: params }
-                    console.log("infoUser: ", infoUser)
                     dispatch(editInfoUser(data1))
 
                 })}
