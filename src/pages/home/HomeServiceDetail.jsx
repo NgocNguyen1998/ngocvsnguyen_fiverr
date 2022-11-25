@@ -2,6 +2,10 @@ import React from 'react'
 import { useState } from 'react';
 import { CheckOutlined } from "@ant-design/icons";
 const HomeServiceDetail = () => {
+  const x = document.getElementById("myVideo1");
+  function pauseVid() {
+      x.pause();
+  }
   const [video, setVideo] = useState(1);
   return (
     <div className='bg-pink-50 home-service-detail'>
@@ -50,8 +54,9 @@ const HomeServiceDetail = () => {
         </div>
         <div className='right col-span-1 pt-16'>
           <div className="video-modal" >
-            <div className="picture-wrapper" onClick={() => {
+            <div className="picture-wrapper"  onClick={() => {
               setVideo(video + 1)
+                pauseVid()
             }}  >
               <div className="">
                 <picture >
@@ -64,12 +69,10 @@ const HomeServiceDetail = () => {
                   setVideo(video + 1)
                 }}/>
                 </picture>
-               
-
               </div>
             </div>
           </div>
-          <video crossorigin="anonymous" controls className="orca-video" style={{ display: `${video % 2 === 0 ? 'block' : 'none'}` }}  poster preload="metadata" ><source src="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/vmvv3czyk2ifedefkau7" type="video/mp4" /></video>
+          <video id='myVideo1' crossorigin="anonymous" controls className="orca-video" style={{ display: `${video % 2 === 0 ? 'block' : 'none'}` }}  poster preload="metadata" ><source src="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/vmvv3czyk2ifedefkau7" type="video/mp4" /></video>
         </div>
       </div>
     </div>

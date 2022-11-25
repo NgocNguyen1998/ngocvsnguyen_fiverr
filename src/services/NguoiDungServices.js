@@ -1,7 +1,7 @@
 import { api } from "../constants/api";
 
-export const nguoiDungServices = {
-  usersId: (data) => {
-    return api.get(`users/${data}`);
+export const NguoiDungServices = {
+  getInfoUser: (id) => {
+    return api.get(`users/${id}`);
   },
 };

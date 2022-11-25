@@ -1,37 +1,40 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { nguoiDungServices } from "../../services/NguoiDungServices";
+import { NguoiDungServices } from "../../services/NguoiDungServices";
 
 const initialState = {
-  isFetchingUsersId: false,
-  userId: [],
+  infoUser: {},
+  isFetchinginfoUser: false,
 };
 export const { reducer: nguoiDungReducer, actions: nguoiDungActions } =
   createSlice({
-    name: "nguoiDung",
+    name: "NguoiDung",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
       builder
-        .addCase(usersId.pending, (state, action) => {
-          state.isFetchingUsersId = true;
+        // getiFnoUser
+        .addCase(getInfoUser.pending, (state) => {
+          state.isFetchinginfoUser = true;
         })
-        .addCase(usersId.fulfilled, (state, action) => {
-          state.isFetchingUsersId = true;
-          state.userId = action.payload;
+        .addCase(getInfoUser.fulfilled, (state, action) => {
+          state.isFetchinginfoUser = false;
+          state.infoUser = action.payload;
         })
-        .addCase(usersId.rejected, (state, action) => {
-          state.isFetchingUsersId = true;
-          state.userId = action.payload;
+        .addCase(getInfoUser.rejected, (state, action) => {
+          state.isFetchinginfoUser = false;
+          state.infoUser = action.payload;
         });
     },
   });
+export const getInfoUser = createAsyncThunk(
+  "NguoiDung/getInfoUser",
+  async (id) => {
+    try {
+      const result = await NguoiDungServices.getInfoUser(id);
 
-export const usersId = createAsyncThunk("nguoiDung/usersId", async (data) => {
-  try {
-    const result = await nguoiDungServices.usersId(data);
-    console.log(result.data.content);
-    return result.data.content;
-  } catch (err) {
-    console.log(err.response.data);
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
   }
-});
+);
