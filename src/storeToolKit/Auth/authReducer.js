@@ -25,16 +25,17 @@ export const { reducer: authReducer, actions: authActions } = createSlice({
         state.isFetchingSignIn = false;
         state.userInfo = action.payload;
       })
-      // .addCase(signUp.pending, (state, action) => {
-      //   state.isFetchingSignUp = true;
-      // })
-      // .addCase(signUp.fulfilled, (state, action) => {
-      //   state.isFetchingSignUp = true;
-      //   state.dataSignUp=action.payload ;
-      // })
-      // .addCase(signUp.rejected, (state, action) => {
-      //   state.isFetchingSignUp = true;
-      // });
+      .addCase(signUp.pending, (state, action) => {
+        state.isFetchingSignUp = true;
+      })
+      .addCase(signUp.fulfilled, (state, action) => {
+        state.isFetchingSignUp = true;
+        state.dataSignUp.push(action.payload) ;
+        localStorage.setItem("dataSignUp", JSON.stringify(state.dataSignUp))
+      })
+      .addCase(signUp.rejected, (state) => {
+        state.isFetchingSignUp = true;
+      });
   },
 });
 
