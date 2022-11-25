@@ -3,9 +3,7 @@ import { authService } from "../../services/AuthService";
 
 const initialState = {
   isFetchingSignIn: false,
-  isFetchingSignUp: false,
   userInfo: [],
-  dataSignUp:[],
 };
 
 export const { reducer: authReducer, actions: authActions } = createSlice({
@@ -25,16 +23,7 @@ export const { reducer: authReducer, actions: authActions } = createSlice({
         state.isFetchingSignIn = false;
         state.userInfo = action.payload;
       })
-      // .addCase(signUp.pending, (state, action) => {
-      //   state.isFetchingSignUp = true;
-      // })
-      // .addCase(signUp.fulfilled, (state, action) => {
-      //   state.isFetchingSignUp = true;
-      //   state.dataSignUp=action.payload ;
-      // })
-      // .addCase(signUp.rejected, (state, action) => {
-      //   state.isFetchingSignUp = true;
-      // });
+      
   },
 });
 

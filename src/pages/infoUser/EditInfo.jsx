@@ -2,25 +2,12 @@ import React from 'react'
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { Select } from "antd";
 import moment from "moment";
 import { editInfoUser, useNguoiDung } from '../../storeToolKit/NguoiDung';
 import { useEffect } from 'react';
 import _ from 'lodash';
-
 const EditInfo = (props) => {
-    
     const { infoUser } = useNguoiDung();
-    // const { dataSignUp } = useSelectorAuth() ;
-    // console.log("dataSignUp: ", dataSignUp);
-    // const passwordCheck = dataSignUp.filter(pass => pass.email ===infoUser.email )
-    // console.log("passwordCheck: ", passwordCheck);
-    const password  =''
-    // if(!passwordCheck.password){
-    //     password = passwordCheck.password
-    // }
-    
     const dispatch = useDispatch();
     const {
         handleSubmit,
@@ -30,13 +17,12 @@ const EditInfo = (props) => {
     } = useForm({
         mode: "onBlur",
     });
-    const { email, phone, skill, name, birthday, gender, certification } = infoUser;
-    const {params} = props
-    console.log("params: ", params);
+    const { email, phone, skill, name, birthday, gender, certification, role } = infoUser;
+    const { params } = props
     useEffect(() => {
         reset({
             email,
-            password,
+            role,
             phone,
             skill,
             name,
@@ -49,10 +35,25 @@ const EditInfo = (props) => {
         <Div>
             <form
                 onSubmit={handleSubmit((data) => {
-                   
-                   
-                    dispatch(editInfoUser( data,params))
-                   
+                    if (data.gender === "true") {
+                        data.gender = true;
+                    } else if (data.gender === "false") {
+                        data.gender = false;
+                    }
+                    if (data.birthday) {
+                        data.birthday = moment(data.birthday).format("DD-MM-YYYY");
+                    }
+                    const d = [data.skill]
+                    if (d .join() !== skill.join()) {
+                        data.skill = [data.skill]
+                    }
+                    const c = [data.certification]
+                    if (c.join() !== certification.join()) {
+                        data.certification = [data.certification]
+                    }
+                    let data1 = { ...data, id: params }
+                    dispatch(editInfoUser(data1))
+
                 })}
                 className="flex flex-col  p-6 "
             >
@@ -86,18 +87,11 @@ const EditInfo = (props) => {
                             <div className="w-full">
                                 <input
                                     className="p-2 w-full"
-                                    {...register("password", {
-                                        minLength: {
-                                            value: 3,
-                                            message: "Password must be between 3-12 characters",
-                                        },
-                                        maxLength: {
-                                            value: 12,
-                                            message: "Password must be between 3-12 characters",
-                                        },
+                                    {...register("role", {
+                                        required: "role is required",
                                     })}
                                     type="text"
-                                    placeholder="Enter for change Password"
+                                    placeholder="Enter role"
                                 />
                                 <p className="text-red-400">{errors?.password?.message}</p>
                             </div>
@@ -166,7 +160,7 @@ const EditInfo = (props) => {
                             </div>
                             <div className="w-full">
                                 <input
-                                value={moment(birthday).format("DD-MM-YYYY")}
+                                    value={moment(birthday).format("DD-MM-YYYY")}
                                     className="p-2 w-full"
                                     {...register("birthday", {
                                         required: "Date of birth is required",

@@ -7,13 +7,9 @@ import { signIn, signUp } from "../../storeToolKit/Auth/authReducer";
 import { useNavigate } from "react-router-dom";
 import { Select } from "antd";
 import moment from "moment";
-import { useCongViec } from "../../storeToolKit/CongViec";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {dataSignUp1} = useCongViec()
-  console.log("dataSignUp: ", dataSignUp1);
-  
   const {
     handleSubmit,
     register,
