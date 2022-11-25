@@ -7,6 +7,7 @@ const initialState = {
   jobDetail: [],
   jobType:[],
   jobTypeDetail:[],
+  dataSignUp1:[],
   isFetchingJobList: false,
   isFetchingItem: false,
   isFetchingJobDetail: false,

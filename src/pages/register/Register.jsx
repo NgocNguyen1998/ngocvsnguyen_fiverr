@@ -7,9 +7,13 @@ import { signIn, signUp } from "../../storeToolKit/Auth/authReducer";
 import { useNavigate } from "react-router-dom";
 import { Select } from "antd";
 import moment from "moment";
+import { useCongViec } from "../../storeToolKit/CongViec";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {dataSignUp1} = useCongViec()
+  console.log("dataSignUp: ", dataSignUp1);
+  
   const {
     handleSubmit,
     register,
@@ -21,6 +25,7 @@ const Register = () => {
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
+
   return (
     <Div>
       <form
@@ -224,7 +229,7 @@ const Register = () => {
           <button
             type="button"
             className="ml-2 text-pink-500"
-            // onClick={showModal}
+          // onClick={showModal}
           >
             Sign In
           </button>
