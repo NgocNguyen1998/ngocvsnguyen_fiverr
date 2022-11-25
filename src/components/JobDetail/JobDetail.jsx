@@ -520,7 +520,7 @@ export const JobDetail = () => {
                       dispatch(
                         postBinhLuan({
                           noiDung: data.cmt,
-                          id: +0,
+                          id: +id,
                           maNguoiBinhLuan: handleGetUser(),
                           ngayBinhLuan: getTodayDate(),
                           saoBinhLuan: 5,
