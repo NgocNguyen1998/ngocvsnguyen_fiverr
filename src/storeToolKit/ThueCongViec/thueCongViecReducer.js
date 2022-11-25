@@ -2,28 +2,29 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { thueCongViecServices } from "../../services/ThueCongViecServices";
 
 const initialState = {
-  rentList:[],
+  rentList: [],
   isFetchingRentList: false,
 };
 export const { reducer: thueCongViecReducer, actions: thueCongViecActions } =
   createSlice({
     name: "thueCongViec",
     initialState,
-    reducers: {},
+    reducers: {
+    },
     extraReducers: (builder) => {
       builder
-      // getiFnoUser
-      .addCase(getRentList.pending, (state) => {
-        state.isFetchingRentList = true;
-      })
-      .addCase(getRentList.fulfilled, (state, action) => {
-        state.isFetchingRentList = false;
-        state.rentList = action.payload;
-      })
-      .addCase(getRentList.rejected, (state, action) => {
-        state.isFetchingRentList = false;
-        state.rentList = action.payload;
-      })
+        // getinFoUser
+        .addCase(getRentList.pending, (state) => {
+          state.isFetchingRentList = true;
+        })
+        .addCase(getRentList.fulfilled, (state, action) => {
+          state.isFetchingRentList = false;
+          state.rentList = action.payload;
+        })
+        .addCase(getRentList.rejected, (state, action) => {
+          state.isFetchingRentList = false;
+          state.rentList = action.payload;
+        })
     },
   });
 
@@ -41,14 +42,25 @@ export const thueCongViecPost = createAsyncThunk(
 );
 export const getRentList = createAsyncThunk(
   "thueCongViec/getRentList",
-  async () => {
+  async (data, { dispatch, rejectWithValue }) => {
     try {
       const result = await thueCongViecServices.getRentList();
-      console.log(" enlist: ",  result.data.content);
       return result.data.content
-    
     } catch (err) {
-      console.log(err.response.data);
+      return rejectWithValue(err.response.data);
+    }
+  }
+);
+export const deleteRentList = createAsyncThunk(
+  "thueCongViec/deleteRentList",
+  async (data, { dispatch, rejectWithValue }) => {
+    try {
+      const result = await thueCongViecServices.deleteRentList(data);
+      await dispatch(getRentList())
+      return result.data.content
+
+    } catch (err) {
+      return rejectWithValue(err.response.data);
     }
   }
 );
