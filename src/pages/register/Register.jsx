@@ -3,9 +3,10 @@ import { Button, Modal } from "antd";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { signIn } from "../../storeToolKit/Auth/authReducer";
+import { signIn, signUp } from "../../storeToolKit/Auth/authReducer";
 import { useNavigate } from "react-router-dom";
 import { Select } from "antd";
+import moment from "moment";
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,12 +25,31 @@ const Register = () => {
     <Div>
       <form
         onSubmit={handleSubmit((data) => {
+          if (data.gender === "true") {
+            data.gender = true;
+          } else if (data.gender === "false") {
+            data.gender = false;
+          }
+          if (data.birthday) {
+            data.birthday = moment(data.birthday).format("DD-MM-YYYY");
+          }
+          if (data.skill) {
+            const ski = [];
+            ski.push(data.skill);
+            data.skill = ski;
+          }
+          if (data.certification) {
+            const certi = [];
+            certi.push(data.certification);
+            data.certification = certi;
+          }
           console.log(data);
+          dispatch(signUp(data));
         })}
         className="flex flex-col  p-6 "
       >
-        <h1 className="text-2xl text-black mb-3 font-bold mx-auto">LOGIN</h1>
-        <div className="grid grid-cols-2 gap-5">
+        <h1 className="text-2xl text-black mb-3 font-bold mx-auto">Sign Up</h1>
+        <div className="grid grid-cols-2 gap-8 mt-2">
           <div className="itemRight">
             <div className=" flex w-full">
               <div className="items-center flex item ">
@@ -99,22 +119,38 @@ const Register = () => {
                 <p className="text-red-400">{errors?.phone?.message}</p>
               </div>
             </div>
+            <div className="flex w-full">
+              <div className="items-center flex item ">
+                <i class="fa-solid fa-briefcase"></i>
+              </div>
+              <div className="w-full">
+                <input
+                  className="p-2 w-full"
+                  {...register("skill", {
+                    required: "Skill is required",
+                  })}
+                  type="text"
+                  placeholder="Enter Your Skill"
+                />
+                <p className="text-red-400">{errors?.skill?.message}</p>
+              </div>
+            </div>
           </div>
           <div className="itemLeft">
             <div className=" flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-user"></i>
+                <i class="fa-sharp fa-solid fa-file-signature"></i>
               </div>
               <div className="w-full">
                 <input
                   className="p-2  w-full"
-                  {...register("ten", {
+                  {...register("name", {
                     required: "FullName is required",
                   })}
                   type="text"
                   placeholder="Enter Your FullName"
                 />
-                <p className="text-red-400">{errors?.ten?.message}</p>
+                <p className="text-red-400">{errors?.name?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
@@ -127,7 +163,7 @@ const Register = () => {
                   {...register("birthday", {
                     required: "Date of birth is required",
                   })}
-                  type="text"
+                  type="date"
                   placeholder="Enter Your Date of birth"
                 />
                 <p className="text-red-400">{errors?.birthday?.message}</p>
@@ -135,45 +171,34 @@ const Register = () => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i className="fa-solid fa-unlock-keyhole"></i>
+                <i class="fa-solid fa-venus-mars"></i>
               </div>
               <div className="w-full">
-                <Select
+                <select
+                  className="w-full p-2 bg-[#bfc7fe] selectType"
                   name="gender"
-                  {...register("gender", {
-                    required: "",
-                  })}
-                  defaultValue="lucy"
-                  style={{ width: 120 }}
-                  onChange={handleChange}
-                  options={[
-                    {
-                      value: true,
-                      label: "Male",
-                    },
-                    {
-                      value: false,
-                      label: "Female",
-                    },
-                  ]}
-                />
-                {/* <input
+                  {...register("gender")}
+                >
+                  <option value="true">Male</option>
+                  <option value="false">Female</option>
+                </select>
+                <p className="text-red-400"></p>
+              </div>
+            </div>
+            <div className="flex w-full">
+              <div className="items-center flex item ">
+                <i class="fa-solid fa-certificate"></i>
+              </div>
+              <div className="w-full">
+                <input
                   className="p-2 w-full"
-                  {...register("password", {
-                    required: "Password is required",
-                    minLength: {
-                      value: 3,
-                      message: "Password must be between 3-12 characters",
-                    },
-                    maxLength: {
-                      value: 12,
-                      message: "Password must be between 3-12 characters",
-                    },
+                  {...register("certification", {
+                    required: "Certification is required",
                   })}
                   type="text"
-                  placeholder="Enter Your Password"
-                /> */}
-                <p className="text-red-400">{errors?.password?.message}</p>
+                  placeholder="Enter Your Certification"
+                />
+                <p className="text-red-400">{errors?.certification?.message}</p>
               </div>
             </div>
           </div>
@@ -194,11 +219,12 @@ const Register = () => {
             <i className="fa-brands fa-twitter"></i>
           </button>
         </div>
-        <div className="mt-3">
+        <div className="mt-3 mx-auto">
           <span>Already a member?</span>
           <button
+            type="button"
             className="ml-2 text-pink-500"
-            onClick={() => navigate("/signIn")}
+            // onClick={showModal}
           >
             Sign In
           </button>
@@ -209,6 +235,21 @@ const Register = () => {
 };
 export const Div = styled.div`
   background-color: #bfc7fe;
+  .selectType {
+    position: relative;
+    outline: none;
+    border-bottom: 1px solid #ec4899;
+  }
+  .selectType::after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid pink;
+    border-color: pink transparent transparent transparent;
+  }
 
   .item {
     margin-bottom: 5px;

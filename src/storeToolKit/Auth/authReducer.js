@@ -38,3 +38,14 @@ export const signIn = createAsyncThunk("auth/signIn", async (data) => {
     console.log(err.response.data);
   }
 });
+
+export const signUp = createAsyncThunk("auth/signUp", async (data) => {
+  try {
+    const result = await authService.signUp(data);
+    console.log(result.data.content);
+    alert("thành công");
+  } catch (err) {
+    console.log(err.response.data);
+    alert(err.response.data.content);
+  }
+});
