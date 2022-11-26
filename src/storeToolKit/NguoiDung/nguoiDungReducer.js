@@ -4,6 +4,7 @@ import { NguoiDungServices } from "../../services/NguoiDungServices";
 const initialState = {
   infoUser: {},
   isFetchinginfoUser: false,
+  isFetchingEditUser: false,
 };
 export const { reducer: nguoiDungReducer, actions: nguoiDungActions } =
   createSlice({
@@ -23,6 +24,15 @@ export const { reducer: nguoiDungReducer, actions: nguoiDungActions } =
         .addCase(getInfoUser.rejected, (state, action) => {
           state.isFetchinginfoUser = false;
           state.infoUser = action.payload;
+        })
+        .addCase(editInfoUser.pending, (state) => {
+          state.isFetchingEditUser = false;
+        })
+        .addCase(editInfoUser.fulfilled, (state, action) => {
+          state.isFetchingEditUser = true
+        })
+        .addCase(editInfoUser.rejected, (state, action) => {
+          state.isFetchingEditUser = false
         });
     },
   });
