@@ -10,3 +10,12 @@
     right: 5%;
     font-size: 16px;
 }
+.info-user  .iLang{
+    display: none;
+ }
+.info-user .lang:hover .iLang{
+   display: block;
+}
+.info-user .lang:hover .lang-color{
+    font-size: 16px;
+ }
