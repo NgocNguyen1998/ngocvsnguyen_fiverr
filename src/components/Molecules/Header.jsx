@@ -59,17 +59,11 @@ export const Header = () => {
             {JSON.parse(userLogin).name}
           </p>
           <p className="flex flex-cols m-0">
-            <span
-              className="items-end down"
-              onClick={() => {
-                document.body.querySelector(".info").style.display = "block";
-              }}
-            >
+            <div className="items-end down">
               <i class="fa-sharp fa-solid fa-caret-down"></i>
-            </span>
-            <div className="w-[180px] h-[470px] ml-[-10px] info  text-base text-white rounded-md bg-blue-400 absolute mt-8">
-              <div className="relative ribbon">
-                <p
+              <div className="w-[180px] h-[470px] ml-[-10px] info top-0  text-base text-white rounded-md bg-blue-400 absolute mt-8">
+                <div className="relative ribbon">
+                  {/* <p
                   className="absolute right-2 top-[-20px]"
                   onClick={() =>
                     (document.body.querySelector(".info").style.display =
@@ -77,65 +71,66 @@ export const Header = () => {
                   }
                 >
                   x
-                </p>
-                <div>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p
-                      className="mb-0 px-4"
-                      onClick={() =>
-                        navigate(`/infoUser/${JSON.parse(userLogin).id}`)
-                      }
-                    >
-                      Profile
-                    </p>
-                  </p>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">Post a Request</p>
-                  </p>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">Refer a friend</p>
-                  </p>
-                </div>
-                <hr />
-                <div>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">Become a Seller</p>
-                  </p>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">Settings</p>
-                  </p>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">Billing</p>
-                  </p>
-                </div>
-                <hr />
-                <div>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">English</p>
-                  </p>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">$ USD</p>
-                  </p>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">Help & Support</p>
-                  </p>
-                </div>
-                <hr />
-                <div>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p
-                      className="mb-0 px-4"
-                      onClick={() => {
-                        navigate("");
-                        if (localStorage.getItem("userLogin")) {
-                          localStorage.removeItem("userLogin");
-                          setUser(!user);
+                </p> */}
+                  <div>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p
+                        className="mb-0 px-4"
+                        onClick={() =>
+                          navigate(`/infoUser/${JSON.parse(userLogin).id}`)
                         }
-                      }}
-                    >
-                      Log out
+                      >
+                        Profile
+                      </p>
                     </p>
-                  </p>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">Post a Request</p>
+                    </p>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">Refer a friend</p>
+                    </p>
+                  </div>
+                  <hr />
+                  <div>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">Become a Seller</p>
+                    </p>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">Settings</p>
+                    </p>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">Billing</p>
+                    </p>
+                  </div>
+                  <hr />
+                  <div>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">English</p>
+                    </p>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">$ USD</p>
+                    </p>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">Help & Support</p>
+                    </p>
+                  </div>
+                  <hr />
+                  <div>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p
+                        className="mb-0 px-4"
+                        onClick={() => {
+                          navigate("");
+                          if (localStorage.getItem("userLogin")) {
+                            localStorage.removeItem("userLogin");
+                            setUser(!user);
+                          }
+                        }}
+                      >
+                        Log out
+                      </p>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -259,8 +254,24 @@ export const Header = () => {
 const Div = styled.div`
   .down {
     position: relative;
+    top: 100%;
+
+    /* &::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      width: 200px;
+      height: 30px;
+      left: 0;
+      right: 0;
+      display: block;
+      background-color: red;
+    } */
   }
-  / .info {
+  .down:hover .info {
+    display: block;
+  }
+  .info {
     /* position: relative; */
     display: none;
   }
@@ -273,6 +284,17 @@ const Div = styled.div`
     border-left: 7px solid transparent;
     border-bottom: 7px solid #60a5fa;
     border-right: 7px solid transparent;
+  }
+  .ribbon::after {
+    content: "";
+    position: absolute;
+    top: -36px;
+    width: 100%;
+    height: 30px;
+    left: 0;
+    right: 0;
+    display: block;
+    background-color: transparent;
   }
   .tagp:hover {
     background-color: #20549526;
