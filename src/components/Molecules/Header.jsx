@@ -291,10 +291,14 @@ const Div = styled.div`
     /* width: 40px;
     height: 40px; */
     position: relative;
-    padding: 10px 15px;
+    /* padding: 10px 15px; */
+    height: 40px;
+    width: 40px;
+    padding: 10px;
     background-color: pink;
     border-radius: 50%;
     margin-right: -25px;
+    font-size: 20px;
     &::after {
       content: "";
       bottom: 5px;
