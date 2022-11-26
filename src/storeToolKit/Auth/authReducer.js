@@ -22,8 +22,7 @@ export const { reducer: authReducer, actions: authActions } = createSlice({
       .addCase(signIn.rejected, (state, action) => {
         state.isFetchingSignIn = false;
         state.userInfo = action.payload;
-      })
-      
+      });
   },
 });
 
@@ -37,6 +36,7 @@ export const signIn = createAsyncThunk("auth/signIn", async (data) => {
     return result.data.content.user;
   } catch (err) {
     console.log(err.response.data);
+    alert(err.response.data.content);
   }
 });
 
@@ -44,7 +44,7 @@ export const signUp = createAsyncThunk("auth/signUp", async (data) => {
   try {
     const result = await authService.signUp(data);
     alert("thành công");
-    return result.data.content
+    return result.data.content;
   } catch (err) {
     console.log(err.response.data);
     alert(err.response.data.content);

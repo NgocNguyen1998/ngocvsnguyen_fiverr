@@ -1,17 +1,12 @@
-import { Dropdown, Menu, Modal, Select, Space, Typography } from "antd";
+import { Modal, Select } from "antd";
 import Search from "antd/lib/input/Search";
 import { NavLink, useNavigate } from "react-router-dom";
 import { showModal } from "../../pages/Login/Login";
 import SubMenuJobList from "../JobList/SubMenuJobList";
 import Login from "../../pages/Login/Login";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
-import {
-  CaretDownOutlined,
-  DownOutlined,
-  SmileOutlined,
-} from "@ant-design/icons";
-import { Fragment } from "react";
+
 import Register from "../../pages/register/Register";
 
 export const Header = () => {
@@ -42,104 +37,102 @@ export const Header = () => {
   const handleCancelRegister = () => {
     setIsModalOpenRegister(false);
   };
+  let hiddenTagName = "";
+
   const getUserLogin = () => {
     const userLogin = localStorage.getItem("userLogin");
     if (userLogin) {
+      hiddenTagName = "hidden absolute";
       return (
-        <Div className="flex gap-3 items-center ">
-          <img
-            className="rounded-full"
-            src="http://picsum.photos/40/40"
-            alt="avatar"
-          />
-          <p
-            className="mb-0"
-            onClick={() => navigate(`/infoUser/${JSON.parse(userLogin).id}`)}
-          >
-            {JSON.parse(userLogin).name}
-          </p>
-          <p className="flex flex-cols m-0">
-            <span
-              className="items-end down"
-              onClick={() => {
-                document.body.querySelector(".info").style.display = "block";
-              }}
-            >
-              <i class="fa-sharp fa-solid fa-caret-down"></i>
+        <Div className="flex gap-3 items-center text-base">
+          <div className="flex gap-4">
+            <span className="text-xl">
+              <i class="fa-regular fa-bell"></i>
             </span>
-            <div className="w-[180px] h-[470px] ml-[-10px] info  text-base text-white rounded-md bg-blue-400 absolute mt-8">
-              <div className="relative ribbon">
-                <p
-                  className="absolute right-2 top-[-20px]"
-                  onClick={() =>
-                    (document.body.querySelector(".info").style.display =
-                      "none")
-                  }
-                >
-                  x
-                </p>
-                <div>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p
-                      className="mb-0 px-4"
-                      onClick={() =>
-                        navigate(`/infoUser/${JSON.parse(userLogin).id}`)
-                      }
-                    >
-                      Profile
-                    </p>
-                  </p>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">Post a Request</p>
-                  </p>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">Refer a friend</p>
-                  </p>
-                </div>
-                <hr />
-                <div>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">Become a Seller</p>
-                  </p>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">Settings</p>
-                  </p>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">Billing</p>
-                  </p>
-                </div>
-                <hr />
-                <div>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">English</p>
-                  </p>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">$ USD</p>
-                  </p>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p className="mb-0 px-4">Help & Support</p>
-                  </p>
-                </div>
-                <hr />
-                <div>
-                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
-                    <p
-                      className="mb-0 px-4"
-                      onClick={() => {
-                        navigate("");
-                        if (localStorage.getItem("userLogin")) {
-                          localStorage.removeItem("userLogin");
-                          setUser(!user);
+            <span className="text-xl">
+              <i class="fa-regular fa-envelope"></i>
+            </span>
+            <span className="text-xl">
+              <i class="fa-regular fa-heart"></i>
+            </span>
+            <span className="text-xl">Order</span>
+          </div>
+          <div className="flex flex-cols m-0">
+            <div className="items-end down">
+              <p
+                className="mb-0 tagName "
+                onClick={() =>
+                  navigate(`/infoUser/${JSON.parse(userLogin).id}`)
+                }
+              >
+                {JSON.parse(userLogin).name.slice(0, 1).toUpperCase()}
+              </p>
+              {/* <i class="fa-sharp fa-solid fa-caret-down"></i> */}
+              <div className="w-[180px] h-[470px] ml-[-10px] info top-0  text-base text-white rounded-md bg-blue-400 absolute mt-8">
+                <div className="relative ribbon">
+                  <div>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p
+                        className="mb-0 px-4"
+                        onClick={() =>
+                          navigate(`/infoUser/${JSON.parse(userLogin).id}`)
                         }
-                      }}
-                    >
-                      Log out
+                      >
+                        Profile
+                      </p>
                     </p>
-                  </p>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">Post a Request</p>
+                    </p>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">Refer a friend</p>
+                    </p>
+                  </div>
+                  <hr />
+                  <div>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">Become a Seller</p>
+                    </p>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">Settings</p>
+                    </p>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">Billing</p>
+                    </p>
+                  </div>
+                  <hr />
+                  <div>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">English</p>
+                    </p>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">$ USD</p>
+                    </p>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p className="mb-0 px-4">Help & Support</p>
+                    </p>
+                  </div>
+                  <hr />
+                  <div>
+                    <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                      <p
+                        className="mb-0 px-4"
+                        onClick={() => {
+                          navigate("");
+                          if (localStorage.getItem("userLogin")) {
+                            localStorage.removeItem("userLogin");
+                            setUser(!user);
+                          }
+                        }}
+                      >
+                        Log out
+                      </p>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </p>
+          </div>
         </Div>
       );
     }
@@ -221,7 +214,7 @@ export const Header = () => {
               </Modal>
             </div>
             <button
-              className="hover:text-white hover:bg-green-500 transition-all hover:border-transparent duration-500 text-green-500 font-bold border-green-300 rounded-md border-2 px-5 py-1"
+              className={`hover:text-white ${hiddenTagName}  hover:bg-green-500 transition-all hover:border-transparent duration-500 text-green-500 font-bold border-green-300 rounded-md border-2 px-5 py-1`}
               onClick={() => {
                 showModalRegister();
               }}
@@ -259,22 +252,64 @@ export const Header = () => {
 const Div = styled.div`
   .down {
     position: relative;
+    /* top: 100%; */
   }
-  / .info {
-    /* position: relative; */
+  .down:hover .info {
+    display: block;
+  }
+  .info {
+    position: absolute;
     display: none;
+    right: -25px;
+    top: 25px;
   }
   .ribbon::before {
     content: "";
     position: absolute;
-    top: -29px;
-    left: 7px;
+    top: -30px;
+    right: 15px;
     border-top: 7px solid transparent;
     border-left: 7px solid transparent;
     border-bottom: 7px solid #60a5fa;
     border-right: 7px solid transparent;
   }
+  .ribbon::after {
+    content: "";
+    position: absolute;
+    top: -36px;
+    width: 100%;
+    height: 30px;
+    left: 0;
+    right: 0;
+    display: block;
+    background-color: transparent;
+  }
   .tagp:hover {
     background-color: #20549526;
+  }
+  .tagName {
+    /* width: 40px;
+    height: 40px; */
+    position: relative;
+    /* padding: 10px 15px; */
+    height: 40px;
+    width: 40px;
+    padding: 10px;
+    background-color: pink;
+    border-radius: 50%;
+    margin-right: -25px;
+    font-size: 20px;
+    &::after {
+      content: "";
+      bottom: 5px;
+      right: 2px;
+      display: block;
+      position: absolute;
+      background-color: #1dbf73;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px white;
+    }
   }
 `;

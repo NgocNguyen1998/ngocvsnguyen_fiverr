@@ -17,7 +17,7 @@ const Register = () => {
   } = useForm({
     mode: "onBlur",
   });
-  const { Option } = Select;
+
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
@@ -225,7 +225,7 @@ const Register = () => {
           <button
             type="button"
             className="ml-2 text-pink-500"
-          // onClick={showModal}
+            // onClick={showModal}
           >
             Sign In
           </button>
