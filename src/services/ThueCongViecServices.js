@@ -7,4 +7,7 @@ export const thueCongViecServices = {
   getRentList: () => {
     return api.get(`thue-cong-viec/lay-danh-sach-da-thue`);
   },
+  deleteRentList: (data) => {
+    return api.delete(`thue-cong-viec/${data}`);
+  },
 };

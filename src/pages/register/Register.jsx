@@ -21,6 +21,7 @@ const Register = () => {
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
+
   return (
     <Div>
       <form
@@ -224,7 +225,7 @@ const Register = () => {
           <button
             type="button"
             className="ml-2 text-pink-500"
-            // onClick={showModal}
+          // onClick={showModal}
           >
             Sign In
           </button>
