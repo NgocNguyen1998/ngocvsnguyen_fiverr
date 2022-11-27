@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Rate, Modal } from 'antd';
 import './infouser.css';
-import { useNguoiDung, getInfoUser } from '../../storeToolKit/NguoiDung';
+import { useNguoiDung, getInfoUser, editInfoUser } from '../../storeToolKit/NguoiDung';
 import { deleteRentList, getRentList, useThueCongViec } from '../../storeToolKit/ThueCongViec';
 import { useState } from 'react';
 import EditInfo from './EditInfo';
@@ -19,8 +19,12 @@ const InfoUser = () => {
     const [editDesc, setEditDesc] = useState(1);
     const [editLang, setEditLang] = useState(1);
     const [addEduca, setAddEduca] = useState(1);
+    const [addSkill, setAddSkill] = useState(1);
+    const [addCerti, setAddCerti] = useState(1);
     const [languages, setLanguages] = useState('');
     const [education, setEducation] = useState('');
+    const [skillCheck, setSkill] = useState('');
+    const [certiCheck, setCerti] = useState('');
     const arrLang = JSON.parse(localStorage.getItem("arrLang")) || []
     const arrEdu = JSON.parse(localStorage.getItem("arrEdu")) || []
     const showModalInfo = () => {
@@ -45,6 +49,12 @@ const InfoUser = () => {
     const handleStateEducation = (event) => {
         setEducation(event.target.value)
     }
+    const handleStateSkill = (event) => {
+        setSkill(event.target.value)
+    }
+    const handleStateCerti = (event) => {
+        setCerti(event.target.value)
+    }
     useEffect(() => {
         const inputcheck = document.body.querySelector(".inputcheck");
         const backgroundcheck = document.body.querySelector(".backgroundcheck");
@@ -57,6 +67,16 @@ const InfoUser = () => {
         dispatch(getInfoUser(params.idUser));
         dispatch(getRentList())
     }, [params.idUser])
+    const { email, phone, skill, name, birthday, gender, certification, role} = infoUser;
+    let b =[]
+    const c =  skill?.map(i => {
+        return b.push(i)
+    })
+    let d =[]
+    const e =  certification?.map(ce => {
+        return d.push(ce)
+    })
+    
 
     return (
         <div className='pt-12 info-user bg-pink-50'>
@@ -173,7 +193,7 @@ const InfoUser = () => {
                                             }
 
                                             localStorage.setItem("arrLang", JSON.stringify(arrLang));
-                                           
+
                                         }}>Add</button>
                                     </form>
                                 </section>
@@ -181,17 +201,17 @@ const InfoUser = () => {
                                     <p className="flex flex-wrap justify-between content-center items-center lang hover:bg-pink-100 px-1">
                                         <span className='lang-color'>English - <i style={{ color: '#b2b2b2' }}>Basic</i></span>
                                         <span className=' iLang rounded-md bg-red-400  px-2'> <i className="fa-solid fa-xmark cursor-pointer hover:text-white " /></span>
-                                       
+
                                     </p>
                                     {arrLang.map(lang => {
                                         return <p key={lang.index} className="flex flex-wrap justify-between content-center items-center lang hover:bg-pink-100 px-1">
                                             <span className='lang-color'>{lang} </span>
-                                            <span className=' iLang rounded-md bg-red-400  px-2'><i className="fa-solid fa-xmark cursor-pointer hover:text-white " onClick={()=>{
+                                            <span className=' iLang rounded-md bg-red-400  px-2'><i className="fa-solid fa-xmark cursor-pointer hover:text-white " onClick={() => {
                                                 let indexDeleteLang = arrLang.findIndex(lang1 => lang1 === lang)
-                                                arrLang.splice(indexDeleteLang,1)
+                                                arrLang.splice(indexDeleteLang, 1)
                                                 localStorage.setItem("arrLang", JSON.stringify(arrLang));
                                                 window.location.reload()
-                                            }}/></span>
+                                            }} /></span>
                                         </p>
                                     })}
                                 </i></p>
@@ -236,14 +256,47 @@ const InfoUser = () => {
 
                                     </div>
                                     <div className=" text-sm ">
-                                        <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }}>Add New</span>
+                                        <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }} onClick={() => {
+                                            setAddSkill(addSkill + 1)
+                                            setSkill('')
+                                        }}>Add New</span>
                                     </div>
                                 </div>
-                                {infoUser.skill ? <p>
-                                    {infoUser.skill.map(skill => {
-                                        return <span style={{ color: '#b2b2b2' }}>{skill}, </span>
+                                <section className=" bg-pink-100 text-black p-4" style={{ display: `${addSkill % 2 === 0 ? 'block' : 'none'}` }} >
+                                    <form onSubmit={handleSubmit}>
+                                        <div className=" rounded-md shadow-sm ">
+                                            <label htmlFor="" className="text-sm">Skill</label>
+                                            <input
+                                                value={skillCheck}
+                                                onChange={handleStateSkill}
+                                                placeholder='Enter your skill' className=' w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700  mt-2 px-1'></input>
+                                        </div>
+                                        <button type='submit' className='py-2 px-4 bg-green-400 text-white mt-4 rounded-md font-medium' onClick={() => {
+                                            setAddSkill(addSkill + 1)
+                                            b.push(skillCheck)
+                                            let data2 = {
+                                                id: +params.idUser,
+                                                name: name,
+                                                email: email,
+                                                phone: phone,
+                                                birthday: birthday,
+                                                gender: gender,
+                                                role: role,
+                                                skill: b,
+                                                certification: certification
+                                            }
+                                            dispatch(editInfoUser(data2))
+                                            window.location.reload()
+                                        }}>Add</button>
+                                    </form>
+                                </section>
+
+                                {skill ? <p style={{ display: `${addSkill % 2 === 0 ? 'none' : 'block'}` }}>
+                                    {skill.map(skill => {
+                                        return <p style={{ color: '#b2b2b2', fontSize: '14px' }} className="mb-0 py-1 font-medium">{skill} </p>
                                     })}
                                 </p> : <p><span style={{ color: '#b2b2b2' }}>Add your Skills.</span></p>}
+
                             </div>
                             <hr />
                             <div>
@@ -279,24 +332,24 @@ const InfoUser = () => {
                                             }
 
                                             localStorage.setItem("arrEdu", JSON.stringify(arrEdu));
-                                           
+
                                         }}>Add</button>
                                     </form>
                                 </section>
                                 <p style={{ display: `${addEduca % 2 === 0 ? 'none' : 'block'}` }}>
-                                {arrEdu.map(edu => {
+                                    {arrEdu.map(edu => {
                                         return <p key={edu.index} className="flex flex-wrap justify-between content-center items-center lang hover:bg-pink-100 px-1">
                                             <span className='lang-color'>{edu} </span>
-                                            <span className=' iLang rounded-md bg-red-400  px-2'><i className="fa-solid fa-xmark cursor-pointer hover:text-white " onClick={()=>{
+                                            <span className=' iLang rounded-md bg-red-400  px-2'><i className="fa-solid fa-xmark cursor-pointer hover:text-white " onClick={() => {
                                                 let indexDeleteEdu = arrEdu.findIndex(lang1 => lang1 === edu)
-                                                arrEdu.splice(indexDeleteEdu,1)
+                                                arrEdu.splice(indexDeleteEdu, 1)
                                                 localStorage.setItem("arrEdu", JSON.stringify(arrEdu));
                                                 window.location.reload()
-                                            }}/></span>
+                                            }} /></span>
                                         </p>
                                     })}
                                 </p>
-                                
+
                             </div>
                             <hr />
                             <div>
@@ -306,12 +359,46 @@ const InfoUser = () => {
 
                                     </div>
                                     <div className=" text-sm ">
-                                        <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }}>Add New</span>
+                                        <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }} onClick={() => {
+                                            setAddCerti(addCerti + 1)
+                                            setCerti('')
+                                        }}>Add New</span>
                                     </div>
                                 </div>
-                                <p>
-                                    <span style={{ color: '#b2b2b2' }}>Add your Certification.</span>
-                                </p>
+                                <section className=" bg-pink-100 text-black p-4" style={{ display: `${addCerti % 2 === 0 ? 'block' : 'none'}` }} >
+                                    <form onSubmit={handleSubmit}>
+                                        <div className=" rounded-md shadow-sm ">
+                                            <label htmlFor="" className="text-sm">Certification</label>
+                                            <input
+                                                value={certiCheck}
+                                                onChange={handleStateCerti}
+                                                placeholder='Enter your certification' className=' w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700  mt-2 px-1'></input>
+                                        </div>
+                                        <button className='py-2 px-4 bg-green-400 text-white mt-4 rounded-md font-medium' onClick={() => {
+                                            setAddCerti(addCerti + 1)
+                                            d.push(certiCheck)
+                                            let data2 = {
+                                                id: +params.idUser,
+                                                name: name,
+                                                email: email,
+                                                phone: phone,
+                                                birthday: birthday,
+                                                gender: gender,
+                                                role: role,
+                                                skill: skill,
+                                                certification: d
+                                            }
+                                            dispatch(editInfoUser(data2))
+                                            window.location.reload()
+                                        }}>Add</button>
+                                    </form>
+                                </section>
+                                {certification ? <p style={{ display: `${addCerti % 2 === 0 ? 'none' : 'block'}` }}>
+                                    {certification.map(cer => {
+                                        return <p style={{ color: '#b2b2b2', fontSize: '14px' }} className="mb-0 py-1 font-medium">{cer} </p>
+                                    })}
+                                </p> : <p><span style={{ color: '#b2b2b2' }}>Add your Certification.</span></p>}
+
                             </div>
                         </div>
                     </div>
