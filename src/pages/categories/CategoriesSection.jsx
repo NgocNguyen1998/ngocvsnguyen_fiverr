@@ -16,7 +16,7 @@ function SamplePrevArrow(props) {
     return (
         <div
             className={`${className} ${styleSlick["slick-prev"]}`}
-            style={{ ...style, display: "block", left: '1440px',top:'-35px'}}
+            style={{ ...style, display: "block", left: '1280px',top:'-35px'}}
             onClick={onClick}
         ></div>
     );

@@ -8,6 +8,7 @@ const initialState = {
   isFetchingUsersList: false,
   isFetchingSearch: false,
   user: [],
+  isFetchingEditUser: false,
 };
 export const { reducer: nguoiDungReducer, actions: nguoiDungActions } =
   createSlice({
@@ -54,6 +55,17 @@ export const { reducer: nguoiDungReducer, actions: nguoiDungActions } =
         .addCase(searchUser.rejected, (state, action) => {
           state.isFetchingSearch = false;
           state.user = action.payload;
+        })
+        //
+        .addCase(editInfoUser.pending, (state) => {
+          state.isFetchingEditUser = false;
+        })
+
+        .addCase(editInfoUser.fulfilled, (state, action) => {
+          state.isFetchingEditUser = true;
+        })
+        .addCase(editInfoUser.rejected, (state, action) => {
+          state.isFetchingEditUser = false;
         });
     },
   });

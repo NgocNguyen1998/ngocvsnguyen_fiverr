@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Rate, Modal } from 'antd';
 import './infouser.css';
-import { useNguoiDung, getInfoUser } from '../../storeToolKit/NguoiDung';
+import { useNguoiDung, getInfoUser, editInfoUser } from '../../storeToolKit/NguoiDung';
 import { deleteRentList, getRentList, useThueCongViec } from '../../storeToolKit/ThueCongViec';
 import { useState } from 'react';
 import EditInfo from './EditInfo';
@@ -14,18 +14,47 @@ const InfoUser = () => {
     const dispatch = useDispatch();
     const { infoUser } = useNguoiDung();
     const { rentList } = useThueCongViec();
-    console.log("rentList: ", rentList);
-    console.log("infoUser: ", infoUser);
-    const [isModalOpenRegister, setIsModalOpenRegister] = useState(false);
-    const showModalRegister = () => {
-        setIsModalOpenRegister(true);
+    const [isModalOpenInfo, setisModalOpenInfo] = useState(false);
+    const [desc, setDesc] = useState('');
+    const [editDesc, setEditDesc] = useState(1);
+    const [editLang, setEditLang] = useState(1);
+    const [addEduca, setAddEduca] = useState(1);
+    const [addSkill, setAddSkill] = useState(1);
+    const [addCerti, setAddCerti] = useState(1);
+    const [languages, setLanguages] = useState('');
+    const [education, setEducation] = useState('');
+    const [skillCheck, setSkill] = useState('');
+    const [certiCheck, setCerti] = useState('');
+    const arrLang = JSON.parse(localStorage.getItem("arrLang")) || []
+    const arrEdu = JSON.parse(localStorage.getItem("arrEdu")) || []
+    const showModalInfo = () => {
+        setisModalOpenInfo(true);
     };
-    const handleOkRegister = () => {
-        setIsModalOpenRegister(false);
+    const handleOkInfo = () => {
+        setisModalOpenInfo(false);
     };
-    const handleCancelRegister = () => {
-        setIsModalOpenRegister(false);
+    const handleCancelInfo = () => {
+        setisModalOpenInfo(false);
     };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+    }
+    const handleStateDesc = (event) => {
+        setDesc(event.target.value)
+    }
+    const handleStateLanguages = (event) => {
+        setLanguages(event.target.value)
+    }
+    const handleStateEducation = (event) => {
+        setEducation(event.target.value)
+    }
+    const handleStateSkill = (event) => {
+        setSkill(event.target.value)
+    }
+    const handleStateCerti = (event) => {
+        setCerti(event.target.value)
+    }
     useEffect(() => {
         const inputcheck = document.body.querySelector(".inputcheck");
         const backgroundcheck = document.body.querySelector(".backgroundcheck");
@@ -38,6 +67,17 @@ const InfoUser = () => {
         dispatch(getInfoUser(params.idUser));
         dispatch(getRentList())
     }, [params.idUser])
+    const { email, phone, skill, name, birthday, gender, certification, role} = infoUser;
+    let b =[]
+    const c =  skill?.map(i => {
+        return b.push(i)
+    })
+    let d =[]
+    const e =  certification?.map(ce => {
+        return d.push(ce)
+    })
+    
+
     return (
         <div className='pt-12 info-user bg-pink-50'>
             <div className='grid lg:grid-cols-3 container gap-x-9 pb-10'>
@@ -52,17 +92,17 @@ const InfoUser = () => {
                                 <img src={!infoUser.avatar ? "https://wiki-travel.com.vn/uploads/post/thanhhuong-164523114546-hoa-dao.jpg" : infoUser.avatar} alt='...' className="object-cover   rounded-full " style={{ height: '200px', width: '200px' }} />
                                 <p className='pt-6 text-black font-medium text-2xl mb-1'>{infoUser.name}</p>
                                 <button onClick={() => {
-                                    showModalRegister();
+                                    showModalInfo();
                                 }} className='cursor-pointer hover:text-green-400'> <i class="fa-solid fa-pencil"></i></button>
                                 <div>
                                     <Modal
-                                        open={isModalOpenRegister}
-                                        onOk={handleOkRegister}
-                                        onCancel={handleCancelRegister}
+                                        open={isModalOpenInfo}
+                                        onOk={handleOkInfo}
+                                        onCancel={handleCancelInfo}
                                         footer={null}
                                         width="600px"
                                     >
-                                        <EditInfo params = {params.idUser}/>
+                                        <EditInfo params={params.idUser} />
                                     </Modal>
                                 </div>
                             </div>
@@ -89,13 +129,35 @@ const InfoUser = () => {
                     </div>
                     <div className='bottom pt-9'>
                         <div className=" max-w-lg p-6 space-y-8 overflow-hidden rounded-lg shadow-md bg-white " >
-                            <div className="flex flex-wrap justify-between content-center items-center ">
-                                <div className="space-x-2 text-xl text-gray-400">
-                                    <span style={{ fontSize: '19px' }} className=' text-black font-bold'>Description</span>
+                            <div>
+                                <div className="flex flex-wrap justify-between content-center items-center ">
+                                    <div className="space-x-2 text-xl text-gray-400">
+                                        <span style={{ fontSize: '19px' }} className=' text-black font-bold'>Description</span>
+                                    </div>
+                                    <div className=" text-sm ">
+                                        <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }} onClick={() => {
+                                            setEditDesc(editDesc + 1)
+                                            setDesc('')
+                                        }}>Edit Description</span>
+                                    </div>
                                 </div>
-                                <div className=" text-sm ">
-                                    <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }}>Edit Description</span>
-                                </div>
+                                <section className=" bg-pink-100 text-black p-4" style={{ display: `${editDesc % 2 === 0 ? 'block' : 'none'}` }} >
+                                    <form onSubmit={handleSubmit}>
+                                        <div className=" rounded-md shadow-sm ">
+                                            <label htmlFor="" className="text-sm">Description</label>
+                                            <textarea
+                                                value={desc}
+                                                onChange={handleStateDesc}
+                                                placeholder='Enter your description' className=' w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700  mt-2 px-1'></textarea>
+                                        </div>
+                                        <button type='submit' className='py-2 px-4 bg-green-400 text-white mt-4 rounded-md font-medium' onClick={() => {
+                                            setEditDesc(editDesc + 1)
+                                            localStorage.setItem("desc", JSON.stringify(desc));
+                                        }}>Update</button>
+                                    </form>
+                                </section>
+
+                                <p className='py-2' style={{ display: `${editDesc % 2 === 0 ? 'none' : 'block'}` }}><i>{JSON.parse(localStorage.getItem("desc"))}</i></p>
                             </div>
                             <hr />
                             <div>
@@ -105,13 +167,54 @@ const InfoUser = () => {
 
                                     </div>
                                     <div className=" text-sm ">
-                                        <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }}>Add New</span>
+                                        <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }} onClick={() => {
+                                            setEditLang(editLang + 1)
+                                            setLanguages('')
+                                        }}>Add New</span>
                                     </div>
                                 </div>
-                                <p>
-                                    <span>English - <i style={{ color: '#b2b2b2' }}>Basic</i></span>
-                                    <span> <i class="fa-solid fa-pencil"></i> </span>
-                                </p>
+                                <section className=" bg-pink-100 text-black p-4" style={{ display: `${editLang % 2 === 0 ? 'block' : 'none'}` }} >
+                                    <form onSubmit={handleSubmit}>
+                                        <div className=" rounded-md shadow-sm ">
+                                            <label htmlFor="" className="text-sm">Languages</label>
+                                            <input
+                                                value={languages}
+                                                onChange={handleStateLanguages}
+                                                placeholder='Enter your languages' className=' w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700  mt-2 px-1'></input>
+                                        </div>
+                                        <button type='submit' className='py-2 px-4 bg-green-400 text-white mt-4 rounded-md font-medium' onClick={() => {
+                                            setEditLang(editLang + 1)
+                                            let indexAddLang = arrLang.findIndex(lang => lang === languages)
+                                            if (indexAddLang === -1) {
+                                                arrLang.push(languages)
+
+                                            } else {
+                                                alert('Language already exists ')
+                                            }
+
+                                            localStorage.setItem("arrLang", JSON.stringify(arrLang));
+
+                                        }}>Add</button>
+                                    </form>
+                                </section>
+                                <p className='py-2' style={{ display: `${editLang % 2 === 0 ? 'none' : 'block'}` }}><i>
+                                    <p className="flex flex-wrap justify-between content-center items-center lang hover:bg-pink-100 px-1">
+                                        <span className='lang-color'>English - <i style={{ color: '#b2b2b2' }}>Basic</i></span>
+                                        <span className=' iLang rounded-md bg-red-400  px-2'> <i className="fa-solid fa-xmark cursor-pointer hover:text-white " /></span>
+
+                                    </p>
+                                    {arrLang.map(lang => {
+                                        return <p key={lang.index} className="flex flex-wrap justify-between content-center items-center lang hover:bg-pink-100 px-1">
+                                            <span className='lang-color'>{lang} </span>
+                                            <span className=' iLang rounded-md bg-red-400  px-2'><i className="fa-solid fa-xmark cursor-pointer hover:text-white " onClick={() => {
+                                                let indexDeleteLang = arrLang.findIndex(lang1 => lang1 === lang)
+                                                arrLang.splice(indexDeleteLang, 1)
+                                                localStorage.setItem("arrLang", JSON.stringify(arrLang));
+                                                window.location.reload()
+                                            }} /></span>
+                                        </p>
+                                    })}
+                                </i></p>
                             </div>
                             <hr />
                             <div className='flex flex-col items-start'>
@@ -153,14 +256,47 @@ const InfoUser = () => {
 
                                     </div>
                                     <div className=" text-sm ">
-                                        <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }}>Add New</span>
+                                        <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }} onClick={() => {
+                                            setAddSkill(addSkill + 1)
+                                            setSkill('')
+                                        }}>Add New</span>
                                     </div>
                                 </div>
-                                {infoUser.skill ? <p>
-                                    {infoUser.skill.map(skill => {
-                                        return <span style={{ color: '#b2b2b2' }}>{skill}, </span>
+                                <section className=" bg-pink-100 text-black p-4" style={{ display: `${addSkill % 2 === 0 ? 'block' : 'none'}` }} >
+                                    <form onSubmit={handleSubmit}>
+                                        <div className=" rounded-md shadow-sm ">
+                                            <label htmlFor="" className="text-sm">Skill</label>
+                                            <input
+                                                value={skillCheck}
+                                                onChange={handleStateSkill}
+                                                placeholder='Enter your skill' className=' w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700  mt-2 px-1'></input>
+                                        </div>
+                                        <button type='submit' className='py-2 px-4 bg-green-400 text-white mt-4 rounded-md font-medium' onClick={() => {
+                                            setAddSkill(addSkill + 1)
+                                            b.push(skillCheck)
+                                            let data2 = {
+                                                id: +params.idUser,
+                                                name: name,
+                                                email: email,
+                                                phone: phone,
+                                                birthday: birthday,
+                                                gender: gender,
+                                                role: role,
+                                                skill: b,
+                                                certification: certification
+                                            }
+                                            dispatch(editInfoUser(data2))
+                                            window.location.reload()
+                                        }}>Add</button>
+                                    </form>
+                                </section>
+
+                                {skill ? <p style={{ display: `${addSkill % 2 === 0 ? 'none' : 'block'}` }}>
+                                    {skill.map(skill => {
+                                        return <p style={{ color: '#b2b2b2', fontSize: '14px' }} className="mb-0 py-1 font-medium">{skill} </p>
                                     })}
                                 </p> : <p><span style={{ color: '#b2b2b2' }}>Add your Skills.</span></p>}
+
                             </div>
                             <hr />
                             <div>
@@ -170,12 +306,50 @@ const InfoUser = () => {
 
                                     </div>
                                     <div className=" text-sm ">
-                                        <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }}>Add New</span>
+                                        <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }} onClick={() => {
+                                            setAddEduca(addEduca + 1)
+                                            setEducation('')
+                                        }}>Add New</span>
                                     </div>
                                 </div>
-                                <p>
-                                    <span style={{ color: '#b2b2b2' }}>Add your Education.</span>
+                                <section className=" bg-pink-100 text-black p-4" style={{ display: `${addEduca % 2 === 0 ? 'block' : 'none'}` }} >
+                                    <form onSubmit={handleSubmit}>
+                                        <div className=" rounded-md shadow-sm ">
+                                            <label htmlFor="" className="text-sm">Education</label>
+                                            <input
+                                                value={education}
+                                                onChange={handleStateEducation}
+                                                placeholder='Enter your education' className=' w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700  mt-2 px-1'></input>
+                                        </div>
+                                        <button type='submit' className='py-2 px-4 bg-green-400 text-white mt-4 rounded-md font-medium' onClick={() => {
+                                            setAddEduca(addEduca + 1)
+                                            let indexAddEdu = arrEdu.findIndex(edu => edu === education)
+                                            if (indexAddEdu === -1) {
+                                                arrEdu.push(education)
+
+                                            } else {
+                                                alert('Education already exists ')
+                                            }
+
+                                            localStorage.setItem("arrEdu", JSON.stringify(arrEdu));
+
+                                        }}>Add</button>
+                                    </form>
+                                </section>
+                                <p style={{ display: `${addEduca % 2 === 0 ? 'none' : 'block'}` }}>
+                                    {arrEdu.map(edu => {
+                                        return <p key={edu.index} className="flex flex-wrap justify-between content-center items-center lang hover:bg-pink-100 px-1">
+                                            <span className='lang-color'>{edu} </span>
+                                            <span className=' iLang rounded-md bg-red-400  px-2'><i className="fa-solid fa-xmark cursor-pointer hover:text-white " onClick={() => {
+                                                let indexDeleteEdu = arrEdu.findIndex(lang1 => lang1 === edu)
+                                                arrEdu.splice(indexDeleteEdu, 1)
+                                                localStorage.setItem("arrEdu", JSON.stringify(arrEdu));
+                                                window.location.reload()
+                                            }} /></span>
+                                        </p>
+                                    })}
                                 </p>
+
                             </div>
                             <hr />
                             <div>
@@ -185,12 +359,46 @@ const InfoUser = () => {
 
                                     </div>
                                     <div className=" text-sm ">
-                                        <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }}>Add New</span>
+                                        <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }} onClick={() => {
+                                            setAddCerti(addCerti + 1)
+                                            setCerti('')
+                                        }}>Add New</span>
                                     </div>
                                 </div>
-                                <p>
-                                    <span style={{ color: '#b2b2b2' }}>Add your Certification.</span>
-                                </p>
+                                <section className=" bg-pink-100 text-black p-4" style={{ display: `${addCerti % 2 === 0 ? 'block' : 'none'}` }} >
+                                    <form onSubmit={handleSubmit}>
+                                        <div className=" rounded-md shadow-sm ">
+                                            <label htmlFor="" className="text-sm">Certification</label>
+                                            <input
+                                                value={certiCheck}
+                                                onChange={handleStateCerti}
+                                                placeholder='Enter your certification' className=' w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-gray-700  mt-2 px-1'></input>
+                                        </div>
+                                        <button className='py-2 px-4 bg-green-400 text-white mt-4 rounded-md font-medium' onClick={() => {
+                                            setAddCerti(addCerti + 1)
+                                            d.push(certiCheck)
+                                            let data2 = {
+                                                id: +params.idUser,
+                                                name: name,
+                                                email: email,
+                                                phone: phone,
+                                                birthday: birthday,
+                                                gender: gender,
+                                                role: role,
+                                                skill: skill,
+                                                certification: d
+                                            }
+                                            dispatch(editInfoUser(data2))
+                                            window.location.reload()
+                                        }}>Add</button>
+                                    </form>
+                                </section>
+                                {certification ? <p style={{ display: `${addCerti % 2 === 0 ? 'none' : 'block'}` }}>
+                                    {certification.map(cer => {
+                                        return <p style={{ color: '#b2b2b2', fontSize: '14px' }} className="mb-0 py-1 font-medium">{cer} </p>
+                                    })}
+                                </p> : <p><span style={{ color: '#b2b2b2' }}>Add your Certification.</span></p>}
+
                             </div>
                         </div>
                     </div>
@@ -237,7 +445,7 @@ const InfoUser = () => {
                                 </div>
                                 <div className=' flex justify-end pb-2'>
                                     <button className='border-2  py-1 px-4 rounded-md border-pink-400 hover:text-white hover:bg-pink-300 transition-all duration-300 mr-4' onClick={() => navigate(`/jobDetail/${job.congViec.id}`)}>View detail</button>
-                                    {/* <button className='border-2 py-1 px-4 rounded-md border-pink-400 hover:text-white hover:bg-pink-300 transition-all duration-300 mx-4'>Edit</button> */}
+
                                     <button className='border-2 py-1 px-4 text-red-500 font-medium rounded-md border-pink-400 hover:bg-pink-300 transition-all duration-300' onClick={() => {
                                         dispatch(deleteRentList(job.id))
 
@@ -250,6 +458,11 @@ const InfoUser = () => {
 
                 </div>
             </div>
+
+
+
+
+
         </div>
     )
 }
