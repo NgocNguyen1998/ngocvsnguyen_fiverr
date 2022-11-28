@@ -16,4 +16,7 @@ export const congViecServices = {
   getTypeWorkDetail: (type) => {
     return api.get(`cong-viec/lay-cong-viec-theo-chi-tiet-loai/${type}`);
   },
+  postWork: (data) => {
+    return api.post(`cong-viec`,data);
+  },
 };

@@ -145,3 +145,15 @@ export const getTypeWorkDetail = createAsyncThunk(
     }
   }
 );
+export const postWork = createAsyncThunk(
+  "congViec/postWork",
+  async (data) => {
+    try {
+      const result = await congViecServices.postWork(data);
+      console.log('thc',result.data.content);
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+);
