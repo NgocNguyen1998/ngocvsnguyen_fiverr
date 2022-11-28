@@ -35,14 +35,10 @@ const Register = () => {
             data.birthday = moment(data.birthday).format("DD-MM-YYYY");
           }
           if (data.skill) {
-            const ski = [];
-            ski.push(data.skill);
-            data.skill = ski;
+            data.skill = [...data.skill];
           }
           if (data.certification) {
-            const certi = [];
-            certi.push(data.certification);
-            data.certification = certi;
+            data.certification = [...data.certification];
           }
           console.log(data);
           dispatch(signUp(data));
@@ -115,7 +111,7 @@ const Register = () => {
                     },
                   })}
                   type="number"
-                  placeholder="Enter Your Password"
+                  placeholder="Enter Your Phone"
                 />
                 <p className="text-red-400">{errors?.phone?.message}</p>
               </div>

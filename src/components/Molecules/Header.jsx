@@ -252,6 +252,7 @@ export const Header = () => {
 const Div = styled.div`
   .down {
     position: relative;
+    z-index: 10;
     /* top: 100%; */
   }
   .down:hover .info {

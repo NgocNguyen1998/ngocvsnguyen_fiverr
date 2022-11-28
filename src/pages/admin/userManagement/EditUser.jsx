@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Button, Modal } from "antd";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+// import { signIn, signUp } from "../../storeToolKit/Auth/authReducer";
+import { useNavigate, useParams } from "react-router-dom";
+import { Select } from "antd";
 import moment from "moment";
-import { editInfoUser, useNguoiDung } from "../../storeToolKit/NguoiDung";
-import { useEffect } from "react";
-import _ from "lodash";
-import { useState } from "react";
-const EditInfo = (props) => {
-  const { infoUser, isFetchingEditUser } = useNguoiDung();
-  const [modle, setmodle] = useState("none");
+import { putUser } from "../../../storeToolKit/NguoiDung/nguoiDungReducer";
+import { date } from "yup/lib/locale";
+import { useNguoiDung, getInfoUser } from "../../../storeToolKit/NguoiDung";
+
+const EditUser = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -19,28 +22,54 @@ const EditInfo = (props) => {
   } = useForm({
     mode: "onBlur",
   });
-  const { email, phone, skill, name, birthday, gender, certification, role } =
-    infoUser;
-  const { params } = props;
+  const { id } = useParams();
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+  const handleDate = (value) => {
+    let data = moment(value);
+    let birthday = date.format("YYYY-MM-DD");
+  };
+  //
+  const { infoUser } = useNguoiDung();
+  console.log(infoUser);
+  const {
+    birthday,
+    name,
+    email,
+    password,
+    skill,
+    role,
+    certification,
+    gender,
+    phone,
+  } = infoUser;
+  //  JSON.parse(localStorage.getItem("editUser"));
   useEffect(() => {
+    // console.log(moment(birthday).format("DD/MM/YYYY"));
+    // console.log(id);
+    // let data = moment(birthday, "YYYY-MM-DD");
+    // // let birthdays = data.format("YYYY MM DD");
+    // console.log(data);
+    dispatch(getInfoUser(id));
     reset({
-      email,
-      role,
-      phone,
-      skill,
-      name,
       birthday,
-      gender,
+      name,
+      email,
+      password,
+      skill,
+      role,
       certification,
+      gender,
+      phone,
     });
+    console.log(birthday);
   }, []);
+
   return (
     <Div>
       <form
         onSubmit={handleSubmit((data) => {
-          if (isFetchingEditUser) {
-            setmodle("block");
-          }
           if (data.gender === "true") {
             data.gender = true;
           } else if (data.gender === "false") {
@@ -49,21 +78,23 @@ const EditInfo = (props) => {
           if (data.birthday) {
             data.birthday = moment(data.birthday).format("DD-MM-YYYY");
           }
-          const d = [data.skill];
-          if (d.join() !== skill.join()) {
-            data.skill = [data.skill];
+          if (data.skill) {
+            const ski = [...data.skill.toString().split(",")];
+            data.skill = ski;
           }
-          const c = [data.certification];
-          if (c.join() !== certification.join()) {
-            data.certification = [data.certification];
+          if (data.certification) {
+            const certi = [...data.certification.toString().split(",")];
+
+            data.certification = certi;
           }
-          let data1 = { ...data, id: params };
-          dispatch(editInfoUser(data1));
+
+          console.log({ ...data, id: id });
+          dispatch(putUser({ ...data, id: id }));
         })}
         className="flex flex-col  p-6 "
       >
         <h1 className="text-2xl text-black mb-3 font-bold mx-auto">
-          Modify personal information
+          Edit User
         </h1>
         <div className="grid grid-cols-2 gap-8 mt-2">
           <div className="itemRight">
@@ -87,26 +118,27 @@ const EditInfo = (props) => {
                 <p className="text-red-400">{errors?.email?.message}</p>
               </div>
             </div>
+
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i className="fa-solid fa-unlock-keyhole"></i>
+                <i className="fa-solid fa-user"></i>
               </div>
               <div className="w-full">
-                <input
-                  disabled
-                  className="p-2 w-full cursor-not-allowed"
-                  {...register("role", {
-                    required: "role is required",
-                  })}
-                  type="text"
-                  placeholder="Enter role"
-                />
-                <p className="text-red-400">{errors?.password?.message}</p>
+                <select
+                  className="w-full p-2 bg-[#bfc7fe] selectType"
+                  name="role"
+                  {...register("role")}
+                >
+                  <option value="ADMIN">Admin</option>
+                  <option value="USER">User</option>
+                </select>
+                <p className="text-red-400"></p>
               </div>
             </div>
+
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-phone"></i>
+                <i className="fa-solid fa-phone"></i>
               </div>
               <div className="w-full">
                 <input
@@ -123,14 +155,14 @@ const EditInfo = (props) => {
                     },
                   })}
                   type="number"
-                  placeholder="Enter Your Password"
+                  placeholder="Enter Your Phone"
                 />
                 <p className="text-red-400">{errors?.phone?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-briefcase"></i>
+                <i className="fa-solid fa-briefcase"></i>
               </div>
               <div className="w-full">
                 <input
@@ -168,11 +200,14 @@ const EditInfo = (props) => {
               </div>
               <div className="w-full">
                 <input
-                  value={moment(birthday).format("DD-MM-YYYY")}
                   className="p-2 w-full"
+                  value={moment(birthday).format("DD-MM-YYYY")}
+                  // id="birthday"
+                  name="birthday"
                   {...register("birthday", {
                     required: "Date of birth is required",
                   })}
+                  type="date"
                   placeholder="Enter Your Date of birth"
                 />
                 <p className="text-red-400">{errors?.birthday?.message}</p>
@@ -196,7 +231,7 @@ const EditInfo = (props) => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-certificate"></i>
+                <i className="fa-solid fa-certificate"></i>
               </div>
               <div className="w-full">
                 <input
@@ -217,59 +252,15 @@ const EditInfo = (props) => {
             type="submit"
             className="bg-pink-500 py-2 text-white w-full rounded-lg text-2xl hover:bg-pink-600"
           >
-            Edit
+            Save
           </button>
         </div>
       </form>
-
-      <div
-        className="w-full absolute"
-        style={{
-          top: "-30%",
-          zIndex: "100",
-          right: "-0%",
-          display: `${modle}`,
-        }}
-      >
-        <div className="modal-dialog relative w-auto pointer-events-none">
-          <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
-            <div className=" flex flex-shrink-0 items-center justify-between px-2 pt-1 border-b border-gray-200 rounded-t-md">
-              <h5 className="text-xl font-medium leading-normal text-pink-700">
-                Edit Infomation
-              </h5>
-              <button
-                type="button"
-                className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              />
-            </div>
-            <div
-              className="text-center relative px-2 py-1 text-green-500 "
-              style={{ fontSize: "18px" }}
-            >
-              Success
-            </div>
-            <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end px-4 py-1 border-t border-gray-200 rounded-b-md">
-              <button
-                type="button"
-                className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
-                onClick={() => {
-                  setmodle("none");
-                }}
-              >
-                Ok
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </Div>
   );
 };
 export const Div = styled.div`
   background-color: #bfc7fe;
-  position: relative;
   .selectType {
     position: relative;
     outline: none;
@@ -306,5 +297,4 @@ export const Div = styled.div`
     }
   }
 `;
-
-export default EditInfo;
+export default EditUser;

@@ -4,6 +4,10 @@ import { NguoiDungServices } from "../../services/NguoiDungServices";
 const initialState = {
   infoUser: {},
   isFetchinginfoUser: false,
+  usersList: [],
+  isFetchingUsersList: false,
+  isFetchingSearch: false,
+  user: [],
   isFetchingEditUser: false,
 };
 export const { reducer: nguoiDungReducer, actions: nguoiDungActions } =
@@ -23,16 +27,45 @@ export const { reducer: nguoiDungReducer, actions: nguoiDungActions } =
         })
         .addCase(getInfoUser.rejected, (state, action) => {
           state.isFetchinginfoUser = false;
+
           state.infoUser = action.payload;
         })
+        // get userList
+        .addCase(getUSerList.pending, (state) => {
+          state.isFetchingUsersList = true;
+        })
+        .addCase(getUSerList.fulfilled, (state, action) => {
+          state.isFetchingUsersList = false;
+
+          state.usersList = action.payload;
+        })
+        .addCase(getUSerList.rejected, (state, action) => {
+          state.isFetchingUsersList = false;
+
+          state.usersList = action.payload;
+        })
+        // search user
+        .addCase(searchUser.pending, (state) => {
+          state.isFetchingSearch = true;
+        })
+        .addCase(searchUser.fulfilled, (state, action) => {
+          state.isFetchingSearch = false;
+          state.user = action.payload;
+        })
+        .addCase(searchUser.rejected, (state, action) => {
+          state.isFetchingSearch = false;
+          state.user = action.payload;
+        })
+        //
         .addCase(editInfoUser.pending, (state) => {
           state.isFetchingEditUser = false;
         })
+
         .addCase(editInfoUser.fulfilled, (state, action) => {
-          state.isFetchingEditUser = true
+          state.isFetchingEditUser = true;
         })
         .addCase(editInfoUser.rejected, (state, action) => {
-          state.isFetchingEditUser = false
+          state.isFetchingEditUser = false;
         });
     },
   });
@@ -53,10 +86,70 @@ export const editInfoUser = createAsyncThunk(
   async (data) => {
     try {
       const result = await NguoiDungServices.editInfoUser(data);
-      console.log('ket qua',result.data.content);
+      console.log("ket qua", result.data.content);
       return result.data.content;
     } catch (err) {
       console.log(err.response.data);
     }
   }
 );
+
+export const getUSerList = createAsyncThunk(
+  "NguoiDung/getUserList",
+  async (id = "") => {
+    try {
+      const result = await NguoiDungServices.getUserList(id);
+      console.log(result.data.content);
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data.content);
+    }
+  }
+);
+
+export const putUser = createAsyncThunk("NguoiDung/putUser", async (id) => {
+  try {
+    const result = await NguoiDungServices.putUser(id);
+    console.log(result.data.content);
+    alert("thành công");
+  } catch (err) {
+    console.log(err.response.data);
+    alert(err.response.data);
+  }
+});
+
+export const searchUser = createAsyncThunk(
+  "NguoiDung/searchUser",
+  async (id) => {
+    try {
+      const result = await NguoiDungServices.searchUser(id);
+      console.log(result.data.content);
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+);
+export const deleteUser = createAsyncThunk(
+  "NguoiDung/deleteUser",
+  async (id, { dispatch }) => {
+    try {
+      const result = await NguoiDungServices.deleteUser(id);
+      console.log(result.data.content);
+      alert("thành công");
+      dispatch(getUSerList());
+    } catch (err) {
+      console.log(err.response.data.content);
+    }
+  }
+);
+
+export const postUser = createAsyncThunk("NguoiDung/postUser", async (data) => {
+  try {
+    const result = await NguoiDungServices.postUser(data);
+    console.log(result.data.content);
+    alert("thành công");
+  } catch (err) {
+    console.log(err.response.data);
+  }
+});
