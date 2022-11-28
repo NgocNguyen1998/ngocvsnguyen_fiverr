@@ -3,6 +3,7 @@ import { JobDetail } from "../components/JobDetail/JobDetail";
 import { JobList } from "../components/JobList";
 import MainLayout from "../components/layouts/MainLayout";
 import AdminTemplate from "../components/template/AdminTemplate/AdminTemplate";
+import JobManagement from "../pages/admin/jobManagement/JobManagement";
 import { JobTypeManagement } from "../pages/admin/jobTypeManagement/JobTypeManagement";
 import AddUser from "../pages/admin/userManagement/AddUser";
 import EditUser from "../pages/admin/userManagement/EditUser";
@@ -36,6 +37,10 @@ const Router = () => {
         {
           path: "jobType",
           element: <JobTypeManagement />,
+        },
+        {
+          path: "workFlow",
+          element: <JobManagement />,
         },
       ],
     },
