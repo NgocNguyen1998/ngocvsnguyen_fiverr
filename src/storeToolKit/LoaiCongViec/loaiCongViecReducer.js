@@ -42,10 +42,12 @@ export const jobsType = createAsyncThunk(
 
 export const postJobType = createAsyncThunk(
   "loaiCongViec/postJobType",
-  async (job) => {
+  async (job, { dispatch }) => {
     try {
       const result = await loaiCongViecServices.postJobType(job);
       console.log(result.data.content);
+      alert("thành công");
+      await dispatch(jobsType());
     } catch (err) {
       console.log(err.response.data.content);
     }
@@ -54,10 +56,12 @@ export const postJobType = createAsyncThunk(
 
 export const deleteJobType = createAsyncThunk(
   "loaiCongViec/deleteJobType",
-  async (id) => {
+  async (id, { dispatch }) => {
     try {
       const result = await loaiCongViecServices.deleteJobType(id);
       console.log(result.data.content);
+      alert("thành công");
+      dispatch(jobsType());
     } catch (err) {
       console.log(err.response.data.content);
     }
@@ -66,10 +70,12 @@ export const deleteJobType = createAsyncThunk(
 
 export const putJobType = createAsyncThunk(
   "loaiCongViec/putJobType",
-  async (id) => {
+  async (id, { dispatch }) => {
     try {
       const result = await loaiCongViecServices.putJobType(id);
       console.log(result.data.content);
+      alert("thành công");
+      dispatch(jobsType());
     } catch (err) {
       console.log(err.response.data.content);
     }

@@ -6,13 +6,13 @@ export const loaiCongViecServices = {
     }
     return api.get(`loai-cong-viec/${id}`);
   },
-  postJobType: () => {
-    return api.post(`loai-cong-viec`);
+  postJobType: (data) => {
+    return api.post(`loai-cong-viec`, data);
   },
   deleteJobType: (id) => {
     return api.delete(`loai-cong-viec/${id}`);
   },
-  putJobType: (id) => {
-    return api.put(`loai-cong-viec/${id}`);
+  putJobType: (data) => {
+    return api.put(`loai-cong-viec/${data.id}`, data);
   },
 };

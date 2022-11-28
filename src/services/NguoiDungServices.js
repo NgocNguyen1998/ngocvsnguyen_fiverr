@@ -25,6 +25,6 @@ export const NguoiDungServices = {
     return api.get(`users/search/${id}`);
   },
   postUser: (data) => {
-    return api.post(`users`);
+    return api.post(`users`, data);
   },
 };
