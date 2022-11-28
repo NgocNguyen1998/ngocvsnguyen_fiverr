@@ -9,11 +9,14 @@ const initialState = {
   jobType: [],
   jobTypeDetail: [],
   dataSignUp1: [],
+  workList:[],
   isFetchingJobList: false,
   isFetchingItem: false,
   isFetchingJobDetail: false,
   isFetchingjobType: false,
   isFetchingjobTypeDetail: false,
+  isFetchingWorkList: false,
+  isFetchingAddJob:false
 };
 export const { reducer: congViecReducer, actions: congViecActions } =
   createSlice({
@@ -81,7 +84,31 @@ export const { reducer: congViecReducer, actions: congViecActions } =
         .addCase(getTypeWorkDetail.rejected, (state, action) => {
           state.isFetchingjobTypeDetail = false;
           state.jobTypeDetail = action.payload;
-        });
+        })
+         // getWorkList(admin)
+         .addCase(getWork.pending, (state) => {
+          state.isFetchingWorkList = true;
+        })
+        .addCase(getWork.fulfilled, (state, action) => {
+          state.isFetchingWorkList = false;
+          state.workList = action.payload;
+        })
+        .addCase(getWork.rejected, (state, action) => {
+          state.isFetchingWorkList = false;
+          state.workList = action.payload;
+        })
+        //
+        .addCase(postWork.pending, (state) => {
+          state.isFetchingAddJob = false;
+        })
+
+        .addCase(postWork.fulfilled, (state, action) => {
+          state.isFetchingAddJob = true;
+        })
+        .addCase(postWork.rejected, (state, action) => {
+          state.isFetchingAddJob = false;
+        })
+        ;
     },
   });
 export const menuCongViec = createAsyncThunk(
@@ -139,6 +166,29 @@ export const getTypeWorkDetail = createAsyncThunk(
   async (type) => {
     try {
       const result = await congViecServices.getTypeWorkDetail(type);
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+);
+export const getWork = createAsyncThunk(
+  "congViec/getWork",
+  async () => {
+    try {
+      const result = await congViecServices.getWork();
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+);
+export const deleteWork = createAsyncThunk(
+  "congViec/deleteWork",
+  async (data) => {
+    try {
+      const result = await congViecServices.deleteWork(data);
+      alert("thành công")
       return result.data.content;
     } catch (err) {
       console.log(err.response.data);
