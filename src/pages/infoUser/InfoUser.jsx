@@ -21,6 +21,7 @@ const InfoUser = () => {
     const [addEduca, setAddEduca] = useState(1);
     const [addSkill, setAddSkill] = useState(1);
     const [addCerti, setAddCerti] = useState(1);
+    const [adver, setAdver] = useState('block');
     const [languages, setLanguages] = useState('');
     const [education, setEducation] = useState('');
     const [skillCheck, setSkill] = useState('');
@@ -404,8 +405,10 @@ const InfoUser = () => {
                     </div>
                 </div>
                 <div className='col-span-2 ml-10 mr-8'>
-                    <div className="relative  rounded-md shadow-md sm:py-6 sm:px-8 bg-white ">
-                        <button className="absolute top-2 right-2">
+                    <div className="relative  rounded-md shadow-md sm:py-6 sm:px-8 bg-white " style={{ display: `${adver }` }} >
+                        <button className="absolute top-2 right-2" onClick={()=>{
+                            setAdver('none')
+                        }}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="flex-shrink-0 w-6 h-6">
                                 <polygon points="427.314 107.313 404.686 84.687 256 233.373 107.314 84.687 84.686 107.313 233.373 256 84.686 404.687 107.314 427.313 256 278.627 404.686 427.313 427.314 404.687 278.627 256 427.314 107.313" />
                             </svg>
