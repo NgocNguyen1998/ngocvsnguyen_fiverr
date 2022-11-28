@@ -12,11 +12,12 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("User Management", "sub1", <UserOutlined />),
-  getItem("Films", "9", <FileOutlined />, [
-    getItem("Movie Manager", "3"),
-    getItem("Add Film", "4"),
-  ]),
+  getItem("User Management", "user", <UserOutlined />),
+  getItem("Workflow Management", "workFlow", <FileOutlined />),
+  getItem("Job type Management", "jobType", <FileOutlined />),
+  getItem("Job Detail Management", "jobDetail", <FileOutlined />),
+  getItem("Service Management", "service", <FileOutlined />),
+  getItem("comment manager", "comment", <FileOutlined />),
 ];
 const AdminTemplate = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -48,12 +49,18 @@ const AdminTemplate = () => {
           <Menu
             onClick={(item) => {
               console.log(item.key);
-              if (item.key == 3) {
-                navigate("/admin");
-              } else if (item.key == 4) {
-                navigate("/admin/addFilms");
-              } else if (item.key === "sub1") {
-                navigate("/admin/quanLiNguoiDung");
+              if (item.key === "user") {
+                navigate("/admin/userManagement");
+              } else if (item.key === "workFlow") {
+                navigate("/admin/workFlow");
+              } else if (item.key === "jobType") {
+                navigate("/admin/jobType");
+              } else if (item.key === "jobDetail") {
+                navigate("/admin/jobDetail");
+              } else if (item.key === "service") {
+                navigate("/admin/service");
+              } else if (item.key === "comment") {
+                navigate("/admin/comment");
               }
             }}
             theme="dark"

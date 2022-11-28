@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Button, Modal } from "antd";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+// import { signIn, signUp } from "../../storeToolKit/Auth/authReducer";
+import { useNavigate, useParams } from "react-router-dom";
+import { Select } from "antd";
 import moment from "moment";
-import { editInfoUser } from "../../storeToolKit/NguoiDung";
-import { useEffect } from "react";
-import _ from "lodash";
-import { useNguoiDung } from "../../storeToolKit/NguoiDung/useNguoiDung";
-const EditInfo = (props) => {
-  const { infoUser } = useNguoiDung();
+import { putUser } from "../../../storeToolKit/NguoiDung/nguoiDungReducer";
+import { date } from "yup/lib/locale";
+import { useNguoiDung, getInfoUser } from "../../../storeToolKit/NguoiDung";
+
+const EditUser = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -18,21 +22,50 @@ const EditInfo = (props) => {
   } = useForm({
     mode: "onBlur",
   });
-  const { email, phone, skill, name, birthday, gender, certification, role } =
-    infoUser;
-  const { params } = props;
+  const { id } = useParams();
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+  const handleDate = (value) => {
+    let data = moment(value);
+    let birthday = date.format("YYYY-MM-DD");
+  };
+  //
+  const { infoUser } = useNguoiDung();
+  console.log(infoUser);
+  const {
+    birthday,
+    name,
+    email,
+    password,
+    skill,
+    role,
+    certification,
+    gender,
+    phone,
+  } = infoUser;
+  //  JSON.parse(localStorage.getItem("editUser"));
   useEffect(() => {
+    // console.log(moment(birthday).format("DD/MM/YYYY"));
+    // console.log(id);
+    // let data = moment(birthday, "YYYY-MM-DD");
+    // // let birthdays = data.format("YYYY MM DD");
+    // console.log(data);
+    dispatch(getInfoUser(id));
     reset({
-      email,
-      role,
-      phone,
-      skill,
-      name,
       birthday,
-      gender,
+      name,
+      email,
+      password,
+      skill,
+      role,
       certification,
+      gender,
+      phone,
     });
+    console.log(birthday);
   }, []);
+
   return (
     <Div>
       <form
@@ -45,21 +78,23 @@ const EditInfo = (props) => {
           if (data.birthday) {
             data.birthday = moment(data.birthday).format("DD-MM-YYYY");
           }
-          const d = [data.skill];
-          if (d.join() !== skill.join()) {
-            data.skill = [data.skill];
+          if (data.skill) {
+            const ski = [...data.skill.toString().split(",")];
+            data.skill = ski;
           }
-          const c = [data.certification];
-          if (c.join() !== certification.join()) {
-            data.certification = [data.certification];
+          if (data.certification) {
+            const certi = [...data.certification.toString().split(",")];
+
+            data.certification = certi;
           }
-          let data1 = { ...data, id: params };
-          dispatch(editInfoUser(data1));
+
+          console.log({ ...data, id: id });
+          dispatch(putUser({ ...data, id: id }));
         })}
         className="flex flex-col  p-6 "
       >
         <h1 className="text-2xl text-black mb-3 font-bold mx-auto">
-          Modify personal information
+          Edit User
         </h1>
         <div className="grid grid-cols-2 gap-8 mt-2">
           <div className="itemRight">
@@ -83,25 +118,27 @@ const EditInfo = (props) => {
                 <p className="text-red-400">{errors?.email?.message}</p>
               </div>
             </div>
+
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i className="fa-solid fa-unlock-keyhole"></i>
+                <i className="fa-solid fa-user"></i>
               </div>
               <div className="w-full">
-                <input
-                  className="p-2 w-full"
-                  {...register("role", {
-                    required: "role is required",
-                  })}
-                  type="text"
-                  placeholder="Enter role"
-                />
-                <p className="text-red-400">{errors?.password?.message}</p>
+                <select
+                  className="w-full p-2 bg-[#bfc7fe] selectType"
+                  name="role"
+                  {...register("role")}
+                >
+                  <option value="ADMIN">Admin</option>
+                  <option value="USER">User</option>
+                </select>
+                <p className="text-red-400"></p>
               </div>
             </div>
+
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-phone"></i>
+                <i className="fa-solid fa-phone"></i>
               </div>
               <div className="w-full">
                 <input
@@ -118,14 +155,14 @@ const EditInfo = (props) => {
                     },
                   })}
                   type="number"
-                  placeholder="Enter Your Password"
+                  placeholder="Enter Your Phone"
                 />
                 <p className="text-red-400">{errors?.phone?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-briefcase"></i>
+                <i className="fa-solid fa-briefcase"></i>
               </div>
               <div className="w-full">
                 <input
@@ -163,11 +200,14 @@ const EditInfo = (props) => {
               </div>
               <div className="w-full">
                 <input
-                  value={moment(birthday).format("DD-MM-YYYY")}
                   className="p-2 w-full"
+                  value={moment(birthday).format("DD-MM-YYYY")}
+                  // id="birthday"
+                  name="birthday"
                   {...register("birthday", {
                     required: "Date of birth is required",
                   })}
+                  type="date"
                   placeholder="Enter Your Date of birth"
                 />
                 <p className="text-red-400">{errors?.birthday?.message}</p>
@@ -191,7 +231,7 @@ const EditInfo = (props) => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-certificate"></i>
+                <i className="fa-solid fa-certificate"></i>
               </div>
               <div className="w-full">
                 <input
@@ -209,13 +249,10 @@ const EditInfo = (props) => {
         </div>
         <div className="w-full mt-5">
           <button
-            // onClick={()=>{
-            //     dispatch(editInfoUser(props.params))
-            // }}
             type="submit"
             className="bg-pink-500 py-2 text-white w-full rounded-lg text-2xl hover:bg-pink-600"
           >
-            Edit
+            Save
           </button>
         </div>
       </form>
@@ -260,5 +297,4 @@ export const Div = styled.div`
     }
   }
 `;
-
-export default EditInfo;
+export default EditUser;

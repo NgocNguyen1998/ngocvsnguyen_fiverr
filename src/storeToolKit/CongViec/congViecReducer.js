@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { congViecServices } from "../../services/CongViecServices";
+import { NguoiDungServices } from "../../services/NguoiDungServices";
 
 const initialState = {
   jobsList: [],
   itemRender: [],
   jobDetail: [],
-  jobType:[],
-  jobTypeDetail:[],
-  dataSignUp1:[],
+  jobType: [],
+  jobTypeDetail: [],
+  dataSignUp1: [],
   isFetchingJobList: false,
   isFetchingItem: false,
   isFetchingJobDetail: false,
@@ -69,18 +70,18 @@ export const { reducer: congViecReducer, actions: congViecActions } =
           state.isFetchingjobType = false;
           state.jobType = action.payload;
         })
-          // getTypeWorkDetail
-          .addCase(getTypeWorkDetail.pending, (state) => {
-            state.isFetchingjobTypeDetail = true;
-          })
-          .addCase(getTypeWorkDetail.fulfilled, (state, action) => {
-            state.isFetchingjobTypeDetail = false;
-            state.jobTypeDetail = action.payload;
-          })
-          .addCase(getTypeWorkDetail.rejected, (state, action) => {
-            state.isFetchingjobTypeDetail = false;
-            state.jobTypeDetail = action.payload;
-          })
+        // getTypeWorkDetail
+        .addCase(getTypeWorkDetail.pending, (state) => {
+          state.isFetchingjobTypeDetail = true;
+        })
+        .addCase(getTypeWorkDetail.fulfilled, (state, action) => {
+          state.isFetchingjobTypeDetail = false;
+          state.jobTypeDetail = action.payload;
+        })
+        .addCase(getTypeWorkDetail.rejected, (state, action) => {
+          state.isFetchingjobTypeDetail = false;
+          state.jobTypeDetail = action.payload;
+        });
     },
   });
 export const menuCongViec = createAsyncThunk(
@@ -132,7 +133,6 @@ export const getTypeWork = createAsyncThunk(
     }
   }
 );
-
 
 export const getTypeWorkDetail = createAsyncThunk(
   "congViec/getTypeWorkDetail",
