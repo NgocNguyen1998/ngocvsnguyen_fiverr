@@ -17,7 +17,7 @@ const items = [
   getItem("Job type Management", "jobType", <FileOutlined />),
   getItem("Job Detail Management", "jobDetailManagement", <FileOutlined />),
   getItem("Service Management", "service", <FileOutlined />),
-  getItem("comment manager", "comment", <FileOutlined />),
+  getItem("Comment Manager", "comment", <FileOutlined />),
 ];
 const AdminTemplate = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -43,7 +43,7 @@ const AdminTemplate = () => {
               className="text-blue-400 text-[100%] lg:text-[150%] text-center"
               onClick={() => navigate("/admin")}
             >
-              Cyber Movie
+              Fiverr
             </h1>
           </div>
           <Menu
