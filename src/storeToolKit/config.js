@@ -7,7 +7,7 @@ import { thueCongViecReducer } from "./ThueCongViec";
 import { nguoiDungReducer } from "./NguoiDung";
 import { authReducer } from "./Auth";
 import { loaiCongViecReducer } from "./LoaiCongViec/loaiCongViecReducer";
-import { chiTietLoaiCongViecReducer } from "./ChiTietLoaiCongViec/chiTietLoaiCongViecReducer";
+import { chiTietLoaiCongViecReducer } from "./ChiTietLoaiCongViec";
 
 const rootReducer = combineReducers({
   congViecReducer,
