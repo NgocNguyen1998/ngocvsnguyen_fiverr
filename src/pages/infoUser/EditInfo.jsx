@@ -45,6 +45,7 @@ const EditInfo = (props) => {
         onSubmit={handleSubmit((data) => {
           if (isFetchingEditUser) {
             setmodle("block");
+            window.location.reload()
           }
           if (data.gender === "true") {
             data.gender = true;

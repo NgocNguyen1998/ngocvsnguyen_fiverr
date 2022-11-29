@@ -10,6 +10,7 @@ const initialState = {
   jobTypeDetail: [],
   dataSignUp1: [],
   workList:[],
+  searchJob:[],
   isFetchingJobList: false,
   isFetchingItem: false,
   isFetchingJobDetail: false,
@@ -17,7 +18,8 @@ const initialState = {
   isFetchingjobTypeDetail: false,
   isFetchingWorkList: false,
   isFetchingAddJob:false,
-  isFetchingEditJob:false
+  isFetchingEditJob:false,
+  isFetchingSearchJob:false,
 };
 export const { reducer: congViecReducer, actions: congViecActions } =
   createSlice({
@@ -118,6 +120,18 @@ export const { reducer: congViecReducer, actions: congViecActions } =
         })
         .addCase(editWork.rejected, (state, action) => {
           state.isFetchingEditJob = false;
+        })
+        // get search job
+        .addCase(searchWork.pending, (state) => {
+          state.isFetchingSearchJob = true;
+        })
+        .addCase(searchWork.fulfilled, (state, action) => {
+          state.isFetchingSearchJob = false;
+          state.searchJob = action.payload;
+        })
+        .addCase(searchWork.rejected, (state, action) => {
+          state.isFetchingSearchJob = false;
+          state.searchJob = action.payload;
         })
         ;
     },
@@ -226,6 +240,19 @@ export const editWork = createAsyncThunk(
     try {
       const result = await congViecServices.editWork(data);
       await dispatch(getWork())
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+);
+export const searchWork = createAsyncThunk(
+  "congViec/searchWork",
+  async (data,{dispatch}) => {
+    try {
+      const result = await congViecServices.searchWork(data);
+      // await dispatch(getWork())
+      
       return result.data.content;
     } catch (err) {
       console.log(err.response.data);
