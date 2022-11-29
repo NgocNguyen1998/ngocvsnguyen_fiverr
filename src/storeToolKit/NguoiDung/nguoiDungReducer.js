@@ -74,7 +74,7 @@ export const getInfoUser = createAsyncThunk(
   async (id) => {
     try {
       const result = await NguoiDungServices.getInfoUser(id);
-
+      localStorage.setItem("infoUser", JSON.stringify(result.data.content));
       return result.data.content;
     } catch (err) {
       console.log(err.response.data);

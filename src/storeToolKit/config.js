@@ -7,6 +7,7 @@ import { thueCongViecReducer } from "./ThueCongViec";
 import { nguoiDungReducer } from "./NguoiDung";
 import { authReducer } from "./Auth";
 import { loaiCongViecReducer } from "./LoaiCongViec/loaiCongViecReducer";
+import { chiTietLoaiCongViecReducer } from "./ChiTietLoaiCongViec/chiTietLoaiCongViecReducer";
 
 const rootReducer = combineReducers({
   congViecReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   nguoiDungReducer,
   authReducer,
   loaiCongViecReducer,
+  chiTietLoaiCongViecReducer,
 });
 
 export const store = configureStore({
