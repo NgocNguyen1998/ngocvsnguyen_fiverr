@@ -16,6 +16,7 @@ const EditJob = () => {
   } = useForm({
     mode: "onBlur",
   });
+
   const { tenCongViec, danhGia, giaTien, hinhAnh, moTa, maChiTietLoaiCongViec, moTaNgan, saoCongViec, id } =
     jobEdit;
   useEffect(() => {
@@ -29,7 +30,7 @@ const EditJob = () => {
       moTaNgan,
       saoCongViec
     });
-  }, []);
+  },[jobEdit.id]);
   const { isFetchingEditJob } = useCongViec()
   const [modle, setmodle] = useState("none");
   useEffect(() => {

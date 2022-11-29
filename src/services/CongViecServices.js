@@ -28,4 +28,7 @@ export const congViecServices = {
   editWork: (data) => {
     return api.put(`cong-viec/${data.id}`,data);
   },
+  searchWork: (data) => {
+    return api.get(`cong-viec/lay-danh-sach-cong-viec-theo-ten/${data}`);
+  },
 };
