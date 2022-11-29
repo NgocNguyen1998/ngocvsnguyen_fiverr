@@ -15,9 +15,9 @@ const items = [
   getItem("User Management", "user", <UserOutlined />),
   getItem("Workflow Management", "workFlow", <FileOutlined />),
   getItem("Job type Management", "jobType", <FileOutlined />),
-  getItem("Job Detail Management", "jobDetail", <FileOutlined />),
+  getItem("Job Detail Management", "jobDetailManagement", <FileOutlined />),
   getItem("Service Management", "service", <FileOutlined />),
-  getItem("comment manager", "comment", <FileOutlined />),
+  getItem("Comment Manager", "comment", <FileOutlined />),
 ];
 const AdminTemplate = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -43,7 +43,7 @@ const AdminTemplate = () => {
               className="text-blue-400 text-[100%] lg:text-[150%] text-center"
               onClick={() => navigate("/admin")}
             >
-              Cyber Movie
+              Fiverr
             </h1>
           </div>
           <Menu
@@ -55,8 +55,8 @@ const AdminTemplate = () => {
                 navigate("/admin/workFlow");
               } else if (item.key === "jobType") {
                 navigate("/admin/jobType");
-              } else if (item.key === "jobDetail") {
-                navigate("/admin/jobDetail");
+              } else if (item.key === "jobDetailManagement") {
+                navigate("/admin/jobDetailManagement");
               } else if (item.key === "service") {
                 navigate("/admin/service");
               } else if (item.key === "comment") {

@@ -102,8 +102,8 @@ const UserManagement = () => {
           <React.Fragment key={Date.now()}>
             <button
               onClick={() => {
-                const user = usersList.find((item) => item.id === data.id);
-                localStorage.setItem("editUser", JSON.stringify(user));
+                // const user = usersList.find((item) => item.id === data.id);
+                // localStorage.setItem("editUser", JSON.stringify(user));
                 navigate(`/admin/editUser/${data.id}`);
               }}
               title="chỉnh sửa"

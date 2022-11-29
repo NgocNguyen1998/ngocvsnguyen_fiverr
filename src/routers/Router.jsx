@@ -3,6 +3,7 @@ import { JobDetail } from "../components/JobDetail/JobDetail";
 import { JobList } from "../components/JobList";
 import MainLayout from "../components/layouts/MainLayout";
 import AdminTemplate from "../components/template/AdminTemplate/AdminTemplate";
+import { JobDetailManagement } from "../pages/admin/jobDetailManagement.jsx/JobDetailManagement";
 import JobManagement from "../pages/admin/jobManagement/JobManagement";
 import { JobTypeManagement } from "../pages/admin/jobTypeManagement/JobTypeManagement";
 import AddUser from "../pages/admin/userManagement/AddUser";
@@ -24,6 +25,7 @@ const Router = () => {
         { path: "home", element: <Home /> },
         { path: "categories/:ids", element: <Categories /> },
         { path: "infoUser/:idUser", element: <InfoUser /> },
+        //
       ],
     },
     {
@@ -41,6 +43,10 @@ const Router = () => {
         {
           path: "workFlow",
           element: <JobManagement />,
+        },
+        {
+          path: "jobDetailManagement",
+          element: <JobDetailManagement />,
         },
       ],
     },

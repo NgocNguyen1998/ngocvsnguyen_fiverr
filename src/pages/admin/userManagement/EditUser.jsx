@@ -42,8 +42,12 @@ const EditUser = () => {
     phone,
   } = infoUser;
   //  JSON.parse(localStorage.getItem("editUser"));
-
   useEffect(() => {
+    // console.log(moment(birthday).format("DD/MM/YYYY"));
+    // console.log(id);
+    // let data = moment(birthday, "YYYY-MM-DD");
+    // // let birthdays = data.format("YYYY MM DD");
+    // console.log(data);
     dispatch(getInfoUser(id));
     reset({
       birthday,
