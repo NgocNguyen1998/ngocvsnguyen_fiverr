@@ -31,4 +31,9 @@ export const congViecServices = {
   searchWork: (data) => {
     return api.get(`cong-viec/lay-danh-sach-cong-viec-theo-ten/${data}`);
   },
+  editImg: (data) => {
+    // const imgEdit = JSON.parse(localStorage.getItem("imgEdit"))
+    // return api.post(`cong-viec/upload-hinh-cong-viec/${imgEdit.id}`,data);
+    return api.post(`cong-viec/upload-hinh-cong-viec/${data.id}`,data.formData);
+  },
 };

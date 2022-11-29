@@ -20,6 +20,7 @@ const initialState = {
   isFetchingAddJob:false,
   isFetchingEditJob:false,
   isFetchingSearchJob:false,
+  isFetchingEditImg:false,
 };
 export const { reducer: congViecReducer, actions: congViecActions } =
   createSlice({
@@ -133,6 +134,15 @@ export const { reducer: congViecReducer, actions: congViecActions } =
           state.isFetchingSearchJob = false;
           state.searchJob = action.payload;
         })
+        .addCase(editImg.pending, (state) => {
+          state.isFetchingEditImg = false;
+        })
+        .addCase(editImg.fulfilled, (state, action) => {
+          state.isFetchingEditImg = true;
+        })
+        .addCase(editImg.rejected, (state, action) => {
+          state.isFetchingEditImg = false;
+        })
         ;
     },
   });
@@ -213,7 +223,6 @@ export const deleteWork = createAsyncThunk(
   async (data,{dispatch}) => {
     try {
       const result = await congViecServices.deleteWork(data);
-      alert("thành công")
      await dispatch(getWork())
       return result.data.content;
     } catch (err) {
@@ -227,7 +236,6 @@ export const postWork = createAsyncThunk(
     try {
       const result = await congViecServices.postWork(data);
       await dispatch(getWork())
-      alert('Success')
       return result.data.content;
     } catch (err) {
       console.log(err.response.data);
@@ -259,4 +267,15 @@ export const searchWork = createAsyncThunk(
     }
   }
 );
-
+export const editImg = createAsyncThunk(
+  "congViec/editImg",
+  async (data,{dispatch}) => {
+    try {
+      const result = await congViecServices.editImg(data);
+      await dispatch(getWork())
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+);
