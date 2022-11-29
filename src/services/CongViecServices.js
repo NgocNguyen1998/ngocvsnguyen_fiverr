@@ -20,9 +20,12 @@ export const congViecServices = {
     return api.get(`cong-viec`);
   },
   deleteWork: (id) => {
-    return api.get(`cong-viec/${id}`);
+    return api.delete(`cong-viec/${id}`);
   },
   postWork: (data) => {
     return api.post(`cong-viec`,data);
+  },
+  editWork: (data) => {
+    return api.put(`cong-viec/${data.id}`,data);
   },
 };

@@ -16,7 +16,8 @@ const initialState = {
   isFetchingjobType: false,
   isFetchingjobTypeDetail: false,
   isFetchingWorkList: false,
-  isFetchingAddJob:false
+  isFetchingAddJob:false,
+  isFetchingEditJob:false
 };
 export const { reducer: congViecReducer, actions: congViecActions } =
   createSlice({
@@ -108,6 +109,16 @@ export const { reducer: congViecReducer, actions: congViecActions } =
         .addCase(postWork.rejected, (state, action) => {
           state.isFetchingAddJob = false;
         })
+        .addCase(editWork.pending, (state) => {
+          state.isFetchingEditJob = false;
+        })
+
+        .addCase(editWork.fulfilled, (state, action) => {
+          state.isFetchingEditJob = true;
+        })
+        .addCase(editWork.rejected, (state, action) => {
+          state.isFetchingEditJob = false;
+        })
         ;
     },
   });
@@ -185,10 +196,11 @@ export const getWork = createAsyncThunk(
 );
 export const deleteWork = createAsyncThunk(
   "congViec/deleteWork",
-  async (data) => {
+  async (data,{dispatch}) => {
     try {
       const result = await congViecServices.deleteWork(data);
       alert("thành công")
+     await dispatch(getWork())
       return result.data.content;
     } catch (err) {
       console.log(err.response.data);
@@ -197,10 +209,23 @@ export const deleteWork = createAsyncThunk(
 );
 export const postWork = createAsyncThunk(
   "congViec/postWork",
-  async (data) => {
+  async (data,{dispatch}) => {
     try {
       const result = await congViecServices.postWork(data);
-      console.log('thc',result.data.content);
+      await dispatch(getWork())
+      alert('Success')
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+);
+export const editWork = createAsyncThunk(
+  "congViec/editWork",
+  async (data,{dispatch}) => {
+    try {
+      const result = await congViecServices.editWork(data);
+      await dispatch(getWork())
       return result.data.content;
     } catch (err) {
       console.log(err.response.data);

@@ -11,6 +11,7 @@ import { useCongViec } from "../../../storeToolKit/CongViec";
 import { deleteWork, getWork } from "../../../storeToolKit/CongViec/congViecReducer";
 import { useState } from "react";
 import PostWork from "./PostWork";
+import EditJob from "./EditJob";
 
 const { Search } = Input;
 const JobManagement = () => {
@@ -19,6 +20,7 @@ const JobManagement = () => {
     const { workList } = useCongViec();
     console.log("workList: ", workList);
     const [isModalOpenAddJob, setisModalOpenAddJob] = useState(false);
+    const [isModalOpenEditJob, setisModalOpenEditJob] = useState(false);
     const showModalAddJob = () => {
         setisModalOpenAddJob(true);
     };
@@ -28,7 +30,15 @@ const JobManagement = () => {
     const handleCancelAddJob = () => {
         setisModalOpenAddJob(false);
     };
-
+    const showModalEditJob = () => {
+        setisModalOpenEditJob(true);
+    };
+    const handleOkEditJob = () => {
+        setisModalOpenEditJob(false);
+    };
+    const handleCancelEditJob = () => {
+        setisModalOpenEditJob(false);
+    };
     useEffect(() => {
         dispatch(getWork());
     }, []);
@@ -80,6 +90,8 @@ const JobManagement = () => {
                                 const jobEdit = workList.find((item) => item.id === data.id);
                                 localStorage.setItem("jobEdit", JSON.stringify(jobEdit));
                                 // navigate(`/admin/editUser/${data.id}`);
+                                showModalEditJob();
+                                
                               }}
                          
                             title="chỉnh sửa"
@@ -90,6 +102,7 @@ const JobManagement = () => {
                         <button
                             onClick={() => {
                                 dispatch(deleteWork(data.id))
+                                console.log(data);
                             }}
                             title="Xoá"
                             className="ml-3 text-2xl text-red-400"
@@ -139,6 +152,17 @@ const JobManagement = () => {
                     width="600px"
                 >
                     <PostWork  />
+                </Modal>
+            </div>
+            <div>
+                <Modal
+                    open={isModalOpenEditJob}
+                    onOk={handleOkEditJob}
+                    onCancel={handleCancelEditJob}
+                    footer={null}
+                    width="600px"
+                >
+                    <EditJob  />
                 </Modal>
             </div>
         </>
