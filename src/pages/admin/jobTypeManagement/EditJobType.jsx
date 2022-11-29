@@ -17,9 +17,10 @@ const EditJobType = () => {
     <form
       id="form"
       onSubmit={handleSubmit((data) => {
-        console.log(data);
         const idJob = JSON.parse(localStorage.getItem("idJob"));
-        dispatch(putJobType({ id: idJob, tenLoaiCongViec: data }));
+        console.log(idJob);
+        console.log({ id: idJob, tenLoaiCongViec: data.job });
+        dispatch(putJobType({ id: idJob, tenLoaiCongViec: data.job }));
       })}
     >
       <div id="wrapInput" className="w-full ">

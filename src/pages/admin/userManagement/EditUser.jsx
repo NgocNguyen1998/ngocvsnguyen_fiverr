@@ -26,14 +26,11 @@ const EditUser = () => {
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
-  const handleDate = (value) => {
-    let data = moment(value);
-    let birthday = date.format("YYYY-MM-DD");
-  };
+
   //
   const { infoUser } = useNguoiDung();
   console.log(infoUser);
-  const {
+  let {
     birthday,
     name,
     email,
@@ -45,12 +42,8 @@ const EditUser = () => {
     phone,
   } = infoUser;
   //  JSON.parse(localStorage.getItem("editUser"));
+
   useEffect(() => {
-    // console.log(moment(birthday).format("DD/MM/YYYY"));
-    // console.log(id);
-    // let data = moment(birthday, "YYYY-MM-DD");
-    // // let birthdays = data.format("YYYY MM DD");
-    // console.log(data);
     dispatch(getInfoUser(id));
     reset({
       birthday,
@@ -63,7 +56,7 @@ const EditUser = () => {
       gender,
       phone,
     });
-    console.log(birthday);
+    console.log(certification);
   }, []);
 
   return (
@@ -201,7 +194,7 @@ const EditUser = () => {
               <div className="w-full">
                 <input
                   className="p-2 w-full"
-                  value={moment(birthday).format("DD-MM-YYYY")}
+                  // value={moment(birthday).format("DD-MM-YYYY")}
                   // id="birthday"
                   name="birthday"
                   {...register("birthday", {
