@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { postWork,useCongViec } from "../../../storeToolKit/CongViec";
 import { useState } from "react";
+import { useEffect } from "react";
 const PostWork = () => {
-  const userLogin = JSON.parse(localStorage.getItem("userLogin"))
   const dispatch = useDispatch();
   const {
     handleSubmit,
@@ -15,7 +15,12 @@ const PostWork = () => {
     mode: "onBlur",
   });
 const {isFetchingAddJob} = useCongViec()
-const [modle, setmodle] = useState("block");
+const [modle, setmodle] = useState("none");
+useEffect(() => {
+  window.onclick = function () {
+    setmodle("none");
+  }
+}, [isFetchingAddJob])
   return (
     <Div>
       <form
@@ -24,11 +29,11 @@ const [modle, setmodle] = useState("block");
             setmodle("block");
           }
       const data5= {
-        id: +userLogin.id,
+        id: 0,
         tenCongViec: data.tenCongViec,
         danhGia: +data.danhGia,
         giaTien: +data.giaTien,
-        nguoiTao: +userLogin.id,
+        nguoiTao:+1,
         hinhAnh: data.hinhAnh,
         moTa: data.moTa,
         maChiTietLoaiCongViec: +data.maChiTietLoaiCongViec,

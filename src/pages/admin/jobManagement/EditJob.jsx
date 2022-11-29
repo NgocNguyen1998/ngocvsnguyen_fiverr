@@ -2,14 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import moment from "moment";
-import { editInfoUser, useNguoiDung } from "../../storeToolKit/NguoiDung";
-import { useEffect } from "react";
-import _ from "lodash";
+import { editWork, useCongViec } from "../../../storeToolKit/CongViec";
 import { useState } from "react";
-const EditInfo = (props) => {
-  const { infoUser, isFetchingEditUser } = useNguoiDung();
-  const [modle, setmodle] = useState("none");
+import { useEffect } from "react";
+const EditJob = () => {
+  const jobEdit = JSON.parse(localStorage.getItem("jobEdit"))
   const dispatch = useDispatch();
   const {
     handleSubmit,
@@ -19,58 +16,52 @@ const EditInfo = (props) => {
   } = useForm({
     mode: "onBlur",
   });
-  const { email, phone, skill, name, birthday, gender, certification, role } =
-    infoUser;
-  const { params } = props;
+
+  const { tenCongViec, danhGia, giaTien, hinhAnh, moTa, maChiTietLoaiCongViec, moTaNgan, saoCongViec, id } =
+    jobEdit;
   useEffect(() => {
     reset({
-      email,
-      role,
-      phone,
-      skill,
-      name,
-      birthday,
-      gender,
-      certification,
+      tenCongViec,
+      danhGia,
+      giaTien,
+      hinhAnh,
+      moTa,
+      maChiTietLoaiCongViec,
+      moTaNgan,
+      saoCongViec
     });
-  }, []);
+  },[jobEdit.id]);
+  const { isFetchingEditJob } = useCongViec()
+  const [modle, setmodle] = useState("none");
   useEffect(() => {
     window.onclick = function () {
       setmodle("none");
     }
-  }, [isFetchingEditUser])
+  }, [isFetchingEditJob])
   return (
     <Div>
       <form
         onSubmit={handleSubmit((data) => {
-          if (isFetchingEditUser) {
+          if (isFetchingEditJob) {
             setmodle("block");
-            window.location.reload()
           }
-          if (data.gender === "true") {
-            data.gender = true;
-          } else if (data.gender === "false") {
-            data.gender = false;
+          const data6 = {
+            id: id,
+            tenCongViec: data.tenCongViec,
+            danhGia: +data.danhGia,
+            giaTien: +data.giaTien,
+            nguoiTao: +1,
+            hinhAnh: data.hinhAnh,
+            moTa: data.moTa,
+            maChiTietLoaiCongViec: +data.maChiTietLoaiCongViec,
+            moTaNgan: data.moTaNgan,
+            saoCongViec: +data.saoCongViec
           }
-          if (data.birthday) {
-            data.birthday = moment(data.birthday).format("DD-MM-YYYY");
-          }
-          const d = [data.skill];
-          if (d.join() !== skill.join()) {
-            data.skill = [data.skill];
-          }
-          const c = [data.certification];
-          if (c.join() !== certification.join()) {
-            data.certification = [data.certification];
-          }
-          let data1 = { ...data, id: params };
-          dispatch(editInfoUser(data1));
+          dispatch(editWork(data6));
         })}
         className="flex flex-col  p-6 "
       >
-        <h1 className="text-2xl text-black mb-3 font-bold mx-auto">
-          Modify personal information
-        </h1>
+        <h1 className="text-2xl text-black mb-3 font-bold mx-auto">Edit Work</h1>
         <div className="grid grid-cols-2 gap-8 mt-2">
           <div className="itemRight">
             <div className=" flex w-full">
@@ -80,17 +71,13 @@ const EditInfo = (props) => {
               <div className="w-full">
                 <input
                   className="p-2  w-full"
-                  {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /\S+@\S+\.\S+/,
-                      message: "Entered value does not match email format",
-                    },
+                  {...register("tenCongViec", {
+                    required: "Work name is required",
                   })}
                   type="text"
-                  placeholder="Enter Your Email"
+                  placeholder="Enter Your Work Name"
                 />
-                <p className="text-red-400">{errors?.email?.message}</p>
+                <p className="text-red-400">{errors?.tenCongViec?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
@@ -99,15 +86,15 @@ const EditInfo = (props) => {
               </div>
               <div className="w-full">
                 <input
-                  disabled
-                  className="p-2 w-full cursor-not-allowed"
-                  {...register("role", {
-                    required: "role is required",
+                  className="p-2 w-full"
+                  {...register("danhGia", {
+                    required: "Rate is required",
+
                   })}
-                  type="text"
-                  placeholder="Enter role"
+                  type="number"
+                  placeholder="Enter Your Rate"
                 />
-                <p className="text-red-400">{errors?.password?.message}</p>
+                <p className="text-red-400">{errors?.danhGia?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
@@ -117,21 +104,14 @@ const EditInfo = (props) => {
               <div className="w-full">
                 <input
                   className="p-2 w-full"
-                  {...register("phone", {
-                    required: "Phone is required",
-                    minLength: {
-                      value: 9,
-                      message: "Phone must be between 9-11 number",
-                    },
-                    maxLength: {
-                      value: 11,
-                      message: "Phone must be between 9-11 number",
-                    },
+                  {...register("giaTien", {
+                    required: "Price is required",
+
                   })}
                   type="number"
-                  placeholder="Enter Your Password"
+                  placeholder="Enter Your Price"
                 />
-                <p className="text-red-400">{errors?.phone?.message}</p>
+                <p className="text-red-400">{errors?.giaTien?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
@@ -141,13 +121,13 @@ const EditInfo = (props) => {
               <div className="w-full">
                 <input
                   className="p-2 w-full"
-                  {...register("skill", {
-                    required: "Skill is required",
+                  {...register("moTa", {
+                    required: "Desc is required",
                   })}
                   type="text"
-                  placeholder="Enter Your Skill"
+                  placeholder="Enter Your Desc"
                 />
-                <p className="text-red-400">{errors?.skill?.message}</p>
+                <p className="text-red-400">{errors?.moTa?.message}</p>
               </div>
             </div>
           </div>
@@ -159,13 +139,13 @@ const EditInfo = (props) => {
               <div className="w-full">
                 <input
                   className="p-2  w-full"
-                  {...register("name", {
-                    required: "FullName is required",
+                  {...register("moTaNgan", {
+                    required: "Desc is required",
                   })}
                   type="text"
-                  placeholder="Enter Your FullName"
+                  placeholder="Enter Your desc"
                 />
-                <p className="text-red-400">{errors?.name?.message}</p>
+                <p className="text-red-400">{errors?.moTaNgan?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
@@ -174,64 +154,73 @@ const EditInfo = (props) => {
               </div>
               <div className="w-full">
                 <input
-                  value={moment(birthday).format("DD-MM-YYYY")}
                   className="p-2 w-full"
-                  {...register("birthday", {
-                    required: "Date of birth is required",
+                  {...register("maChiTietLoaiCongViec", {
+                    required: "Code of work is required",
                   })}
-                  placeholder="Enter Your Date of birth"
+                  type="number"
+                  placeholder="Enter Your work code"
                 />
-                <p className="text-red-400">{errors?.birthday?.message}</p>
+                <p className="text-red-400">{errors?.maChiTietLoaiCongViec?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-venus-mars"></i>
-              </div>
-              <div className="w-full">
-                <select
-                  className="w-full p-2 bg-[#bfc7fe] selectType"
-                  name="gender"
-                  {...register("gender")}
-                >
-                  <option value="true">Male</option>
-                  <option value="false">Female</option>
-                </select>
-                <p className="text-red-400"></p>
-              </div>
-            </div>
-            <div className="flex w-full">
-              <div className="items-center flex item ">
-                <i class="fa-solid fa-certificate"></i>
+                <i class="fa-solid fa-cake-candles"></i>
               </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
-                  {...register("certification", {
-                    required: "Certification is required",
+                  {...register("saoCongViec", {
+                    required: "Star of work is required",
+                    minLength: {
+                      value: 1,
+                      message: "Star must be 1 characters",
+                    },
+                    maxLength: {
+                      value: 1,
+                      message: "Star must be 1 characters",
+                    },
+                  })}
+                  type="number"
+                  placeholder="Enter Your work star"
+                />
+                <p className="text-red-400">{errors?.saoCongViec?.message}</p>
+              </div>
+            </div>
+            <div className="flex w-full">
+              <div className="items-center flex item ">
+                <i class="fa-solid fa-cake-candles"></i>
+              </div>
+              <div className="w-full">
+                <input
+                  className="p-2 w-full"
+                  {...register("hinhAnh", {
+                    required: "Img of work is required",
                   })}
                   type="text"
-                  placeholder="Enter Your Certification"
+                  placeholder="Enter Your work img link"
                 />
-                <p className="text-red-400">{errors?.certification?.message}</p>
+                <p className="text-red-400">{errors?.hinhAnh?.message}</p>
               </div>
             </div>
           </div>
         </div>
         <div className="w-full mt-5">
           <button
-            type="submit"
+            // type="submit"
             className="bg-pink-500 py-2 text-white w-full rounded-lg text-2xl hover:bg-pink-600"
           >
-            Edit
+            Add
           </button>
         </div>
-      </form>
 
+
+      </form>
       <div
         className="w-full absolute"
         style={{
-          top: "-30%",
+          top: "-20%",
           zIndex: "100",
           right: "-0%",
           display: `${modle}`,
@@ -241,7 +230,7 @@ const EditInfo = (props) => {
           <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
             <div className=" flex flex-shrink-0 items-center justify-between px-2 pt-1 border-b border-gray-200 rounded-t-md">
               <h5 className="text-xl font-medium leading-normal text-pink-700">
-                Edit Infomation
+                Add Job
               </h5>
               <button
                 type="button"
@@ -275,7 +264,6 @@ const EditInfo = (props) => {
 };
 export const Div = styled.div`
   background-color: #bfc7fe;
-  position: relative;
   .selectType {
     position: relative;
     outline: none;
@@ -312,5 +300,4 @@ export const Div = styled.div`
     }
   }
 `;
-
-export default EditInfo;
+export default EditJob;
