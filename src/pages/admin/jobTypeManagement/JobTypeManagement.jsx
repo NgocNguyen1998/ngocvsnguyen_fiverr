@@ -80,7 +80,7 @@ export const JobTypeManagement = () => {
         <form
           id="form"
           onSubmit={handleSubmit((data) =>
-            dispatch(postJobType({ id: 0, tenLoaiCongViec: data }))
+            dispatch(postJobType({ id: 0, tenLoaiCongViec: data.job }))
           )}
         >
           <div id="wrapInput" className="w-full ">
