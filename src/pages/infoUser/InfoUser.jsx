@@ -63,6 +63,7 @@ const InfoUser = () => {
         inputcheck.style.display = "block";
         subcheck.style.display = "block";
         backgroundcheck.style.backgroundColor = "white";
+        backgroundcheck.style.position = 'fixed';
     });
     useEffect(() => {
         dispatch(getInfoUser(params.idUser));
@@ -77,10 +78,8 @@ const InfoUser = () => {
     const e =  certification?.map(ce => {
         return d.push(ce)
     })
-    
-
     return (
-        <div className='pt-12 info-user bg-pink-50'>
+        <div className='pt-40 info-user bg-pink-50'>
             <div className='grid lg:grid-cols-3 container gap-x-9 pb-10'>
                 <div className='col-span-1 ml-8'>
                     <div className='top '>
@@ -327,13 +326,10 @@ const InfoUser = () => {
                                             let indexAddEdu = arrEdu.findIndex(edu => edu === education)
                                             if (indexAddEdu === -1) {
                                                 arrEdu.push(education)
-
                                             } else {
                                                 alert('Education already exists ')
                                             }
-
                                             localStorage.setItem("arrEdu", JSON.stringify(arrEdu));
-
                                         }}>Add</button>
                                     </form>
                                 </section>
@@ -350,14 +346,12 @@ const InfoUser = () => {
                                         </p>
                                     })}
                                 </p>
-
                             </div>
                             <hr />
                             <div>
                                 <div className="flex flex-wrap justify-between content-center items-center ">
                                     <div className="space-x-2 text-xl text-gray-400">
                                         <span style={{ fontSize: '19px' }} className=' text-black font-bold'>Certification</span>
-
                                     </div>
                                     <div className=" text-sm ">
                                         <span className='font-medium cursor-pointer' style={{ fontSize: '16px', color: '#00698c' }} onClick={() => {
@@ -378,7 +372,7 @@ const InfoUser = () => {
                                         <button className='py-2 px-4 bg-green-400 text-white mt-4 rounded-md font-medium' onClick={() => {
                                             setAddCerti(addCerti + 1)
                                             d.push(certiCheck)
-                                            let data2 = {
+                                            let data3 = {
                                                 id: +params.idUser,
                                                 name: name,
                                                 email: email,
@@ -389,7 +383,7 @@ const InfoUser = () => {
                                                 skill: skill,
                                                 certification: d
                                             }
-                                            dispatch(editInfoUser(data2))
+                                            dispatch(editInfoUser(data3))
                                             window.location.reload()
                                         }}>Add</button>
                                     </form>
@@ -399,7 +393,6 @@ const InfoUser = () => {
                                         return <p style={{ color: '#b2b2b2', fontSize: '14px' }} className="mb-0 py-1 font-medium">{cer} </p>
                                     })}
                                 </p> : <p><span style={{ color: '#b2b2b2' }}>Add your Certification.</span></p>}
-
                             </div>
                         </div>
                     </div>
@@ -451,7 +444,6 @@ const InfoUser = () => {
 
                                     <button className='border-2 py-1 px-4 text-red-500 font-medium rounded-md border-pink-400 hover:bg-pink-300 transition-all duration-300' onClick={() => {
                                         dispatch(deleteRentList(job.id))
-
                                     }}>X</button>
                                 </div>
                             </div>
@@ -461,11 +453,6 @@ const InfoUser = () => {
 
                 </div>
             </div>
-
-
-
-
-
         </div>
     )
 }

@@ -29,7 +29,7 @@ const EditInfo = (props) => {
       phone,
       skill,
       name,
-      birthday,
+      birthday:moment(birthday).format("YYYY-MM-DD"),
       gender,
       certification,
     });
@@ -45,7 +45,7 @@ const EditInfo = (props) => {
         onSubmit={handleSubmit((data) => {
           if (isFetchingEditUser) {
             setmodle("block");
-            window.location.reload()
+           
           }
           if (data.gender === "true") {
             data.gender = true;
@@ -174,7 +174,8 @@ const EditInfo = (props) => {
               </div>
               <div className="w-full">
                 <input
-                  value={moment(birthday).format("DD-MM-YYYY")}
+                type='date'
+                  // value={moment(birthday).format("DD-MM-YYYY")}
                   className="p-2 w-full"
                   {...register("birthday", {
                     required: "Date of birth is required",
@@ -262,6 +263,7 @@ const EditInfo = (props) => {
                 className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
                 onClick={() => {
                   setmodle("none");
+                  window.location.reload()
                 }}
               >
                 Ok
