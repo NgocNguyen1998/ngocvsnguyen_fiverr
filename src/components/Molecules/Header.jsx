@@ -1,12 +1,10 @@
-import { Modal, Select } from "antd";
+import { Modal } from "antd";
 import Search from "antd/lib/input/Search";
 import { NavLink, useNavigate } from "react-router-dom";
-import { showModal } from "../../pages/Login/Login";
 import SubMenuJobList from "../JobList/SubMenuJobList";
 import Login from "../../pages/Login/Login";
-import { useRef, useState } from "react";
+import {  useState } from "react";
 import styled from "styled-components";
-
 import Register from "../../pages/register/Register";
 
 export const Header = () => {
@@ -49,13 +47,13 @@ export const Header = () => {
             <span className="text-xl">
               <i class="fa-regular fa-bell"></i>
             </span>
-            <span className="text-xl">
+            <span className="text-xl px-2">
               <i class="fa-regular fa-envelope"></i>
             </span>
             <span className="text-xl">
               <i class="fa-regular fa-heart"></i>
             </span>
-            <span className="text-xl">Order</span>
+            <span className="text-xl px-2">Order</span>
           </div>
           <div className="flex flex-cols m-0">
             <div className="items-end down">
@@ -67,7 +65,6 @@ export const Header = () => {
               >
                 {JSON.parse(userLogin).name.slice(0, 1).toUpperCase()}
               </p>
-              {/* <i class="fa-sharp fa-solid fa-caret-down"></i> */}
               <div className="w-[180px] h-[470px] ml-[-10px] info top-0  text-base text-white rounded-md bg-blue-400 absolute mt-8">
                 <div className="relative ribbon">
                   <div>
@@ -167,17 +164,6 @@ export const Header = () => {
                 Become a Seller
               </NavLink>
             </li>
-            <li className="flex  items-center px-4 -mb-3 text-black font-medium">
-              <Select
-                defaultValue="en"
-                className="header-input"
-                style={{
-                  width: 100,
-                  color: "black",
-                  borderRadius: "5px",
-                }}
-              />
-            </li>
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex">
             <button className="self-center px-8 py-3 rounded text-black font-medium">
@@ -191,7 +177,6 @@ export const Header = () => {
             </button>
             <div>
               <Modal
-                // title="Login"
                 open={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
@@ -203,7 +188,6 @@ export const Header = () => {
             </div>
             <div>
               <Modal
-                // title="Login"
                 open={isModalOpenRegister}
                 onOk={handleOkRegister}
                 onCancel={handleCancelRegister}
