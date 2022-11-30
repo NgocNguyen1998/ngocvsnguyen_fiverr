@@ -1,10 +1,6 @@
 import { Input, Modal, Table } from "antd";
 import React, { useEffect } from "react";
-import {
-    SearchOutlined,
-    EditOutlined,
-    DeleteOutlined,
-} from "@ant-design/icons";
+import { SearchOutlined, EditOutlined, DeleteOutlined, } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { useCongViec } from "../../../storeToolKit/CongViec";
 import { deleteWork, getWork, searchWork } from "../../../storeToolKit/CongViec/congViecReducer";
@@ -20,7 +16,7 @@ const JobManagement = () => {
     const [isModalOpenAddJob, setisModalOpenAddJob] = useState(false);
     const [isModalOpenEditJob, setisModalOpenEditJob] = useState(false);
     const [isModalOpenEditImg, setisModalOpenEditImg] = useState(false);
- 
+
     const showModalAddJob = () => {
         setisModalOpenAddJob(true);
     };
@@ -80,17 +76,14 @@ const JobManagement = () => {
             width: "11%",
             render: (data) => {
                 return <p key={Math.floor(Math.random() * 100000) + 1000}>
-                    <p className="mb-1 text-right cursor-pointer hover:text-pink-500 hover:text-xl" ><EditOutlined onClick={()=>{
-                         const imgEdit = workList.find((item) => item.hinhAnh === data);
-                         localStorage.setItem("imgEdit", JSON.stringify(imgEdit));
-                         showModalEditImg();
-                    }}/></p>
+                    <p className="mb-1 text-right cursor-pointer hover:text-pink-500 hover:text-xl" ><EditOutlined onClick={() => {
+                        const imgEdit = workList.find((item) => item.hinhAnh === data);
+                        localStorage.setItem("imgEdit", JSON.stringify(imgEdit));
+                        showModalEditImg();
+                    }} /></p>
                     <img src={data} alt="..." style={{ width: '100px', height: '80px' }} className="rounded-md" />
-
                 </p>
-
             }
-
         },
         {
             title: "Rate (*****)",
@@ -118,9 +111,7 @@ const JobManagement = () => {
                                 const jobEdit = workList.find((item) => item.id === data.id);
                                 localStorage.setItem("jobEdit", JSON.stringify(jobEdit));
                                 showModalEditJob();
-
                             }}
-
                             title="chỉnh sửa"
                             className="text-2xl text-blue-500"
                         >
@@ -191,9 +182,9 @@ const JobManagement = () => {
                                                 Job Name
                                             </th>
                                             <th scope="col" className="text-sm font-medium  px-6 py-4 ">
-                                               Desc
+                                                Desc
                                             </th>
-                                            
+
                                             <th scope="col" className="text-sm font-medium  px-6 py-4 ">
                                                 JobType Code
                                             </th>
@@ -231,11 +222,11 @@ const JobManagement = () => {
                                                     {item.congViec.maChiTietLoaiCongViec}
                                                 </td>
                                                 <td className="text-sm  text-center py-4 ">
-                                                    <p className="mb-1 text-right cursor-pointer hover:text-pink-500 hover:text-xl" 
-                                                    onClick={()=>{
-                                                        localStorage.setItem("imgEdit", JSON.stringify(item));
-                                                        showModalEditImg();
-                                                   }}
+                                                    <p className="mb-1 text-right cursor-pointer hover:text-pink-500 hover:text-xl"
+                                                        onClick={() => {
+                                                            localStorage.setItem("imgEdit", JSON.stringify(item));
+                                                            showModalEditImg();
+                                                        }}
                                                     ><EditOutlined /></p>
                                                     <img src={item.congViec.hinhAnh} alt="..." style={{ width: '100px', height: '80px' }} className="rounded-md" />
                                                 </td>
@@ -245,7 +236,7 @@ const JobManagement = () => {
                                                 <td className="text-sm  text-center py-4 ">
                                                     {item.congViec.giaTien}
                                                 </td>
-                                               
+
                                                 <td className="text-sm  text-center py-4 ">
                                                     {item.congViec.danhGia}
                                                 </td>
@@ -256,9 +247,7 @@ const JobManagement = () => {
 
                                                                 localStorage.setItem("jobEdit", JSON.stringify(item.congViec));
                                                                 showModalEditJob();
-
                                                             }}
-
                                                             title="chỉnh sửa"
                                                             className="text-2xl text-blue-500"
                                                         >
@@ -275,18 +264,14 @@ const JobManagement = () => {
                                                         </button>
                                                     </React.Fragment>
                                                 </td>
-
                                             </tr>
                                         })}
-
-
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-
             }
             <div>
                 <Modal
@@ -296,7 +281,7 @@ const JobManagement = () => {
                     footer={null}
                     width="600px"
                 >
-                    <PostWork cancelAddJob = {handleCancelAddJob}/>
+                    <PostWork cancelAddJob={handleCancelAddJob} />
                 </Modal>
             </div>
             <div>
@@ -307,7 +292,7 @@ const JobManagement = () => {
                     footer={null}
                     width="600px"
                 >
-                    <EditJob  onCancel={handleCancelEditJob} />
+                    <EditJob onCancelEditJob={handleCancelEditJob} />
                 </Modal>
             </div>
             <div>
@@ -318,10 +303,10 @@ const JobManagement = () => {
                     footer={null}
                     width="600px"
                 >
-                    <EditImg cancelEditImg = {handleCancelEditImg}/>
+                    <EditImg cancelEditImg={handleCancelEditImg} />
                 </Modal>
             </div>
-          
+
         </>
     );
 };

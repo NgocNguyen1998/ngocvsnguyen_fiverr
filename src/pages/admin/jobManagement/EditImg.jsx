@@ -43,7 +43,7 @@ const EditImg = (props) => {
                     }
                     let formData = new FormData()
                     formData.append('formFile', image2, image1)
-                    dispatch(editImg(formData));
+                    // dispatch(editImg(formData));
                     dispatch(editImg({ formData, id: id }));
                 })}
                 className="flex flex-col  p-6 "
