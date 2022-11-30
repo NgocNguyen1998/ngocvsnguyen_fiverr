@@ -1,3 +1,4 @@
 import { useSelector } from "react-redux";
 
-export const useThueCongViec = () => useSelector((state) => state.thueCongViecReducer);
+export const useThueCongViec = () =>
+  useSelector((state) => state.thueCongViecReducer);
