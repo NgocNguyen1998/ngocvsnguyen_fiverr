@@ -20,6 +20,7 @@ const JobManagement = () => {
     const [isModalOpenAddJob, setisModalOpenAddJob] = useState(false);
     const [isModalOpenEditJob, setisModalOpenEditJob] = useState(false);
     const [isModalOpenEditImg, setisModalOpenEditImg] = useState(false);
+ 
     const showModalAddJob = () => {
         setisModalOpenAddJob(true);
     };
@@ -49,7 +50,9 @@ const JobManagement = () => {
     };
     useEffect(() => {
         dispatch(getWork());
+        localStorage.removeItem('jobNameSearch')
     }, []);
+
     const columns = [
         {
             title: "ID",
@@ -64,7 +67,7 @@ const JobManagement = () => {
         {
             title: "Desc",
             dataIndex: "moTaNgan",
-            width: "25%",
+            width: "29%",
         },
         {
             title: "JobType Code",
@@ -139,22 +142,18 @@ const JobManagement = () => {
         },
     ];
 
-    let data = workList;
+    const data = workList;
 
     const onSearch = (value) => {
         let nameSearch = value.toLocaleLowerCase()
         if (value === '') {
             window.location.reload()
+            localStorage.removeItem('jobNameSearch')
         }
         localStorage.setItem("jobNameSearch", JSON.stringify(nameSearch));
         dispatch(searchWork(nameSearch))
 
     };
-    useEffect(()=>{
-        if(JSON.parse(localStorage.getItem('jobNameSearch'))!==''){
-            dispatch(searchWork(JSON.parse(localStorage.getItem('jobNameSearch'))))
-        }
-    },[searchJob.length])
     return (
         <>
             <button
@@ -172,7 +171,7 @@ const JobManagement = () => {
                 onSearch={onSearch}
                 allowClear
             />
-            {searchJob.length === 0 ? <Table
+            {searchJob?.length === 0 ? <Table
                 rowKey={(data) => data.id}
                 columns={columns}
                 dataSource={data}
@@ -191,6 +190,10 @@ const JobManagement = () => {
                                             <th scope="col" className="text-sm font-medium  px-6 py-4 ">
                                                 Job Name
                                             </th>
+                                            <th scope="col" className="text-sm font-medium  px-6 py-4 ">
+                                               Desc
+                                            </th>
+                                            
                                             <th scope="col" className="text-sm font-medium  px-6 py-4 ">
                                                 JobType Code
                                             </th>
@@ -221,14 +224,11 @@ const JobManagement = () => {
                                                 <td className="text-sm  text-left pl-6 py-4 ">
                                                     {item.congViec.tenCongViec}
                                                 </td>
+                                                <td className="text-sm  text-left pl-6 py-4 ">
+                                                    {item.congViec.moTaNgan}
+                                                </td>
                                                 <td className="text-sm  text-center py-4 ">
                                                     {item.congViec.maChiTietLoaiCongViec}
-                                                </td>
-                                                <td className="text-sm  text-center py-4 ">
-                                                    {item.congViec.saoCongViec}
-                                                </td>
-                                                <td className="text-sm  text-center py-4 ">
-                                                    {item.congViec.giaTien}
                                                 </td>
                                                 <td className="text-sm  text-center py-4 ">
                                                     <p className="mb-1 text-right cursor-pointer hover:text-pink-500 hover:text-xl" 
@@ -239,6 +239,13 @@ const JobManagement = () => {
                                                     ><EditOutlined /></p>
                                                     <img src={item.congViec.hinhAnh} alt="..." style={{ width: '100px', height: '80px' }} className="rounded-md" />
                                                 </td>
+                                                <td className="text-sm  text-center py-4 ">
+                                                    {item.congViec.saoCongViec}
+                                                </td>
+                                                <td className="text-sm  text-center py-4 ">
+                                                    {item.congViec.giaTien}
+                                                </td>
+                                               
                                                 <td className="text-sm  text-center py-4 ">
                                                     {item.congViec.danhGia}
                                                 </td>
@@ -300,7 +307,7 @@ const JobManagement = () => {
                     footer={null}
                     width="600px"
                 >
-                    <EditJob />
+                    <EditJob  onCancel={handleCancelEditJob} />
                 </Modal>
             </div>
             <div>
@@ -314,6 +321,7 @@ const JobManagement = () => {
                     <EditImg cancelEditImg = {handleCancelEditImg}/>
                 </Modal>
             </div>
+          
         </>
     );
 };

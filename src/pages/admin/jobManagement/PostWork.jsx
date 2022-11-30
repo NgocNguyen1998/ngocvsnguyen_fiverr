@@ -138,13 +138,13 @@ const PostWork = (props) => {
                   className="p-2 w-full"
                   {...register("saoCongViec", {
                     required: "Star of work is required",
-                    minLength: {
+                    min: {
                       value: 1,
-                      message: "Star must be 1 characters",
+                      message: "Star must be more than 0",
                     },
-                    maxLength: {
-                      value: 1,
-                      message: "Star must be 1 characters",
+                    max: {
+                      value: 5,
+                      message: "Star must be less than 6",
                     },
                   })}
                   type="number"
@@ -176,8 +176,6 @@ const PostWork = (props) => {
             Add
           </button>
         </div>
-
-
       </form>
       <div
         className="w-full absolute"

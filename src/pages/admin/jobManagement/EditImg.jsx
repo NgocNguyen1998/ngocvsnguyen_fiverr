@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { editImg, editWork, useCongViec } from "../../../storeToolKit/CongViec";
+import { editImg, searchWork, useCongViec } from "../../../storeToolKit/CongViec";
 import { useState } from "react";
 import { useEffect } from "react";
 const EditImg = (props) => {
@@ -13,25 +13,20 @@ const EditImg = (props) => {
     } = useForm({
         mode: "onBlur",
     });
-
     const { id } = imgEdit
-
-      const { isFetchingEditImg } = useCongViec()
+    const { isFetchingEditImg } = useCongViec()
     const [modle, setmodle] = useState("none");
-      useEffect(() => {
+    useEffect(() => {
         window.onclick = function () {
-          setmodle("none");
+            setmodle("none");
+            if (localStorage.getItem('jobNameSearch')) {
+                dispatch(searchWork(JSON.parse(localStorage.getItem('jobNameSearch'))))
+            }
         }
-      }, [isFetchingEditImg])
-
-
+    }, [isFetchingEditImg])
     const [image, setImage] = useState(null)
-    console.log("image: ", image);
     const [image1, setImage1] = useState(null)
     const [image2, setImage2] = useState(null)
-    console.log("image2: ", image2);
-    console.log("image1: ", image1);
-
     const onImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
             setImage(URL.createObjectURL(event.target.files[0]));
@@ -39,18 +34,17 @@ const EditImg = (props) => {
             setImage2((event.target.files[0]));
         }
     }
-
     return (
         <Div>
             <form
                 onSubmit={handleSubmit(() => {
                     if (isFetchingEditImg) {
                         setmodle("block");
-                      }
+                    }
                     let formData = new FormData()
-                    formData.append('formFile', image2,image1)
+                    formData.append('formFile', image2, image1)
                     dispatch(editImg(formData));
-                    dispatch(editImg({formData,id:id}));
+                    dispatch(editImg({ formData, id: id }));
                 })}
                 className="flex flex-col  p-6 "
             >
@@ -58,7 +52,6 @@ const EditImg = (props) => {
                 <div className="grid grid-cols-2 gap-8 mt-2">
                     <div className="itemRight">
                         <div className=" flex w-full">
-
                             <div className="w-full">
                                 <input
                                     required
@@ -68,17 +61,11 @@ const EditImg = (props) => {
                                     type="file"
                                     placeholder="Enter Your file"
                                 />
-
                             </div>
-
-
                         </div>
                         <br />
                         <img style={{ width: 80 }} src={image} alt="..." />
-
-
                     </div>
-
                 </div>
                 <div className="w-full mt-5">
                     <button
@@ -125,6 +112,9 @@ const EditImg = (props) => {
                                 onClick={() => {
                                     setmodle("none");
                                     props.cancelEditImg()
+                                    if (localStorage.getItem('jobNameSearch')) {
+                                        dispatch(searchWork(JSON.parse(localStorage.getItem('jobNameSearch'))))
+                                    }
                                 }}
                             >
                                 Ok

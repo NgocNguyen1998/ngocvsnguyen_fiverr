@@ -2,10 +2,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { editWork, useCongViec } from "../../../storeToolKit/CongViec";
+import { editWork, searchWork, useCongViec } from "../../../storeToolKit/CongViec";
 import { useState } from "react";
 import { useEffect } from "react";
-const EditJob = () => {
+const EditJob = (props) => {
   const jobEdit = JSON.parse(localStorage.getItem("jobEdit"))
   const dispatch = useDispatch();
   const {
@@ -36,7 +36,10 @@ const EditJob = () => {
   useEffect(() => {
     window.onclick = function () {
       setmodle("none");
+      if(localStorage.getItem('jobNameSearch')){
+        dispatch(searchWork(JSON.parse(localStorage.getItem('jobNameSearch'))))}
     }
+   
   }, [isFetchingEditJob])
   return (
     <Div>
@@ -65,9 +68,6 @@ const EditJob = () => {
         <div className="grid grid-cols-2 gap-8 mt-2">
           <div className="itemRight">
             <div className=" flex w-full">
-              <div className="items-center flex item ">
-                <i className="fa-solid fa-envelope-circle-check"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2  w-full"
@@ -77,13 +77,10 @@ const EditJob = () => {
                   type="text"
                   placeholder="Enter Your Work Name"
                 />
-                <p className="text-red-400">{errors?.tenCongViec?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.tenCongViec?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
-              <div className="items-center flex item ">
-                <i className="fa-solid fa-unlock-keyhole"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
@@ -94,13 +91,10 @@ const EditJob = () => {
                   type="number"
                   placeholder="Enter Your Rate"
                 />
-                <p className="text-red-400">{errors?.danhGia?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.danhGia?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
-              <div className="items-center flex item ">
-                <i class="fa-solid fa-phone"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
@@ -111,13 +105,10 @@ const EditJob = () => {
                   type="number"
                   placeholder="Enter Your Price"
                 />
-                <p className="text-red-400">{errors?.giaTien?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.giaTien?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
-              <div className="items-center flex item ">
-                <i class="fa-solid fa-briefcase"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
@@ -127,15 +118,12 @@ const EditJob = () => {
                   type="text"
                   placeholder="Enter Your Desc"
                 />
-                <p className="text-red-400">{errors?.moTa?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.moTa?.message}</p>
               </div>
             </div>
           </div>
           <div className="itemLeft">
             <div className=" flex w-full">
-              <div className="items-center flex item ">
-                <i class="fa-sharp fa-solid fa-file-signature"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2  w-full"
@@ -145,53 +133,45 @@ const EditJob = () => {
                   type="text"
                   placeholder="Enter Your desc"
                 />
-                <p className="text-red-400">{errors?.moTaNgan?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.moTaNgan?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
-              <div className="items-center flex item ">
-                <i class="fa-solid fa-cake-candles"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
                   {...register("maChiTietLoaiCongViec", {
                     required: "Code of work is required",
+
                   })}
                   type="number"
                   placeholder="Enter Your work code"
                 />
-                <p className="text-red-400">{errors?.maChiTietLoaiCongViec?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.maChiTietLoaiCongViec?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
-              <div className="items-center flex item ">
-                <i class="fa-solid fa-cake-candles"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
                   {...register("saoCongViec", {
                     required: "Star of work is required",
-                    minLength: {
+                    min: {
                       value: 1,
-                      message: "Star must be 1 characters",
+                      message: "Star must be more than 0 ",
                     },
-                    maxLength: {
-                      value: 1,
-                      message: "Star must be 1 characters",
+                    max: {
+                      value: 5,
+                      message: "Star must be less than 6",
                     },
                   })}
                   type="number"
                   placeholder="Enter Your work star"
                 />
-                <p className="text-red-400">{errors?.saoCongViec?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.saoCongViec?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
-              <div className="items-center flex item ">
-                <i class="fa-solid fa-cake-candles"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
@@ -201,7 +181,7 @@ const EditJob = () => {
                   type="text"
                   placeholder="Enter Your work img link"
                 />
-                <p className="text-red-400">{errors?.hinhAnh?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.hinhAnh?.message}</p>
               </div>
             </div>
           </div>
@@ -211,7 +191,7 @@ const EditJob = () => {
             // type="submit"
             className="bg-pink-500 py-2 text-white w-full rounded-lg text-2xl hover:bg-pink-600"
           >
-            Add
+            Edit
           </button>
         </div>
 
@@ -230,7 +210,7 @@ const EditJob = () => {
           <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
             <div className=" flex flex-shrink-0 items-center justify-between px-2 pt-1 border-b border-gray-200 rounded-t-md">
               <h5 className="text-xl font-medium leading-normal text-pink-700">
-                Add Job
+                Edit Job
               </h5>
               <button
                 type="button"
@@ -251,6 +231,10 @@ const EditJob = () => {
                 className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
                 onClick={() => {
                   setmodle("none");
+                  if(localStorage.getItem('jobNameSearch')){
+                    dispatch(searchWork(JSON.parse(localStorage.getItem('jobNameSearch'))))
+                  }
+                 props.onCancelEditJob()
                 }}
               >
                 Ok
