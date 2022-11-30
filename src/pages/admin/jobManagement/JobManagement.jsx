@@ -48,27 +48,32 @@ const JobManagement = () => {
         dispatch(getWork());
         localStorage.removeItem('jobNameSearch')
     }, []);
-
+    const onChange = (pagination, filters, sorter, extra) => {
+        console.log('params', pagination, filters, sorter, extra);
+    };
     const columns = [
         {
             title: "ID",
             dataIndex: "id",
             width: "5%",
+            defaultSortOrder: 'ascend',
+            sorter: (a, b) => a.id - b.id,
         },
         {
             title: "Job Name",
             dataIndex: "tenCongViec",
-            width: "20%",
+            width: "21%",
         },
         {
             title: "Desc",
             dataIndex: "moTaNgan",
-            width: "29%",
+            width: "30%",
         },
         {
             title: "JobType Code",
             dataIndex: "maChiTietLoaiCongViec",
             width: "5%",
+            sorter: (a, b) => a.maChiTietLoaiCongViec - b.maChiTietLoaiCongViec,
         },
         {
             title: "Image",
@@ -89,16 +94,46 @@ const JobManagement = () => {
             title: "Rate (*****)",
             dataIndex: "saoCongViec",
             width: "5%",
+            sorter: (a, b) => a.saoCongViec - b.saoCongViec,
+            filters: [
+                {
+                  text: '1',
+                  value: 1,
+                },
+                {
+                  text: '2 ',
+                  value: 2,
+                },
+                {
+                  text: '3 ',
+                  value: 3,
+                },
+                {
+                    text: '4 ',
+                    value: 4,
+                  },
+                  {
+                    text: '5 ',
+                    value: 5,
+                  },
+              ],
+              filterMode: 'tree',
+              filterSearch: true,
+              onFilter: (value, record) => {
+                return record.saoCongViec ===value
+              }
         },
         {
             title: "Price ($)",
             dataIndex: "giaTien",
             width: "5%",
+            sorter: (a, b) => a.giaTien - b.giaTien,
         },
         {
             title: "Number of reviews ",
             dataIndex: "danhGia",
             width: "10%",
+            sorter: (a, b) => a.danhGia - b.danhGia,
         },
         {
             title: "Actions",
@@ -129,7 +164,7 @@ const JobManagement = () => {
                     </React.Fragment>
                 );
             },
-            width: "10%",
+            width: "8%",
         },
     ];
 
@@ -156,7 +191,7 @@ const JobManagement = () => {
                 Add Job
             </button>
             <Search
-                placeholder="input search id"
+                placeholder="Search by name"
                 enterButton={<SearchOutlined />}
                 size="large"
                 onSearch={onSearch}
@@ -167,6 +202,7 @@ const JobManagement = () => {
                 columns={columns}
                 dataSource={data}
                 bordered
+                onChange={onChange}
             /> :
                 <div className="flex flex-col">
                     <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
