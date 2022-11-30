@@ -16,8 +16,8 @@ const items = [
   getItem("Workflow Management", "workFlow", <FileOutlined />),
   getItem("Job type Management", "jobType", <FileOutlined />),
   getItem("Job Detail Management", "jobDetailManagement", <FileOutlined />),
-  getItem("Service Management", "service", <FileOutlined />),
-  getItem("Comment Manager", "comment", <FileOutlined />),
+  getItem("Service Management", "serviceManagement", <FileOutlined />),
+  getItem("Comment Manager", "commentManager", <FileOutlined />),
 ];
 const AdminTemplate = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -57,10 +57,10 @@ const AdminTemplate = () => {
                 navigate("/admin/jobType");
               } else if (item.key === "jobDetailManagement") {
                 navigate("/admin/jobDetailManagement");
-              } else if (item.key === "service") {
-                navigate("/admin/service");
-              } else if (item.key === "comment") {
-                navigate("/admin/comment");
+              } else if (item.key === "serviceManagement") {
+                navigate("/admin/serviceManagement");
+              } else if (item.key === "commentManager") {
+                navigate("/admin/commentManager");
               }
             }}
             theme="dark"

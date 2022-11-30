@@ -3,9 +3,11 @@ import { JobDetail } from "../components/JobDetail/JobDetail";
 import { JobList } from "../components/JobList";
 import MainLayout from "../components/layouts/MainLayout";
 import AdminTemplate from "../components/template/AdminTemplate/AdminTemplate";
-import { JobDetailManagement } from "../pages/admin/jobDetailManagement.jsx/JobDetailManagement";
+import { CommentManager } from "../pages/admin/commentManager/CommentManager";
+import { JobDetailManagement } from "../pages/admin/jobDetailManagement/JobDetailManagement";
 import JobManagement from "../pages/admin/jobManagement/JobManagement";
 import { JobTypeManagement } from "../pages/admin/jobTypeManagement/JobTypeManagement";
+import { ServiceManagement } from "../pages/admin/servicesManagement/ServicesManagement";
 import AddUser from "../pages/admin/userManagement/AddUser";
 import EditUser from "../pages/admin/userManagement/EditUser";
 import UserManagement from "../pages/admin/userManagement/UserManagement";
@@ -48,6 +50,11 @@ const Router = () => {
           path: "jobDetailManagement",
           element: <JobDetailManagement />,
         },
+        {
+          path: "commentManager",
+          element: <CommentManager />,
+        },
+        { path: "serviceManagement", element: <ServiceManagement /> },
       ],
     },
   ]);

@@ -10,4 +10,10 @@ export const thueCongViecServices = {
   deleteRentList: (data) => {
     return api.delete(`thue-cong-viec/${data}`);
   },
+  getServices: (id) => {
+    if (!id.trim()) {
+      return api.get(`thue-cong-viec`);
+    }
+    return api.get(`thue-cong-viec/${id}`);
+  },
 };

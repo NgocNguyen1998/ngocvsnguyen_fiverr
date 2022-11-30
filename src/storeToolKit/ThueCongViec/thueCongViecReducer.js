@@ -4,13 +4,14 @@ import { thueCongViecServices } from "../../services/ThueCongViecServices";
 const initialState = {
   rentList: [],
   isFetchingRentList: false,
+  isFetchingServices: false,
+  services: [],
 };
 export const { reducer: thueCongViecReducer, actions: thueCongViecActions } =
   createSlice({
     name: "thueCongViec",
     initialState,
-    reducers: {
-    },
+    reducers: {},
     extraReducers: (builder) => {
       builder
         // getinFoUser
@@ -25,6 +26,18 @@ export const { reducer: thueCongViecReducer, actions: thueCongViecActions } =
           state.isFetchingRentList = false;
           state.rentList = action.payload;
         })
+        //
+        .addCase(getServices.pending, (state) => {
+          state.isFetchingServices = false;
+        })
+        .addCase(getServices.fulfilled, (state, action) => {
+          state.isFetchingServices = false;
+          state.services = action.payload;
+        })
+        .addCase(getServices.rejected, (state, action) => {
+          state.isFetchingServices = false;
+          state.services = action.payload;
+        });
     },
   });
 
@@ -45,7 +58,7 @@ export const getRentList = createAsyncThunk(
   async (data, { dispatch, rejectWithValue }) => {
     try {
       const result = await thueCongViecServices.getRentList();
-      return result.data.content
+      return result.data.content;
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
@@ -56,12 +69,23 @@ export const deleteRentList = createAsyncThunk(
   async (data, { dispatch, rejectWithValue }) => {
     try {
       const result = await thueCongViecServices.deleteRentList(data);
-      await dispatch(getRentList())
-      return result.data.content
-
+      await dispatch(getRentList());
+      return result.data.content;
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
   }
 );
 
+export const getServices = createAsyncThunk(
+  "thueCongViec/getServices",
+  async (id = "") => {
+    try {
+      const result = await thueCongViecServices.getServices(id);
+      console.log(result.data.content);
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+);

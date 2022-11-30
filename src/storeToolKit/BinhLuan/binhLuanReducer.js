@@ -5,6 +5,8 @@ import { congViecServices } from "../../services/CongViecServices";
 const initialState = {
   commentByJob: [],
   isFetchingCmtByJob: false,
+  isFetchingGetComments: false,
+  comments: [],
 };
 export const { reducer: binhLuanReducer, actions: binhLuanActions } =
   createSlice({
@@ -13,6 +15,7 @@ export const { reducer: binhLuanReducer, actions: binhLuanActions } =
     reducers: {},
     extraReducers: (builder) => {
       builder
+        // get comments by job code
         .addCase(binhLuanTheoCongViec.pending, (state) => {
           state.isFetchingCmtByJob = true;
         })
@@ -23,6 +26,18 @@ export const { reducer: binhLuanReducer, actions: binhLuanActions } =
         .addCase(binhLuanTheoCongViec.rejected, (state, action) => {
           state.isFetchingCmtByJob = false;
           state.commentByJob = action.payload;
+        })
+        // get Comments
+        .addCase(getComments.pending, (state) => {
+          state.isFetchingGetComments = true;
+        })
+        .addCase(getComments.fulfilled, (state, action) => {
+          state.isFetchingGetComments = false;
+          state.comments = action.payload;
+        })
+        .addCase(getComments.rejected, (state, action) => {
+          state.isFetchingGetComments = false;
+          state.comments = action.payload;
         });
     },
   });
@@ -53,6 +68,32 @@ export const postBinhLuan = createAsyncThunk(
       return result.data.content;
     } catch (err) {
       console.log(err.response.data);
+    }
+  }
+);
+
+export const getComments = createAsyncThunk(
+  "binhLuan/getComments",
+  async () => {
+    try {
+      const result = await binhLuanService.getComment();
+      console.log(result.data.content);
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+);
+
+export const deleteComment = createAsyncThunk(
+  "binhLuan/deleteComment",
+  async (id, { dispatch }) => {
+    try {
+      const result = await binhLuanService.deleteComment(id);
+      alert("thành công");
+      dispatch(getComments());
+    } catch (err) {
+      alert(err.response.data.content);
     }
   }
 );
