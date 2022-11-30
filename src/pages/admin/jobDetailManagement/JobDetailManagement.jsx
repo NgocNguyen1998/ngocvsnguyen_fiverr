@@ -102,7 +102,7 @@ export const JobDetailManagement = () => {
     {
       title: "ID",
       dataIndex: "id",
-      width: "10%",
+      width: "5%",
       sorter: (a, b) => a.id - b.id,
       sortDirections: ["descend", "ascend"],
       defaultSortOrder: "descend",
@@ -110,7 +110,7 @@ export const JobDetailManagement = () => {
     {
       title: "Job code",
       dataIndex: "maLoaiCongviec",
-      width: "15%",
+      width: "5%",
       sorter: (a, b) => a.id - b.id,
       sortDirections: ["descend", "ascend"],
       defaultSortOrder: "descend",

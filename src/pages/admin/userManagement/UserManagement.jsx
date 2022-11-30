@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useNguoiDung } from "../../../storeToolKit/NguoiDung/nguoiDungSelector";
 import {
   deleteUser,
+  getInfoUser,
   getUSerList,
   searchUser,
 } from "../../../storeToolKit/NguoiDung/nguoiDungReducer";
@@ -41,6 +42,9 @@ const UserManagement = () => {
       title: "ID",
       dataIndex: "id",
       width: "5%",
+      sorter: (a, b) => a.id - b.id,
+      sortDirections: ["descend", "ascend"],
+      defaultSortOrder: "descend",
     },
     {
       title: "FullName",
@@ -102,8 +106,10 @@ const UserManagement = () => {
           <React.Fragment key={Date.now()}>
             <button
               onClick={() => {
+                // console.log(data);
                 // const user = usersList.find((item) => item.id === data.id);
-                // localStorage.setItem("editUser", JSON.stringify(user));
+                localStorage.setItem("editUser", JSON.stringify(data));
+                // dispatch(getInfoUser(data.id));
                 navigate(`/admin/editUser/${data.id}`);
               }}
               title="chỉnh sửa"

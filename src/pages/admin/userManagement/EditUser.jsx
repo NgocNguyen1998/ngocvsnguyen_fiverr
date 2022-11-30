@@ -28,8 +28,9 @@ const EditUser = () => {
   };
 
   //
-  const { infoUser } = useNguoiDung();
-  console.log(infoUser);
+  // const { infoUser } = useNguoiDung();
+  // console.log(infoUser);
+  const infoUser = JSON.parse(localStorage.getItem("editUser"));
   let {
     birthday,
     name,
@@ -41,16 +42,11 @@ const EditUser = () => {
     gender,
     phone,
   } = infoUser;
-  //  JSON.parse(localStorage.getItem("editUser"));
+  // infoUser;
   useEffect(() => {
-    // console.log(moment(birthday).format("DD/MM/YYYY"));
-    // console.log(id);
-    // let data = moment(birthday, "YYYY-MM-DD");
-    // // let birthdays = data.format("YYYY MM DD");
-    // console.log(data);
-    dispatch(getInfoUser(id));
+    // dispatch(getInfoUser(id));
     reset({
-      birthday,
+      birthday: moment(infoUser.birthday).format("YYYY-MM-DD"),
       name,
       email,
       password,
@@ -58,9 +54,8 @@ const EditUser = () => {
       role,
       certification,
       gender,
-      phone,
+      // phone,
     });
-    console.log(certification);
   }, []);
 
   return (
@@ -133,7 +128,7 @@ const EditUser = () => {
               </div>
             </div>
 
-            <div className="flex w-full">
+            {/* <div className="flex w-full">
               <div className="items-center flex item ">
                 <i className="fa-solid fa-phone"></i>
               </div>
@@ -156,7 +151,7 @@ const EditUser = () => {
                 />
                 <p className="text-red-400">{errors?.phone?.message}</p>
               </div>
-            </div>
+            </div> */}
             <div className="flex w-full">
               <div className="items-center flex item ">
                 <i className="fa-solid fa-briefcase"></i>
@@ -198,8 +193,6 @@ const EditUser = () => {
               <div className="w-full">
                 <input
                   className="p-2 w-full"
-                  // value={moment(birthday).format("DD-MM-YYYY")}
-                  // id="birthday"
                   name="birthday"
                   {...register("birthday", {
                     required: "Date of birth is required",
