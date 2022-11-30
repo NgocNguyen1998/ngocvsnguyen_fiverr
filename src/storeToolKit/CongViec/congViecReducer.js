@@ -223,7 +223,9 @@ export const deleteWork = createAsyncThunk(
   async (data,{dispatch}) => {
     try {
       const result = await congViecServices.deleteWork(data);
+     
      await dispatch(getWork())
+     alert('Delete Job Success')
       return result.data.content;
     } catch (err) {
       console.log(err.response.data);
@@ -259,7 +261,7 @@ export const searchWork = createAsyncThunk(
   async (data,{dispatch}) => {
     try {
       const result = await congViecServices.searchWork(data);
-      // await dispatch(getWork())
+      await dispatch(getWork())
       
       return result.data.content;
     } catch (err) {
