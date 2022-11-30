@@ -2,10 +2,10 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { postWork,useCongViec } from "../../../storeToolKit/CongViec";
+import { postWork, useCongViec } from "../../../storeToolKit/CongViec";
 import { useState } from "react";
 import { useEffect } from "react";
-const PostWork = () => {
+const PostWork = (props) => {
   const dispatch = useDispatch();
   const {
     handleSubmit,
@@ -13,14 +13,16 @@ const PostWork = () => {
     formState: { errors },
   } = useForm({
     mode: "onBlur",
+
   });
-const {isFetchingAddJob} = useCongViec()
-const [modle, setmodle] = useState("none");
-useEffect(() => {
-  window.onclick = function () {
-    setmodle("none");
-  }
-}, [isFetchingAddJob])
+  const { isFetchingAddJob } = useCongViec()
+  const [modle, setmodle] = useState("none");
+  useEffect(() => {
+    window.onclick = function () {
+      setmodle("none");
+    }
+  }, [isFetchingAddJob])
+
   return (
     <Div>
       <form
@@ -28,18 +30,18 @@ useEffect(() => {
           if (isFetchingAddJob) {
             setmodle("block");
           }
-      const data5= {
-        id: 0,
-        tenCongViec: data.tenCongViec,
-        danhGia: +data.danhGia,
-        giaTien: +data.giaTien,
-        nguoiTao:+1,
-        hinhAnh: data.hinhAnh,
-        moTa: data.moTa,
-        maChiTietLoaiCongViec: +data.maChiTietLoaiCongViec,
-        moTaNgan: data.moTaNgan,
-        saoCongViec: +data.saoCongViec
-      }
+          const data5 = {
+            id: 0,
+            tenCongViec: data.tenCongViec,
+            danhGia: +data.danhGia,
+            giaTien: +data.giaTien,
+            nguoiTao: +1,
+            hinhAnh: data.hinhAnh,
+            moTa: data.moTa,
+            maChiTietLoaiCongViec: +data.maChiTietLoaiCongViec,
+            moTaNgan: data.moTaNgan,
+            saoCongViec: +data.saoCongViec
+          }
           console.log(data5);
           dispatch(postWork(data5));
         })}
@@ -49,9 +51,6 @@ useEffect(() => {
         <div className="grid grid-cols-2 gap-8 mt-2">
           <div className="itemRight">
             <div className=" flex w-full">
-              <div className="items-center flex item ">
-                <i className="fa-solid fa-envelope-circle-check"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2  w-full"
@@ -61,47 +60,38 @@ useEffect(() => {
                   type="text"
                   placeholder="Enter Your Work Name"
                 />
-                <p className="text-red-400">{errors?.tenCongViec?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.tenCongViec?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
-              <div className="items-center flex item ">
-                <i className="fa-solid fa-unlock-keyhole"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
                   {...register("danhGia", {
                     required: "Rate is required",
-                   
+
                   })}
                   type="number"
                   placeholder="Enter Your Rate"
                 />
-                <p className="text-red-400">{errors?.danhGia?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.danhGia?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
-              <div className="items-center flex item ">
-                <i class="fa-solid fa-phone"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
                   {...register("giaTien", {
                     required: "Price is required",
-        
+
                   })}
                   type="number"
                   placeholder="Enter Your Price"
                 />
-                <p className="text-red-400">{errors?.giaTien?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.giaTien?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
-              <div className="items-center flex item ">
-                <i class="fa-solid fa-briefcase"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
@@ -111,15 +101,12 @@ useEffect(() => {
                   type="text"
                   placeholder="Enter Your Desc"
                 />
-                <p className="text-red-400">{errors?.moTa?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.moTa?.message}</p>
               </div>
             </div>
           </div>
           <div className="itemLeft">
             <div className=" flex w-full">
-              <div className="items-center flex item ">
-                <i class="fa-sharp fa-solid fa-file-signature"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2  w-full"
@@ -129,13 +116,10 @@ useEffect(() => {
                   type="text"
                   placeholder="Enter Your desc"
                 />
-                <p className="text-red-400">{errors?.moTaNgan?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.moTaNgan?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
-              <div className="items-center flex item ">
-                <i class="fa-solid fa-cake-candles"></i>
-              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
@@ -145,38 +129,32 @@ useEffect(() => {
                   type="number"
                   placeholder="Enter Your work code"
                 />
-                <p className="text-red-400">{errors?.maChiTietLoaiCongViec?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.maChiTietLoaiCongViec?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
-              <div className="items-center flex item ">
-                <i class="fa-solid fa-cake-candles"></i>
-              </div>
-            <div className="w-full">
+              <div className="w-full">
                 <input
                   className="p-2 w-full"
                   {...register("saoCongViec", {
                     required: "Star of work is required",
-                    minLength: {
-                        value: 1,
-                        message: "Star must be 1 characters",
-                      },
-                      maxLength: {
-                        value: 1,
-                        message: "Star must be 1 characters",
-                      },
+                    min: {
+                      value: 1,
+                      message: "Star must be more than 0",
+                    },
+                    max: {
+                      value: 5,
+                      message: "Star must be less than 6",
+                    },
                   })}
                   type="number"
                   placeholder="Enter Your work star"
                 />
-                <p className="text-red-400">{errors?.saoCongViec?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.saoCongViec?.message}</p>
               </div>
-           </div>
-           <div className="flex w-full">
-              <div className="items-center flex item ">
-                <i class="fa-solid fa-cake-candles"></i>
-              </div>
-            <div className="w-full">
+            </div>
+            <div className="flex w-full">
+              <div className="w-full">
                 <input
                   className="p-2 w-full"
                   {...register("hinhAnh", {
@@ -185,9 +163,9 @@ useEffect(() => {
                   type="text"
                   placeholder="Enter Your work img link"
                 />
-                <p className="text-red-400">{errors?.hinhAnh?.message}</p>
+                <p className="text-red-400 pl-2">{errors?.hinhAnh?.message}</p>
               </div>
-           </div>
+            </div>
           </div>
         </div>
         <div className="w-full mt-5">
@@ -195,16 +173,14 @@ useEffect(() => {
             type="submit"
             className="bg-pink-500 py-2 text-white w-full rounded-lg text-2xl hover:bg-pink-600"
           >
-           Add
+            Add
           </button>
         </div>
-        
-       
       </form>
       <div
         className="w-full absolute"
         style={{
-          top: "-20%",
+          top: "-16%",
           zIndex: "100",
           right: "-0%",
           display: `${modle}`,
@@ -235,6 +211,8 @@ useEffect(() => {
                 className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
                 onClick={() => {
                   setmodle("none");
+                  props.cancelAddJob()
+                  window.location.reload()
                 }}
               >
                 Ok

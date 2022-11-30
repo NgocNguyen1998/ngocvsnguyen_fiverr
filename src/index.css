@@ -24,4 +24,6 @@ code {
 .anticon svg{
   display: block !important;
 }
-
+.anticon-filter{
+  color:red !important
+}
