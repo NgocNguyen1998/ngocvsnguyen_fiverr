@@ -54,7 +54,7 @@ export const Header = () => {
               <i className="fa-regular fa-bell"></i>
             </span>
             <span className="text-xl px-2">
-              <i class="fa-regular fa-envelope"></i>
+              <i className="fa-regular fa-envelope"></i>
             </span>
             <span className="text-xl">
               <i className="fa-regular fa-heart"></i>
@@ -287,7 +287,7 @@ export const Header = () => {
                         <div className="flex gap-4">
                           <span className="text-xl">
                             <i
-                              class="fa-regular fa-bell"
+                              className="fa-regular fa-bell"
                               onClick={() => {
                                 setNav(nav + 1);
                               }}
@@ -295,7 +295,7 @@ export const Header = () => {
                           </span>
                           <span className="text-xl px-2">
                             <i
-                              class="fa-regular fa-envelope"
+                              className="fa-regular fa-envelope"
                               onClick={() => {
                                 setNav(nav + 1);
                               }}
@@ -303,7 +303,7 @@ export const Header = () => {
                           </span>
                           <span className="text-xl">
                             <i
-                              class="fa-regular fa-heart"
+                              className="fa-regular fa-heart"
                               onClick={() => {
                                 setNav(nav + 1);
                               }}
@@ -333,7 +333,7 @@ export const Header = () => {
                                 .name.slice(0, 1)
                                 .toUpperCase()}
                             </p>
-                            <div className="w-[180px] h-[470px] ml-[-10px] info top-0  text-base text-white rounded-md bg-blue-400 absolute mt-8">
+                            <div className="w-[180px] h-[335px] ml-[-10px] info top-0  text-base shadow-slate-50 text-gray-400 border  bg-white absolute mt-8">
                               <div className="relative ribbon">
                                 <div>
                                   <p className="flex justify-start tagp gap-5 mt-4 items-center">

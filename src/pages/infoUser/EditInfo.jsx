@@ -95,7 +95,7 @@ const EditInfo = (props) => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-user"></i>
+                <i className="fa-solid fa-user"></i>
               </div>
               <div className="w-full">
                 <input
