@@ -1,7 +1,9 @@
 import { FileOutlined, UserOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu } from "antd";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { useSelectorAuth } from "../../../storeToolKit/Auth/useSelectorAuth";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -22,6 +24,17 @@ const items = [
 const AdminTemplate = () => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
+  const { userInfo } = useSelectorAuth();
+  // check Role
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userLogin"));
+    console.log("user", user);
+    if (user && user.role === "ADMIN") {
+      navigate("/admin");
+    } else {
+      navigate("/home");
+    }
+  }, [userInfo]);
   return (
     <>
       <Layout style={{ minHeight: "100vh" }}>

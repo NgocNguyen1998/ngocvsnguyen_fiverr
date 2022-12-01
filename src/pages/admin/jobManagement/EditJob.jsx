@@ -6,7 +6,7 @@ import { editWork, useCongViec } from "../../../storeToolKit/CongViec";
 import { useState } from "react";
 import { useEffect } from "react";
 const EditJob = () => {
-  const jobEdit = JSON.parse(localStorage.getItem("jobEdit"))
+  const jobEdit = JSON.parse(localStorage.getItem("jobEdit"));
   const dispatch = useDispatch();
   const {
     handleSubmit,
@@ -17,8 +17,17 @@ const EditJob = () => {
     mode: "onBlur",
   });
 
-  const { tenCongViec, danhGia, giaTien, hinhAnh, moTa, maChiTietLoaiCongViec, moTaNgan, saoCongViec, id } =
-    jobEdit;
+  const {
+    tenCongViec,
+    danhGia,
+    giaTien,
+    hinhAnh,
+    moTa,
+    maChiTietLoaiCongViec,
+    moTaNgan,
+    saoCongViec,
+    id,
+  } = jobEdit;
   useEffect(() => {
     reset({
       tenCongViec,
@@ -28,16 +37,16 @@ const EditJob = () => {
       moTa,
       maChiTietLoaiCongViec,
       moTaNgan,
-      saoCongViec
+      saoCongViec,
     });
-  },[jobEdit.id]);
-  const { isFetchingEditJob } = useCongViec()
+  }, [jobEdit.id]);
+  const { isFetchingEditJob } = useCongViec();
   const [modle, setmodle] = useState("none");
   useEffect(() => {
     window.onclick = function () {
       setmodle("none");
-    }
-  }, [isFetchingEditJob])
+    };
+  }, [isFetchingEditJob]);
   return (
     <Div>
       <form
@@ -55,13 +64,15 @@ const EditJob = () => {
             moTa: data.moTa,
             maChiTietLoaiCongViec: +data.maChiTietLoaiCongViec,
             moTaNgan: data.moTaNgan,
-            saoCongViec: +data.saoCongViec
-          }
+            saoCongViec: +data.saoCongViec,
+          };
           dispatch(editWork(data6));
         })}
         className="flex flex-col  p-6 "
       >
-        <h1 className="text-2xl text-black mb-3 font-bold mx-auto">Edit Work</h1>
+        <h1 className="text-2xl text-black mb-3 font-bold mx-auto">
+          Edit Work
+        </h1>
         <div className="grid grid-cols-2 gap-8 mt-2">
           <div className="itemRight">
             <div className=" flex w-full">
@@ -89,7 +100,6 @@ const EditJob = () => {
                   className="p-2 w-full"
                   {...register("danhGia", {
                     required: "Rate is required",
-
                   })}
                   type="number"
                   placeholder="Enter Your Rate"
@@ -99,14 +109,13 @@ const EditJob = () => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-phone"></i>
+                <i className="fa-solid fa-phone"></i>
               </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
                   {...register("giaTien", {
                     required: "Price is required",
-
                   })}
                   type="number"
                   placeholder="Enter Your Price"
@@ -116,7 +125,7 @@ const EditJob = () => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-briefcase"></i>
+                <i className="fa-solid fa-briefcase"></i>
               </div>
               <div className="w-full">
                 <input
@@ -134,7 +143,7 @@ const EditJob = () => {
           <div className="itemLeft">
             <div className=" flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-sharp fa-solid fa-file-signature"></i>
+                <i className="fa-sharp fa-solid fa-file-signature"></i>
               </div>
               <div className="w-full">
                 <input
@@ -150,7 +159,7 @@ const EditJob = () => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-cake-candles"></i>
+                <i className="fa-solid fa-cake-candles"></i>
               </div>
               <div className="w-full">
                 <input
@@ -161,12 +170,14 @@ const EditJob = () => {
                   type="number"
                   placeholder="Enter Your work code"
                 />
-                <p className="text-red-400">{errors?.maChiTietLoaiCongViec?.message}</p>
+                <p className="text-red-400">
+                  {errors?.maChiTietLoaiCongViec?.message}
+                </p>
               </div>
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-cake-candles"></i>
+                <i className="fa-solid fa-cake-candles"></i>
               </div>
               <div className="w-full">
                 <input
@@ -190,7 +201,7 @@ const EditJob = () => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-cake-candles"></i>
+                <i className="fa-solid fa-cake-candles"></i>
               </div>
               <div className="w-full">
                 <input
@@ -214,8 +225,6 @@ const EditJob = () => {
             Add
           </button>
         </div>
-
-
       </form>
       <div
         className="w-full absolute"

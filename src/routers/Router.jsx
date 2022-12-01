@@ -1,6 +1,6 @@
 import { Navigate, useRoutes } from "react-router-dom";
-import { JobDetail } from "../components/JobDetail/JobDetail";
-import { JobList } from "../components/JobList";
+import { JobDetail } from "../pages/JobDetail";
+import { JobList } from "../pages/JobList";
 import MainLayout from "../components/layouts/MainLayout";
 import AdminTemplate from "../components/template/AdminTemplate/AdminTemplate";
 import { CommentManager } from "../pages/admin/commentManager/CommentManager";

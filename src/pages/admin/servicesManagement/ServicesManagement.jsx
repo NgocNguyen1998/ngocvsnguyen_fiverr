@@ -109,7 +109,7 @@ export const ServiceManagement = () => {
               onClick={() => dispatch(deleteRentList(data.id))}
             >
               <span>
-                <i class="fa-solid fa-trash-can"></i>
+                <i className="fa-solid fa-trash-can"></i>
               </span>
             </button>
           </React.Fragment>
