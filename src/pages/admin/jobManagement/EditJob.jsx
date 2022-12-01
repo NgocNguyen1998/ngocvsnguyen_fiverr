@@ -2,11 +2,15 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { editWork, searchWork, useCongViec } from "../../../storeToolKit/CongViec";
+import {
+  editWork,
+  searchWork,
+  useCongViec,
+} from "../../../storeToolKit/CongViec";
 import { useState } from "react";
 import { useEffect } from "react";
 const EditJob = (props) => {
-  const jobEdit = JSON.parse(localStorage.getItem("jobEdit"))
+  const jobEdit = JSON.parse(localStorage.getItem("jobEdit"));
   const dispatch = useDispatch();
   const {
     handleSubmit,
@@ -17,8 +21,17 @@ const EditJob = (props) => {
     mode: "onBlur",
   });
 
-  const { tenCongViec, danhGia, giaTien, hinhAnh, moTa, maChiTietLoaiCongViec, moTaNgan, saoCongViec, id } =
-    jobEdit;
+  const {
+    tenCongViec,
+    danhGia,
+    giaTien,
+    hinhAnh,
+    moTa,
+    maChiTietLoaiCongViec,
+    moTaNgan,
+    saoCongViec,
+    id,
+  } = jobEdit;
   useEffect(() => {
     reset({
       tenCongViec,
@@ -28,19 +41,19 @@ const EditJob = (props) => {
       moTa,
       maChiTietLoaiCongViec,
       moTaNgan,
-      saoCongViec
+      saoCongViec,
     });
-  },[jobEdit.id]);
-  const { isFetchingEditJob } = useCongViec()
+  }, [jobEdit.id]);
+  const { isFetchingEditJob } = useCongViec();
   const [modle, setmodle] = useState("none");
   useEffect(() => {
     window.onclick = function () {
       setmodle("none");
-      if(localStorage.getItem('jobNameSearch')){
-        dispatch(searchWork(JSON.parse(localStorage.getItem('jobNameSearch'))))}
-    }
-   
-  }, [isFetchingEditJob])
+      if (localStorage.getItem("jobNameSearch")) {
+        dispatch(searchWork(JSON.parse(localStorage.getItem("jobNameSearch"))));
+      }
+    };
+  }, [isFetchingEditJob]);
   return (
     <Div>
       <form
@@ -58,13 +71,15 @@ const EditJob = (props) => {
             moTa: data.moTa,
             maChiTietLoaiCongViec: +data.maChiTietLoaiCongViec,
             moTaNgan: data.moTaNgan,
-            saoCongViec: +data.saoCongViec
-          }
+            saoCongViec: +data.saoCongViec,
+          };
           dispatch(editWork(data6));
         })}
         className="flex flex-col  p-6 "
       >
-        <h1 className="text-2xl text-black mb-3 font-bold mx-auto">Edit Work</h1>
+        <h1 className="text-2xl text-black mb-3 font-bold mx-auto">
+          Edit Work
+        </h1>
         <div className="grid grid-cols-2 gap-8 mt-2">
           <div className="itemRight">
             <div className=" flex w-full">
@@ -77,7 +92,9 @@ const EditJob = (props) => {
                   type="text"
                   placeholder="Enter Your Work Name"
                 />
-                <p className="text-red-400 pl-2">{errors?.tenCongViec?.message}</p>
+                <p className="text-red-400 pl-2">
+                  {errors?.tenCongViec?.message}
+                </p>
               </div>
             </div>
             <div className="flex w-full">
@@ -86,7 +103,6 @@ const EditJob = (props) => {
                   className="p-2 w-full"
                   {...register("danhGia", {
                     required: "Rate is required",
-
                   })}
                   type="number"
                   placeholder="Enter Your Rate"
@@ -100,7 +116,6 @@ const EditJob = (props) => {
                   className="p-2 w-full"
                   {...register("giaTien", {
                     required: "Price is required",
-
                   })}
                   type="number"
                   placeholder="Enter Your Price"
@@ -142,12 +157,13 @@ const EditJob = (props) => {
                   className="p-2 w-full"
                   {...register("maChiTietLoaiCongViec", {
                     required: "Code of work is required",
-
                   })}
                   type="number"
                   placeholder="Enter Your work code"
                 />
-                <p className="text-red-400 pl-2">{errors?.maChiTietLoaiCongViec?.message}</p>
+                <p className="text-red-400 pl-2">
+                  {errors?.maChiTietLoaiCongViec?.message}
+                </p>
               </div>
             </div>
             <div className="flex w-full">
@@ -168,7 +184,9 @@ const EditJob = (props) => {
                   type="number"
                   placeholder="Enter Your work star"
                 />
-                <p className="text-red-400 pl-2">{errors?.saoCongViec?.message}</p>
+                <p className="text-red-400 pl-2">
+                  {errors?.saoCongViec?.message}
+                </p>
               </div>
             </div>
             <div className="flex w-full">
@@ -194,8 +212,6 @@ const EditJob = (props) => {
             Edit
           </button>
         </div>
-
-
       </form>
       <div
         className="w-full absolute"
@@ -231,10 +247,14 @@ const EditJob = (props) => {
                 className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
                 onClick={() => {
                   setmodle("none");
-                  if(localStorage.getItem('jobNameSearch')){
-                    dispatch(searchWork(JSON.parse(localStorage.getItem('jobNameSearch'))))
+                  if (localStorage.getItem("jobNameSearch")) {
+                    dispatch(
+                      searchWork(
+                        JSON.parse(localStorage.getItem("jobNameSearch"))
+                      )
+                    );
                   }
-                 props.onCancelEditJob()
+                  props.onCancelEditJob();
                 }}
               >
                 Ok

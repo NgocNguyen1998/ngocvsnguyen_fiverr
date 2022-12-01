@@ -4,11 +4,9 @@ import { useDispatch } from "react-redux";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { congViecPhanTrangTimKiem } from "../../storeToolKit/CongViec/congViecReducer";
-import SubMenuJobList from "./SubMenuJobList";
 import { Switch } from "antd";
 import { useCongViec } from "../../storeToolKit/CongViec";
 import { Pagination } from "antd";
-import { Footer } from "../Molecules/Footer";
 
 export const JobList = () => {
   const dispatch = useDispatch();
@@ -33,10 +31,9 @@ export const JobList = () => {
   const { itemRender } = useCongViec();
   console.log(itemRender);
   return (
-    <Components className=" mx-auto mt-[200px]">
-      <div className="flex flex-row justify-between mt-10 container mx-0 w-full">
-        <div></div>
-        <div className="flex flex-row justify-between mt-10 pb-8 mx-0 px-0  container ">
+    <Components className="  mt-12">
+      <div className="flex flex-row justify-between mt-10 container  w-full">
+        <div className="flex flex-row justify-between  pb-8  px-0 gap-12 w-full mx-0   ">
           <div className="flex gap-2 ">
             <select className="border-2">
               <option value="">Category</option>
@@ -55,16 +52,16 @@ export const JobList = () => {
             </select>
           </div>
           <div className="flex gap-8 ">
-            <div>
-              <Switch defaultChecked onChange={onChange} />
+            <div className="items-center flex gap-2">
+              <Switch defaultChecked={false} onChange={onChange} />
               <span>Pro services</span>
             </div>
-            <div>
-              <Switch defaultChecked onChange={onChange} />
+            <div className="items-center flex gap-2">
+              <Switch defaultChecked={false} onChange={onChange} />
               <span>Local sellers</span>
             </div>
-            <div>
-              <Switch defaultChecked onChange={onChange} />
+            <div className="items-center flex gap-2">
+              <Switch defaultChecked={false} onChange={onChange} />
               <span>Online sellers</span>
             </div>
           </div>
@@ -73,6 +70,7 @@ export const JobList = () => {
       <div className="row grid grid-cols-4 gap-8 mt-10 container mx-auto">
         {itemRender?.map((list) => (
           <div
+            key={Math.random() * 10000}
             className="card h-[370px] "
             onClick={() => navigate(`/jobDetail/${list.id}`)}
           >

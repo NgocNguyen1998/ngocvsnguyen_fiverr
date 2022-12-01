@@ -189,7 +189,7 @@ const AddUser = () => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-cake-candles"></i>
+                <i className="fa-solid fa-cake-candles"></i>
               </div>
               <div className="w-full">
                 <input
@@ -208,7 +208,7 @@ const AddUser = () => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-venus-mars"></i>
+                <i className="fa-solid fa-venus-mars"></i>
               </div>
               <div className="w-full">
                 <select

@@ -121,7 +121,7 @@ export const JobTypeManagement = () => {
               className="bg-gradient-to-r from-indigo-500 w-full text-white"
               onClick={showModal}
             >
-              <i class="fa-solid fa-plus"></i>
+              <i className="fa-solid fa-plus"></i>
               <span className="ml-1 ">Add Job Type</span>
             </button>
           </div>
@@ -136,9 +136,9 @@ export const JobTypeManagement = () => {
           </div>
         </div>
       </div>
-      <div className="row grid grid-cols-2 gap-5 mt-12">
+      <div className="row grid grid-cols-1 md:grid-cols-2 gap-5 mt-12">
         {arrJob.map((job, index) => (
-          <div key={index} className="flex">
+          <div key={index} className="flex ">
             <div className="flex items-center  text-white p-2 justify-between rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 mb-3 w-[500px]">
               <EditText
                 className="mb-0"
@@ -157,13 +157,13 @@ export const JobTypeManagement = () => {
                     showModalEdit();
                   }}
                 >
-                  <i class="fa-solid fa-pen-to-square"></i>
+                  <i className="fa-solid fa-pen-to-square"></i>
                 </button>
                 <button
                   className="text-red-500"
                   onClick={() => dispatch(deleteJobType(job.id))}
                 >
-                  <i class="fa-solid fa-trash-can"></i>
+                  <i className="fa-solid fa-trash-can"></i>
                 </button>
               </p>
             </div>

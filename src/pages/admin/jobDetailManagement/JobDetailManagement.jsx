@@ -138,7 +138,7 @@ export const JobDetailManagement = () => {
                 />
                 <div>
                   <button className="bg-blue-400 text-white h-10 w-[60px] rounded-lg">
-                    <i class="fa-solid fa-pen-to-square"></i> Edit
+                    <i className="fa-solid fa-pen-to-square"></i> Edit
                   </button>
                 </div>
               </div>
@@ -248,7 +248,7 @@ export const JobDetailManagement = () => {
         className="text-1xl mb-5 bg-blue-400 text-white p-3 rounded-md flex gap-1"
       >
         <span>
-          <i class="fa-solid fa-plus"></i>
+          <i className="fa-solid fa-plus"></i>
         </span>
         <span>Add Job</span>
       </button>

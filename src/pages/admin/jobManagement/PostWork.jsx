@@ -13,16 +13,14 @@ const PostWork = (props) => {
     formState: { errors },
   } = useForm({
     mode: "onBlur",
-
   });
-  const { isFetchingAddJob } = useCongViec()
+  const { isFetchingAddJob } = useCongViec();
   const [modle, setmodle] = useState("none");
   useEffect(() => {
     window.onclick = function () {
       setmodle("none");
-    }
-  }, [isFetchingAddJob])
-
+    };
+  }, [isFetchingAddJob]);
   return (
     <Div>
       <form
@@ -40,14 +38,16 @@ const PostWork = (props) => {
             moTa: data.moTa,
             maChiTietLoaiCongViec: +data.maChiTietLoaiCongViec,
             moTaNgan: data.moTaNgan,
-            saoCongViec: +data.saoCongViec
-          }
+            saoCongViec: +data.saoCongViec,
+          };
           console.log(data5);
           dispatch(postWork(data5));
         })}
         className="flex flex-col  p-6 "
       >
-        <h1 className="text-2xl text-black mb-3 font-bold mx-auto">Create Work</h1>
+        <h1 className="text-2xl text-black mb-3 font-bold mx-auto">
+          Create Work
+        </h1>
         <div className="grid grid-cols-2 gap-8 mt-2">
           <div className="itemRight">
             <div className=" flex w-full">
@@ -60,7 +60,7 @@ const PostWork = (props) => {
                   type="text"
                   placeholder="Enter Your Work Name"
                 />
-                <p className="text-red-400 pl-2">{errors?.tenCongViec?.message}</p>
+                <p className="text-red-400">{errors?.tenCongViec?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
@@ -69,7 +69,6 @@ const PostWork = (props) => {
                   className="p-2 w-full"
                   {...register("danhGia", {
                     required: "Rate is required",
-
                   })}
                   type="number"
                   placeholder="Enter Your Rate"
@@ -78,12 +77,14 @@ const PostWork = (props) => {
               </div>
             </div>
             <div className="flex w-full">
+              <div className="items-center flex item ">
+                <i className="fa-solid fa-phone"></i>
+              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
                   {...register("giaTien", {
                     required: "Price is required",
-
                   })}
                   type="number"
                   placeholder="Enter Your Price"
@@ -92,6 +93,9 @@ const PostWork = (props) => {
               </div>
             </div>
             <div className="flex w-full">
+              <div className="items-center flex item ">
+                <i className="fa-solid fa-briefcase"></i>
+              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
@@ -107,6 +111,9 @@ const PostWork = (props) => {
           </div>
           <div className="itemLeft">
             <div className=" flex w-full">
+              <div className="items-center flex item ">
+                <i className="fa-sharp fa-solid fa-file-signature"></i>
+              </div>
               <div className="w-full">
                 <input
                   className="p-2  w-full"
@@ -120,6 +127,9 @@ const PostWork = (props) => {
               </div>
             </div>
             <div className="flex w-full">
+              <div className="items-center flex item ">
+                <i className="fa-solid fa-cake-candles"></i>
+              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
@@ -129,31 +139,39 @@ const PostWork = (props) => {
                   type="number"
                   placeholder="Enter Your work code"
                 />
-                <p className="text-red-400 pl-2">{errors?.maChiTietLoaiCongViec?.message}</p>
+                <p className="text-red-400">
+                  {errors?.maChiTietLoaiCongViec?.message}
+                </p>
               </div>
             </div>
             <div className="flex w-full">
+              <div className="items-center flex item ">
+                <i className="fa-solid fa-cake-candles"></i>
+              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
                   {...register("saoCongViec", {
                     required: "Star of work is required",
-                    min: {
+                    minLength: {
                       value: 1,
-                      message: "Star must be more than 0",
+                      message: "Star must be 1 characters",
                     },
-                    max: {
-                      value: 5,
-                      message: "Star must be less than 6",
+                    maxLength: {
+                      value: 1,
+                      message: "Star must be 1 characters",
                     },
                   })}
                   type="number"
                   placeholder="Enter Your work star"
                 />
-                <p className="text-red-400 pl-2">{errors?.saoCongViec?.message}</p>
+                <p className="text-red-400">{errors?.saoCongViec?.message}</p>
               </div>
             </div>
             <div className="flex w-full">
+              <div className="items-center flex item ">
+                <i className="fa-solid fa-cake-candles"></i>
+              </div>
               <div className="w-full">
                 <input
                   className="p-2 w-full"
@@ -211,8 +229,6 @@ const PostWork = (props) => {
                 className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
                 onClick={() => {
                   setmodle("none");
-                  props.cancelAddJob()
-                  window.location.reload()
                 }}
               >
                 Ok

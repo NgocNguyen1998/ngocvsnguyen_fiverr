@@ -37,15 +37,15 @@ const EditInfo = (props) => {
   useEffect(() => {
     window.onclick = function () {
       setmodle("none");
-    }
-  }, [isFetchingEditUser])
+    };
+  }, [isFetchingEditUser]);
   return (
     <Div>
       <form
         onSubmit={handleSubmit((data) => {
           if (isFetchingEditUser) {
             setmodle("block");
-            window.location.reload()
+            window.location.reload();
           }
           if (data.gender === "true") {
             data.gender = true;
@@ -112,7 +112,7 @@ const EditInfo = (props) => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-phone"></i>
+                <i className="fa-solid fa-phone"></i>
               </div>
               <div className="w-full">
                 <input
@@ -136,7 +136,7 @@ const EditInfo = (props) => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-briefcase"></i>
+                <i className="fa-solid fa-briefcase"></i>
               </div>
               <div className="w-full">
                 <input
@@ -154,7 +154,7 @@ const EditInfo = (props) => {
           <div className="itemLeft">
             <div className=" flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-sharp fa-solid fa-file-signature"></i>
+                <i className="fa-sharp fa-solid fa-file-signature"></i>
               </div>
               <div className="w-full">
                 <input
@@ -170,7 +170,7 @@ const EditInfo = (props) => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-cake-candles"></i>
+                <i className="fa-solid fa-cake-candles"></i>
               </div>
               <div className="w-full">
                 <input
@@ -186,7 +186,7 @@ const EditInfo = (props) => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-venus-mars"></i>
+                <i className="fa-solid fa-venus-mars"></i>
               </div>
               <div className="w-full">
                 <select
@@ -202,7 +202,7 @@ const EditInfo = (props) => {
             </div>
             <div className="flex w-full">
               <div className="items-center flex item ">
-                <i class="fa-solid fa-certificate"></i>
+                <i className="fa-solid fa-certificate"></i>
               </div>
               <div className="w-full">
                 <input
