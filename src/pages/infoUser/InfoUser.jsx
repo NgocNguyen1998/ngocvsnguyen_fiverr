@@ -70,6 +70,7 @@ const InfoUser = () => {
     inputcheck.style.display = "block";
     subcheck.style.display = "block";
     backgroundcheck.style.backgroundColor = "white";
+    backgroundcheck.style.position = "fixed";
   });
   useEffect(() => {
     dispatch(getInfoUser(params.idUser));
@@ -85,9 +86,8 @@ const InfoUser = () => {
   const e = certification?.map((ce) => {
     return d.push(ce);
   });
-
   return (
-    <div className="pt-12 info-user bg-pink-50">
+    <div className="pt-40 info-user bg-pink-50">
       <div className="grid lg:grid-cols-3 container gap-x-9 pb-10">
         <div className="col-span-1 ml-8">
           <div className="top ">
@@ -116,7 +116,7 @@ const InfoUser = () => {
                   className="cursor-pointer hover:text-green-400"
                 >
                   {" "}
-                  <i className="fa-solid fa-pencil"></i>
+                  <i class="fa-solid fa-pencil"></i>
                 </button>
                 <div>
                   <Modal
@@ -133,7 +133,7 @@ const InfoUser = () => {
               <hr />
               <div className="flex flex-wrap justify-between content-center items-center ">
                 <div className="space-x-2 text-xl text-gray-400">
-                  <i className="fa-solid fa-location-dot"></i>
+                  <i class="fa-solid fa-location-dot"></i>
                   <span style={{ fontSize: "17px" }} className="font-medium">
                     From
                   </span>
@@ -146,7 +146,7 @@ const InfoUser = () => {
               </div>
               <div className="flex flex-wrap justify-between content-center items-center">
                 <div className="space-x-2 text-xl text-gray-400">
-                  <i className="fa-solid fa-cake-candles"></i>
+                  <i class="fa-solid fa-cake-candles"></i>
                   <span style={{ fontSize: "17px" }} className="font-medium">
                     Birthday
                   </span>
@@ -518,7 +518,6 @@ const InfoUser = () => {
                         } else {
                           alert("Education already exists ");
                         }
-
                         localStorage.setItem("arrEdu", JSON.stringify(arrEdu));
                       }}
                     >
@@ -606,7 +605,7 @@ const InfoUser = () => {
                       onClick={() => {
                         setAddCerti(addCerti + 1);
                         d.push(certiCheck);
-                        let data2 = {
+                        let data3 = {
                           id: +params.idUser,
                           name: name,
                           email: email,
@@ -617,7 +616,7 @@ const InfoUser = () => {
                           skill: skill,
                           certification: d,
                         };
-                        dispatch(editInfoUser(data2));
+                        dispatch(editInfoUser(data3));
                         window.location.reload();
                       }}
                     >
@@ -675,7 +674,7 @@ const InfoUser = () => {
             </button>
             <div className="flex items-center ">
               <div className="text-4xl pr-2 ">
-                <i className="fa-solid fa-building pb-4"></i>
+                <i class="fa-solid fa-building pb-4"></i>
               </div>
               <div>
                 <p className="mb-0">
@@ -729,6 +728,23 @@ const InfoUser = () => {
                         </p>
                       </div>
                     </div>
+                  </div>
+                  <div className=" flex justify-end pb-2">
+                    <button
+                      className="border-2  py-1 px-4 rounded-md border-pink-400 hover:text-white hover:bg-pink-300 transition-all duration-300 mr-4"
+                      onClick={() => navigate(`/jobDetail/${job.congViec.id}`)}
+                    >
+                      View detail
+                    </button>
+
+                    <button
+                      className="border-2 py-1 px-4 text-red-500 font-medium rounded-md border-pink-400 hover:bg-pink-300 transition-all duration-300"
+                      onClick={() => {
+                        dispatch(deleteRentList(job.id));
+                      }}
+                    >
+                      X
+                    </button>
                   </div>
                   <div className=" flex justify-end pb-2">
                     <button

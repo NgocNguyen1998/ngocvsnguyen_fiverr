@@ -1,15 +1,15 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getTypeWork, getTypeWorkDetail, useCongViec } from '../../storeToolKit/CongViec';
 import { Rate } from 'antd';
 import _ from "lodash";
 const CategoriesBucket = () => {
+    const navigate = useNavigate()
     const params = useParams();
     const dispatch = useDispatch();
     const { jobType, jobTypeDetail } = useCongViec();
-    console.log("jobTypeDetail: ", jobTypeDetail);
     useEffect(() => {
         dispatch(getTypeWork(params.ids));
     }, [params.ids]);
@@ -35,14 +35,10 @@ const CategoriesBucket = () => {
                                             }>
                                                 {detail.tenChiTiet}
                                             </a>
-
                                         })}
                                         <p>{item.tenChiTiet}</p>
                                     </div>
-
-
                                 </div>
-
                             })
                         })}
                     </div>
@@ -55,7 +51,7 @@ const CategoriesBucket = () => {
                 })}</div>
                 <div className="row grid grid-cols-4 gap-8 mt-10  mx-auto container">
                     {jobTypeDetail?.map((list) => {
-                        return <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-white" key={list.index}>
+                        return <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-white" key={list.index} onClick={() => navigate(`/jobDetail/${list.id}`)}>
                             <div className="flex space-x-4">
                                 <img alt='...' src={list.avatar} className="object-cover w-12 h-12 rounded-full shadow dark:bg-gray-500" />
                                 <div className="flex flex-col space-y-1">

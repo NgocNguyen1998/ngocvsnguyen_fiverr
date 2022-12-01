@@ -12,7 +12,7 @@ const Home = () => {
     return () => {
       window.removeEventListener('scroll', isSticky);
     };
-  })
+  },[])
   const isSticky = (e) => {
     const scrollTop = window.scrollY;
     const inputcheck = document.body.querySelector('.inputcheck')

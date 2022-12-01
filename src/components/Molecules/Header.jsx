@@ -1,15 +1,15 @@
-import { Modal, Select } from "antd";
+import { Modal } from "antd";
 import Search from "antd/lib/input/Search";
 import { NavLink, useNavigate } from "react-router-dom";
 import { showModal } from "../../pages/Login/Login";
 import SubMenuJobList from "./SubMenuJobList";
 import Login from "../../pages/Login/Login";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-
 import Register from "../../pages/register/Register";
 
 export const Header = () => {
+  const [nav, setNav] = useState(1);
   const [user, setUser] = useState(false);
   const navigate = useNavigate();
 
@@ -38,6 +38,10 @@ export const Header = () => {
     setIsModalOpenRegister(false);
   };
   let hiddenTagName = "";
+  const userLogin = localStorage.getItem("userLogin");
+  if (userLogin) {
+    hiddenTagName = "hidden absolute";
+  }
 
   const getUserLogin = () => {
     const userLogin = localStorage.getItem("userLogin");
@@ -49,13 +53,13 @@ export const Header = () => {
             <span className="text-xl">
               <i className="fa-regular fa-bell"></i>
             </span>
-            <span className="text-xl">
-              <i className="fa-regular fa-envelope"></i>
+            <span className="text-xl px-2">
+              <i class="fa-regular fa-envelope"></i>
             </span>
             <span className="text-xl">
               <i className="fa-regular fa-heart"></i>
             </span>
-            <span className="text-xl font-semibold">Order</span>
+            <span className="text-xl px-2 font-semibold">Order</span>
           </div>
           <div className="flex flex-cols m-0">
             <div className="items-end down">
@@ -168,7 +172,7 @@ export const Header = () => {
         >
           Fiverr
         </NavLink>
-        <div className="w-[500px] ml-4 font-semibold rounded header-section py-6">
+        <div className="w-[770px] ml-4 font-semibold rounded header-section py-6">
           <Search
             placeholder="What services are you looking for today?"
             onSearch={onSearch}
@@ -182,22 +186,11 @@ export const Header = () => {
           <ul className="items-stretch hidden  lg:flex ">
             <li className="flex">
               <NavLink
-                className="flex items-center px-4 -mb-3 text-black font-medium"
+                className="flex items-center px-4 -mb-3 text-black font-medium hover:text-black"
                 to="/"
               >
                 Become a Seller
               </NavLink>
-            </li>
-            <li className="flex  items-center px-4 -mb-3 text-black font-medium">
-              <Select
-                defaultValue="en"
-                className="header-input"
-                style={{
-                  width: 100,
-                  color: "black",
-                  borderRadius: "5px",
-                }}
-              />
             </li>
           </ul>
           <div className="items-center flex-shrink-0 hidden lg:flex">
@@ -215,7 +208,6 @@ export const Header = () => {
             </div>
             <div>
               <Modal
-                // title="Login"
                 open={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
@@ -227,7 +219,6 @@ export const Header = () => {
             </div>
             <div>
               <Modal
-                // title="Login"
                 open={isModalOpenRegister}
                 onOk={handleOkRegister}
                 onCancel={handleCancelRegister}
@@ -248,13 +239,18 @@ export const Header = () => {
           </div>
         </div>
 
-        <button className="p-4 lg:hidden">
+        <button
+          className="p-4 lg:hidden"
+          onClick={() => {
+            setNav(nav + 1);
+          }}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            className="w-6 h-6 dark:text-gray-100"
+            className="w-6 h-6 dark:text-black"
           >
             <path
               strokeLinecap="round"
@@ -265,6 +261,249 @@ export const Header = () => {
           </svg>
         </button>
       </div>
+      <div style={{ display: `${nav % 2 === 0 ? "block" : "none"}` }}>
+        <div className="lg:hidden">
+          <div className="flex justify-center">
+            <div className="pt-4 text-center">
+              <div className="">
+                <ul>
+                  <li>
+                    <NavLink
+                      onClick={() => {
+                        setNav(nav + 1);
+                      }}
+                      className=" text-black font-medium hover:text-white"
+                      style={{ fontSize: "16px" }}
+                      to="/"
+                    >
+                      Become a Seller
+                    </NavLink>
+                  </li>
+                </ul>
+                <div>
+                  <button className=" px-8 py-3 rounded text-black font-medium">
+                    {localStorage.getItem("userLogin") ? (
+                      <Div className="flex gap-3 items-center text-base">
+                        <div className="flex gap-4">
+                          <span className="text-xl">
+                            <i
+                              class="fa-regular fa-bell"
+                              onClick={() => {
+                                setNav(nav + 1);
+                              }}
+                            ></i>
+                          </span>
+                          <span className="text-xl px-2">
+                            <i
+                              class="fa-regular fa-envelope"
+                              onClick={() => {
+                                setNav(nav + 1);
+                              }}
+                            ></i>
+                          </span>
+                          <span className="text-xl">
+                            <i
+                              class="fa-regular fa-heart"
+                              onClick={() => {
+                                setNav(nav + 1);
+                              }}
+                            ></i>
+                          </span>
+                          <span
+                            className="text-xl px-2"
+                            onClick={() => {
+                              setNav(nav + 1);
+                            }}
+                          >
+                            Order
+                          </span>
+                        </div>
+                        <div className="flex flex-cols m-0">
+                          <div className="items-end down">
+                            <p
+                              className="mb-0 tagName "
+                              onClick={() => {
+                                setNav(nav + 1);
+                                navigate(
+                                  `/infoUser/${JSON.parse(userLogin).id}`
+                                );
+                              }}
+                            >
+                              {JSON.parse(userLogin)
+                                .name.slice(0, 1)
+                                .toUpperCase()}
+                            </p>
+                            <div className="w-[180px] h-[470px] ml-[-10px] info top-0  text-base text-white rounded-md bg-blue-400 absolute mt-8">
+                              <div className="relative ribbon">
+                                <div>
+                                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                                    <p
+                                      className="mb-0 px-4"
+                                      onClick={() => {
+                                        setNav(nav + 1);
+                                        navigate(
+                                          `/infoUser/${
+                                            JSON.parse(userLogin).id
+                                          }`
+                                        );
+                                      }}
+                                    >
+                                      Profile
+                                    </p>
+                                  </p>
+                                  <p className="flex justify-start tagp gap-5 mt-2 items-center">
+                                    <p
+                                      className="mb-0 px-4"
+                                      onClick={() => {
+                                        setNav(nav + 1);
+                                      }}
+                                    >
+                                      Post a Request
+                                    </p>
+                                  </p>
+                                  <p className="flex justify-start tagp gap-5 mt-2 items-center">
+                                    <p
+                                      className="mb-0 px-4"
+                                      onClick={() => {
+                                        setNav(nav + 1);
+                                      }}
+                                    >
+                                      Refer a friend
+                                    </p>
+                                  </p>
+                                </div>
+                                <hr />
+                                <div>
+                                  <p className="flex justify-start tagp gap-5 mt-2 items-center">
+                                    <p
+                                      className="mb-0 px-4"
+                                      onClick={() => {
+                                        setNav(nav + 1);
+                                      }}
+                                    >
+                                      Become a Seller
+                                    </p>
+                                  </p>
+                                  <p className="flex justify-start tagp gap-5 mt-2 items-center">
+                                    <p
+                                      className="mb-0 px-4"
+                                      onClick={() => {
+                                        setNav(nav + 1);
+                                      }}
+                                    >
+                                      Settings
+                                    </p>
+                                  </p>
+                                  <p className="flex justify-start tagp gap-5 mt-2 items-center">
+                                    <p
+                                      className="mb-0 px-4"
+                                      onClick={() => {
+                                        setNav(nav + 1);
+                                      }}
+                                    >
+                                      Billing
+                                    </p>
+                                  </p>
+                                </div>
+                                <hr />
+                                <div>
+                                  <p className="flex justify-start tagp gap-5 mt-2 items-center">
+                                    <p
+                                      className="mb-0 px-4"
+                                      onClick={() => {
+                                        setNav(nav + 1);
+                                      }}
+                                    >
+                                      English
+                                    </p>
+                                  </p>
+                                  <p className="flex justify-start tagp gap-5 mt-2 items-center">
+                                    <p
+                                      className="mb-0 px-4"
+                                      onClick={() => {
+                                        setNav(nav + 1);
+                                      }}
+                                    >
+                                      $ USD
+                                    </p>
+                                  </p>
+                                  <p className="flex justify-start tagp gap-5 mt-2 items-center">
+                                    <p
+                                      className="mb-0 px-4"
+                                      onClick={() => {
+                                        setNav(nav + 1);
+                                      }}
+                                    >
+                                      Help & Support
+                                    </p>
+                                  </p>
+                                </div>
+                                <hr />
+                                <div>
+                                  <p className="flex justify-start tagp gap-5 mt-2 items-center">
+                                    <p
+                                      className="mb-0 px-4"
+                                      onClick={() => {
+                                        setNav(nav + 1);
+                                        navigate("");
+                                        if (localStorage.getItem("userLogin")) {
+                                          localStorage.removeItem("userLogin");
+                                          setUser(!user);
+                                        }
+                                      }}
+                                    >
+                                      Log out
+                                    </p>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </Div>
+                    ) : (
+                      <p className=" mb-0" onClick={showModal}>
+                        Sign in
+                      </p>
+                    )}
+                  </button>
+                  <div>
+                    <Modal
+                      open={isModalOpen}
+                      onOk={handleOk}
+                      onCancel={handleCancel}
+                      footer={null}
+                      width="400px"
+                    >
+                      <Login />
+                    </Modal>
+                  </div>
+                  <div>
+                    <Modal
+                      open={isModalOpenRegister}
+                      onOk={handleOkRegister}
+                      onCancel={handleCancelRegister}
+                      footer={null}
+                      width="600px"
+                    >
+                      <Register />
+                    </Modal>
+                  </div>
+                  <button
+                    className={`hover:text-white ${hiddenTagName}  hover:bg-green-500 transition-all hover:border-transparent duration-500 text-green-500 font-bold border-green-300 rounded-md border-2 px-5 py-1`}
+                    onClick={() => {
+                      showModalRegister();
+                    }}
+                  >
+                    Join
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <hr />
       <div className=" text-center header-submenu">
         <SubMenuJobList />

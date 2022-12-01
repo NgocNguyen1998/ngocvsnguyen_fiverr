@@ -1,3 +1,4 @@
+import { BackTop } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -413,6 +414,10 @@ export const Footer = () => {
           </div>
         </div>
       </Foot>
+      <div >
+        <BackTop style={{ right: '35px', bottom: '55px' }} />
+        <strong style={{ color: 'rgba(64, 64, 64, 0.6)' }}></strong>
+      </div>
     </div>
   );
 };

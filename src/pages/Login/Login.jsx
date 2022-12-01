@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { signIn } from "../../storeToolKit/Auth/authReducer";
+import { useSelectorAuth } from "../../storeToolKit/Auth";
 import { useNavigate } from "react-router-dom";
-import { useSelectorAuth } from "../../storeToolKit/Auth/useSelectorAuth";
+
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
