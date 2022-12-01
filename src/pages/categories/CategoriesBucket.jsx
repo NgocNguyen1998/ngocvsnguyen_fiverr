@@ -67,7 +67,7 @@ const CategoriesBucket = () => {
                             </div>
                             <div className="flex flex-wrap justify-between">
                                 <div className="space-x-2 text-xl">
-                                    <i class="fa-solid fa-heart"></i>
+                                    <i className="fa-solid fa-heart"></i>
                                 </div>
                                 <div className="flex space-x-2 text-sm dark:text-gray-400">
                                     <span className='font-medium'>STARTING AT</span> {""}

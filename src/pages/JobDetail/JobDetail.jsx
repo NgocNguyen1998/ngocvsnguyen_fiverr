@@ -135,7 +135,7 @@ export const JobDetail = () => {
         </div>
         <div className="flex">
           <span className="text-green-500">
-            <i class="fa-sharp fa-solid fa-check"></i>
+            <i className="fa-sharp fa-solid fa-check"></i>
           </span>
           <span className="ml-5">Include Source Code</span>
         </div>
@@ -476,7 +476,7 @@ export const JobDetail = () => {
                         src="http://picsum.photos/40/40"
                         alt=".."
                       />
-                      <div class="flex flex-col ml-3">
+                      <div className="flex flex-col ml-3">
                         <div className="flex gap-2">
                           <p className="">{cmt.tenNguoiBinhLuan}</p>
                           <p>
@@ -492,11 +492,11 @@ export const JobDetail = () => {
                             <p className="text-gray-400">{cmt.ngayBinhLuan}</p>
                             <p className="flex gap-5">
                               <span>
-                                <i class="fa-solid fa-thumbs-up"></i>
+                                <i className="fa-solid fa-thumbs-up"></i>
                                 <span className="ml-1">Helpful</span>
                               </span>
                               <span>
-                                <i class="fa-solid fa-thumbs-down"></i>
+                                <i className="fa-solid fa-thumbs-down"></i>
                                 <span className="ml-1">Not Helpful</span>
                               </span>
                             </p>
