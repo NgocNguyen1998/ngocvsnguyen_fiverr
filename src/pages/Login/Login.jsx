@@ -1,10 +1,14 @@
-import React, { useState } from "react";
-import { Button, Modal } from "antd";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { signIn } from "../../storeToolKit/Auth/authReducer";
+import { useSelectorAuth } from "../../storeToolKit/Auth";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const { userInfo } = useSelectorAuth()
+  console.log("userInfo: ", userInfo);
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const {
     handleSubmit,
@@ -13,6 +17,20 @@ const Login = () => {
   } = useForm({
     mode: "onBlur",
   });
+  useEffect(()=>{
+    const user = JSON.parse(localStorage.getItem("userLogin"));
+    if (
+      localStorage.getItem("userLogin") &&
+      user.role === "USER"
+    ) {
+        navigate("/home");
+    } else if (
+      localStorage.getItem("userLogin") &&
+      user.role === "ADMIN"
+    ) {
+      navigate("/admin");
+    }
+  },[userInfo])
   return (
     <Div>
       <form
