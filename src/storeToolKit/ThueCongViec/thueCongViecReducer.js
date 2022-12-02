@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import ShowMessageError from "../../pages/Messeage/ShowMessageError";
+import ShowMessageSuccess from "../../pages/Messeage/ShowMessSucces";
 import { thueCongViecServices } from "../../services/ThueCongViecServices";
 
 const initialState = {
@@ -46,10 +48,9 @@ export const thueCongViecPost = createAsyncThunk(
   async (data) => {
     try {
       const result = await thueCongViecServices.thueCongViecPost(data);
-      alert("thành công");
-      console.log(result.data.content);
+      ShowMessageSuccess("Success !!!");
     } catch (err) {
-      console.log(err.response.data);
+      ShowMessageError(err.response.data.content);
     }
   }
 );
@@ -69,9 +70,11 @@ export const deleteRentList = createAsyncThunk(
   async (data, { dispatch, rejectWithValue }) => {
     try {
       const result = await thueCongViecServices.deleteRentList(data);
+      ShowMessageSuccess("Success !!!");
       await dispatch(getRentList());
       return result.data.content;
     } catch (err) {
+      ShowMessageError(err.response.data.content);
       return rejectWithValue(err.response.data);
     }
   }

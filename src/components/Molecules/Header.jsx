@@ -266,7 +266,7 @@ export const Header = () => {
         <div className="lg:hidden">
           <div className="flex justify-center">
             <div className="pt-4 text-center">
-              <div className="">
+              <div>
                 <ul>
                   <li>
                     <NavLink
@@ -337,9 +337,12 @@ export const Header = () => {
                             <div className="w-[180px] h-[335px] ml-[-10px] info top-0  text-base shadow-slate-50 text-gray-400 border  bg-white absolute mt-8">
                               <div className="relative ribbon">
                                 <div>
-                                  <p className="flex justify-start tagp gap-5 mt-4 items-center">
+                                  <p
+                                    className="flex justify-start tagp gap-5 mt-4 items-center "
+                                    style={{ position: "relative " }}
+                                  >
                                     <p
-                                      className="mb-0 px-4"
+                                      className="mb-0 px-4 "
                                       onClick={() => {
                                         setNav(nav + 1);
                                         navigate(
@@ -527,6 +530,7 @@ const Div = styled.div`
     display: none;
     right: -25px;
     top: 25px;
+    z-index: 10;
   }
   .ribbon::before {
     content: "";
@@ -541,6 +545,7 @@ const Div = styled.div`
     z-index: 2;
     border-top: 1px solid #e5e7eb;
     border-left: 1px solid #e5e7eb;
+    z-index: 0;
   }
   .ribbon::after {
     content: "";
@@ -559,6 +564,9 @@ const Div = styled.div`
   .tagp {
     margin-top: 6px;
     margin-bottom: 6px;
+  }
+  .tagp:first-of-type {
+    position: relative;
   }
   .tagName {
     /* width: 40px;

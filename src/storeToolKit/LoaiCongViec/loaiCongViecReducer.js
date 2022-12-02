@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import ShowMessageError from "../../pages/Messeage/ShowMessageError";
+import ShowMessageSuccess from "../../pages/Messeage/ShowMessSucces";
 import { loaiCongViecServices } from "../../services/LoaiCongViecServices";
 
 const initialState = {
@@ -45,11 +47,10 @@ export const postJobType = createAsyncThunk(
   async (job, { dispatch }) => {
     try {
       const result = await loaiCongViecServices.postJobType(job);
-      console.log(result.data.content);
-      alert("thành công");
+      ShowMessageSuccess("Success !!!");
       await dispatch(jobsType());
     } catch (err) {
-      console.log(err.response.data.content);
+      ShowMessageError(err.response.data.content);
     }
   }
 );
@@ -59,11 +60,10 @@ export const deleteJobType = createAsyncThunk(
   async (id, { dispatch }) => {
     try {
       const result = await loaiCongViecServices.deleteJobType(id);
-      console.log(result.data.content);
-      alert("thành công");
+      ShowMessageSuccess("Success !!!");
       dispatch(jobsType());
     } catch (err) {
-      console.log(err.response.data.content);
+      ShowMessageError(err.response.data.content);
     }
   }
 );
@@ -73,11 +73,10 @@ export const putJobType = createAsyncThunk(
   async (id, { dispatch }) => {
     try {
       const result = await loaiCongViecServices.putJobType(id);
-      console.log(result.data.content);
-      alert("thành công");
+      ShowMessageSuccess("Success !!!");
       dispatch(jobsType());
     } catch (err) {
-      console.log(err.response.data.content);
+      ShowMessageError(err.response.data.content);
     }
   }
 );

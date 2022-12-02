@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import ShowMessageError from "../../pages/Messeage/ShowMessageError";
+import ShowMessageSuccess from "../../pages/Messeage/ShowMessSucces";
 import { NguoiDungServices } from "../../services/NguoiDungServices";
 
 const initialState = {
@@ -86,10 +88,10 @@ export const editInfoUser = createAsyncThunk(
   async (data) => {
     try {
       const result = await NguoiDungServices.editInfoUser(data);
-      console.log("ket qua", result.data.content);
+      ShowMessageSuccess("Success !!!");
       return result.data.content;
     } catch (err) {
-      console.log(err.response.data);
+      ShowMessageError(err.response.data.content);
     }
   }
 );
@@ -110,11 +112,9 @@ export const getUSerList = createAsyncThunk(
 export const putUser = createAsyncThunk("NguoiDung/putUser", async (id) => {
   try {
     const result = await NguoiDungServices.putUser(id);
-    console.log(result.data.content);
-    alert("thành công");
+    ShowMessageSuccess("Success !!!");
   } catch (err) {
-    console.log(err.response.data);
-    alert(err.response.data);
+    ShowMessageError(err.response.data.content);
   }
 });
 
@@ -135,11 +135,10 @@ export const deleteUser = createAsyncThunk(
   async (id, { dispatch }) => {
     try {
       const result = await NguoiDungServices.deleteUser(id);
-      console.log(result.data.content);
-      alert("thành công");
+      ShowMessageSuccess("Success !!!");
       dispatch(getUSerList());
     } catch (err) {
-      console.log(err.response.data.content);
+      ShowMessageError(err.response.data.content);
     }
   }
 );
@@ -147,9 +146,8 @@ export const deleteUser = createAsyncThunk(
 export const postUser = createAsyncThunk("NguoiDung/postUser", async (data) => {
   try {
     const result = await NguoiDungServices.postUser(data);
-    console.log(result.data.content);
-    alert("thành công");
+    ShowMessageSuccess("Success !!!");
   } catch (err) {
-    console.log(err.response.data);
+    ShowMessageError(err.response.data.content);
   }
 });

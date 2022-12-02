@@ -31,6 +31,7 @@ const Router = () => {
         {path: "*", element: <NotFound />}
       ],
     },
+
     {
       path: "/admin",
       element: <AdminTemplate />,
