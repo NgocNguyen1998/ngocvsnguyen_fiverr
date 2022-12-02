@@ -351,7 +351,7 @@ export const Footer = () => {
           style={{ borderTop: "1px solid #9ca3af" }}
           className=" py-5  px-6 mt-12 text-base text-black"
         >
-          <div className="flex items-center justify-between container">
+          <div className="flex items-center justify-between container md:flex-row flex-col">
             <div className="left items-center flex text-gray-400">
               <p className="text-gray-500 font-bold text-3xl pb-2 mb-0">
                 fiverr{" "}
@@ -414,9 +414,9 @@ export const Footer = () => {
           </div>
         </div>
       </Foot>
-      <div >
-        <BackTop style={{ right: '35px', bottom: '55px' }} />
-        <strong style={{ color: 'rgba(64, 64, 64, 0.6)' }}></strong>
+      <div>
+        <BackTop style={{ right: "35px", bottom: "55px" }} />
+        <strong style={{ color: "rgba(64, 64, 64, 0.6)" }}></strong>
       </div>
     </div>
   );
