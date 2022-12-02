@@ -51,10 +51,55 @@
         margin-bottom: 9px;
         font-size: 11px;
     }
-    .home-carousel{
+
+    .home-carousel {
         height: 70vh;
     }
+
+    .home-logo .logo {
+        padding: 3px 0px;
+    }
+    .home-logo .title{
+        font-size: 13px !important;
+    }
+    .home-service{
+        padding-bottom: 50px;
+    }
+    .home-service .title{
+        font-size: 25px !important;
+    }
+    .home-service .content p{
+        font-size: 10px !important;
+        margin-bottom: 1px !important;
+    }
+    .home-service .content b{
+        font-size: 13px !important;
+    }
+    .home-service h3 {
+        padding-left: 18px !important;
+    }
+    .home-service-detail .content{
+        padding: 40px 0px !important ;
+    }
+    .home-service-detail .content .title{
+        padding-right: 0px;
+    }
+    .home-service-detail .content .title h2{
+        text-align: center;
+    }
+    .home-service-detail .content .title .iconcheck{
+       width: 20px;
+       height: 20px;
+       font-size: 10px;
+    }
+    .home-service-detail .content .title .titel1{
+        font-size: 20px !important;
+     }
+     .home-service-detail .content .title .content1{
+        font-size: 16px !important;
+     }
 }
+
 @media (min-width: 641px) and (max-width: 768px) {
     .home-carousel .popular a {
         color: white;
@@ -67,8 +112,104 @@
         margin-bottom: 9px;
         font-size: 15px;
     }
-    .home-carousel{
+
+    .home-carousel {
         height: 80vh;
+    }
+    .home-logo .logo {
+        padding: 4px 0px;
+    }
+    .home-logo .title{
+        font-size: 15px !important;
+    }
+    .home-service{
+        padding-bottom: 60px;
+    }
+    .home-service .title{
+        font-size: 27px !important;
+    }
+    .home-service .content p{
+        font-size: 12px !important;
+        margin-bottom: 2px !important;
+    }
+    .home-service .content b{
+        font-size: 17px !important;
+    }
+    .home-service h3 {
+        padding-left: 19px !important;
+    }
+    .home-service-detail .content{
+        padding: 45px 0px !important ;
+    }
+    .home-service-detail .content .title{
+        padding-right: 0px;
+    }
+    .home-service-detail .content .title h2{
+        text-align: center;
+    }
+    .home-service-detail .content .title .iconcheck{
+       width: 25px;
+       height: 25px;
+       font-size: 13px;
+    }
+    .home-service-detail .content .title .titel1{
+        font-size: 23px !important;
+     }
+     .home-service-detail .content .title .content1{
+        font-size: 17px !important;
+     }
+}
+@media (min-width: 769px) and (max-width: 1024px){
+    .home-service .title{
+        font-size: 27px !important;
+    }
+    .home-service .content p{
+        font-size: 12px !important;
+        margin-bottom: 2px !important;
+    }
+    .home-service .content b{
+        font-size: 17px !important;
+    }
+    .home-service h3 {
+        padding-left: 19px !important;
+    }
+    .home-service-detail .content{
+        padding: 50px 0px !important ;
+    }
+    .home-service-detail .content .title{
+        padding-right: 0px;
+    }
+    .home-service-detail .content .title h2{
+        text-align: center;
+    }
+    .home-service-detail .content .title .iconcheck{
+       width: 27px;
+       height: 27px;
+       font-size: 14px;
+    }
+    .home-service-detail .content .title .titel1{
+        font-size: 26px !important;
+     }
+     .home-service-detail .content .title .content1{
+        font-size: 19px !important;
+     }
+}
+@media (min-width: 1025px) and (max-width: 1280px){
+    .home-service .title{
+        font-size: 27px !important;
+    }
+    .home-service .content p{
+        font-size: 12px !important;
+        margin-bottom: 2px !important;
+    }
+    .home-service .content b{
+        font-size: 17px !important;
+    }
+    .home-service h3 {
+        padding-left: 19px !important;
+    }
+    .home-service-detail .content .title{
+        padding-right: 15px !important;
     }
 }
 .home-logo p {
