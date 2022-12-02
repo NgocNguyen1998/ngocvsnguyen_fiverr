@@ -5,7 +5,7 @@ export const congViecServices = {
     return api.get(`cong-viec/lay-menu-loai-cong-viec`);
   },
   congViecPhanTrangTimKiem: (data) => {
-    return api.get(`cong-viec/phan-trang-tim-kiem?pageIndex=${data}&pageSize=12`);
+    return api.get(`cong-viec/phan-trang-tim-kiem?pageIndex=${data.number}&pageSize=12&keyword=${data.name}`);
   },
   layCongViecChiTiet: (id) => {
     return api.get(`cong-viec/lay-cong-viec-chi-tiet/${id}`);
