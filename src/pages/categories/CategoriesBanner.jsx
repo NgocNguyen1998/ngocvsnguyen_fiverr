@@ -27,7 +27,7 @@ const CategoriesBanner = () => {
                                         <path fillRule="evenodd" clipRule="evenodd" d="M8 0a8 8 0 1 0 8 8 8.009 8.009 0 0 0-8-8ZM5.742 11.778 11.655 8.3a.348.348 0 0 0 0-.6L5.742 4.222a.348.348 0 0 0-.525.3v6.956a.348.348 0 0 0 .525.3Z" />
                                     </svg>
                                 </p>
-                                <p className='pl-2' style={{ fontSize: '17px' }}> How Fiverr Works</p>
+                                <p className='pl-2 buttonCheck' style={{ fontSize: '17px' }}> How Fiverr Works</p>
                             </button>
                         </div>
                     </div>
