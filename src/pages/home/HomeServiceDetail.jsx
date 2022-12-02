@@ -9,9 +9,9 @@ const HomeServiceDetail = () => {
   const [video, setVideo] = useState(1);
   return (
     <div className="bg-pink-50 home-service-detail">
-      <div className="container lg:grid grid-cols-2 py-20">
-        <div className="left col-span-1 pr-40">
-          <h2 className="text-4xl font-bold">
+      <div className="container lg:grid grid-cols-2 py-20 content">
+        <div className="left col-span-1 pr-40 title">
+          <h2 className="2xl:text-4xl xl:text-4xl lg:text-4xl md:text-3xl sm:text-3xl  text-2xl font-bold ">
             A whole world of freelance
             <p> talent at your fingertips</p>
           </h2>
@@ -22,12 +22,12 @@ const HomeServiceDetail = () => {
                   <p className="iconcheck">
                     <CheckOutlined />
                   </p>
-                  <p style={{ fontSize: "22px" }} className="font-semibold">
+                  <p style={{ fontSize: "22px" }} className="font-semibold titel1">
                     {" "}
                     The best for every budget
                   </p>
                 </div>
-                <p className="item-body">
+                <p className="item-body content1">
                   Find high-quality services at every price point. No hourly
                   rates, just project-based pricing.
                 </p>
@@ -39,12 +39,12 @@ const HomeServiceDetail = () => {
                   <p className="iconcheck">
                     <CheckOutlined />
                   </p>
-                  <p style={{ fontSize: "22px" }} className="font-semibold">
+                  <p style={{ fontSize: "22px" }} className="font-semibold titel1">
                     {" "}
                     Quality work done quickly
                   </p>
                 </div>
-                <p className="item-body">
+                <p className="item-body content1">
                   Find the right freelancer to begin working on your project
                   within minutes.
                 </p>
@@ -56,12 +56,12 @@ const HomeServiceDetail = () => {
                   <p className="iconcheck">
                     <CheckOutlined />
                   </p>
-                  <p style={{ fontSize: "22px" }} className="font-semibold">
+                  <p style={{ fontSize: "22px" }} className="font-semibold titel1">
                     {" "}
                     Protected payments, every time
                   </p>
                 </div>
-                <p className="item-body">
+                <p className="item-body content1">
                   Always know what you'll pay upfront. Your payment isn't
                   released until you approve the work.
                 </p>
@@ -73,12 +73,12 @@ const HomeServiceDetail = () => {
                   <p className="iconcheck">
                     <CheckOutlined />
                   </p>
-                  <p style={{ fontSize: "22px" }} className="font-semibold">
+                  <p style={{ fontSize: "22px" }} className="font-semibold titel1">
                     {" "}
                     24/7 support
                   </p>
                 </div>
-                <p className="item-body">
+                <p className="item-body content1">
                   Questions? Our round-the-clock support team is available to
                   help anytime, anywhere.
                 </p>
