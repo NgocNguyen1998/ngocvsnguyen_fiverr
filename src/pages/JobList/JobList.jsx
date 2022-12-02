@@ -124,9 +124,11 @@ export const JobList = () => {
         <Pagination
           onChange={(e) => setNumber(e)}
           total={36}
-          showTotal={(total, range) =>
-            `${range[0]}-${range[1]} of ${total} items`
-          }
+          showTotal={(total, range) => {
+            console.log("total", total);
+            console.log("range", range);
+            return `${range[0]}-${range[1]} of ${total} items`;
+          }}
           defaultPageSize={12}
           defaultCurrent={1}
         />
