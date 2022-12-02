@@ -116,7 +116,7 @@ const InfoUser = () => {
                   className="cursor-pointer hover:text-green-400"
                 >
                   {" "}
-                  <i class="fa-solid fa-pencil"></i>
+                  <i className="fa-solid fa-pencil"></i>
                 </button>
                 <div>
                   <Modal
@@ -133,7 +133,7 @@ const InfoUser = () => {
               <hr />
               <div className="flex flex-wrap justify-between content-center items-center ">
                 <div className="space-x-2 text-xl text-gray-400">
-                  <i class="fa-solid fa-location-dot"></i>
+                  <i className="fa-solid fa-location-dot"></i>
                   <span style={{ fontSize: "17px" }} className="font-medium">
                     From
                   </span>
@@ -146,7 +146,7 @@ const InfoUser = () => {
               </div>
               <div className="flex flex-wrap justify-between content-center items-center">
                 <div className="space-x-2 text-xl text-gray-400">
-                  <i class="fa-solid fa-cake-candles"></i>
+                  <i className="fa-solid fa-cake-candles"></i>
                   <span style={{ fontSize: "17px" }} className="font-medium">
                     Birthday
                   </span>
@@ -674,7 +674,7 @@ const InfoUser = () => {
             </button>
             <div className="flex items-center ">
               <div className="text-4xl pr-2 ">
-                <i class="fa-solid fa-building pb-4"></i>
+                <i className="fa-solid fa-building pb-4"></i>
               </div>
               <div>
                 <p className="mb-0">

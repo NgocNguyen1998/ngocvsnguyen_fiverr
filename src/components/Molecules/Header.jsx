@@ -334,7 +334,7 @@ export const Header = () => {
                                 .name.slice(0, 1)
                                 .toUpperCase()}
                             </p>
-                            <div className="w-[180px] h-[470px] ml-[-10px] info top-0  text-base text-white rounded-md bg-blue-400 absolute mt-8">
+                            <div className="w-[180px] h-[335px] ml-[-10px] info top-0  text-base shadow-slate-50 text-gray-400 border  bg-white absolute mt-8">
                               <div className="relative ribbon">
                                 <div>
                                   <p className="flex justify-start tagp gap-5 mt-4 items-center">

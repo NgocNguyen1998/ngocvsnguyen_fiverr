@@ -35,7 +35,6 @@ export const signIn = createAsyncThunk("auth/signIn", async (data) => {
     const result = await authService.signIn(data);
     localStorage.setItem("userLogin", JSON.stringify(result.data.content.user));
     localStorage.setItem("token", JSON.stringify(result.data.content.token));
-    console.log("result", result.data.content.user);
     alert("thành công");
     return result.data.content.user;
   } catch (err) {
