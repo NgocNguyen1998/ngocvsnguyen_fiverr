@@ -21,7 +21,7 @@ const HomeCarousel = () => {
     });
     return (
         <div className='home-carousel overflow-hidden ' style={{width:'100%'}} >
-            <Carousel effect="fade"  style={{width:'100%'}}>
+            <Carousel effect="fade" autoplay style={{width:'100%'}}>
                 <div >
                     <div style={{ ...contentStyle, backgroundImage: `url('https://tse1.mm.bing.net/th?id=OIP.xl6aPdf_YteEhSyOA59bpAHaHg&pid=Api&P=0')` }}>
                         <div className="container content 2xl:py-20 xl:py-16 lg:py-14 md:py-12 sm:py-10 py-8">
