@@ -27,13 +27,39 @@ const CategoriesSection = () => {
         infinite: true,
         speed: 500,
         slidesToShow: 5,
-        slidesToScroll: 5,
+        slidesToScroll: 3,
         variableWidth: true,
         autoplay: true,
         autoplaySpeed: 4000,
         pauseOnHover: true,
-        nextArrow: <SampleNextArrow />,
-        prevArrow: <SamplePrevArrow />,
+        // nextArrow: <SampleNextArrow />,
+        // prevArrow: <SamplePrevArrow />,
+        responsive: [
+            {
+              breakpoint: 1280,
+              settings: {
+                centerMode: true,
+                slidesToShow: 3,
+                slidesPerRow: 2,
+              },
+            },
+            {
+              breakpoint: 1024,
+              settings: {
+                centerMode: true,
+                slidesToShow: 2,
+                slidesPerRow: 1,
+              },
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                centerMode: true,
+                slidesToShow: 1,
+                slidesPerRow: 1,
+              },
+            },
+          ],
     };
     return (
         <div className='pt-14 categorie-section bg-green-50'>
@@ -41,7 +67,7 @@ const CategoriesSection = () => {
 
                 <h2 className='text-3xl font-bold pb-9'>Most Popular in Digital Marketing</h2>
                 <Slider {...settings}>
-                    <div className='item'  style={{ width: '165px' }}>
+                    <div className='item itemCheck'  style={{ width: '165px' }}>
                         <a href="#" className="flex justify-start items-center px-2 py-2 shadow-lg shadow-gray-00 ">
                             <img className="" src="https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto/v1/attachments/generic_asset/asset/db18b6c9ba3af4778a5796b9e94137d7-1626177278710/SEO_2x.png" alt="SEO" style={{width:'65px'}} />
                             <span className="pl-4 pr-2 text-black font-medium " style={{fontSize:'18px'}}>SEO</span>
@@ -137,7 +163,7 @@ const CategoriesSection = () => {
                         </a>
 
                     </div>
-                    <div className='item  pr-6'  style={{ width: '295px' }}>
+                    <div className='item  itemCheck1 pr-6'  style={{ width: '295px' }}>
                         <a href="#" className="flex justify-start items-center px-4 py-2 shadow-lg shadow-gray-00 ">
                             <img className="" src="https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto/v1/attachments/generic_asset/asset/db18b6c9ba3af4778a5796b9e94137d7-1626177278716/SEM_2x.png" alt="SEM" style={{width:'65px'}} />
                             <span className="pl-4 pr-2 text-black font-medium " style={{fontSize:'18px'}}>SEM</span>
@@ -149,7 +175,7 @@ const CategoriesSection = () => {
                         </a>
 
                     </div>
-                    <div className='item'  style={{ width: '165px' }}>
+                    <div className='item itemCheck'  style={{ width: '165px' }}>
                         <a href="#" className="flex justify-start items-center px-2 py-2 shadow-lg shadow-gray-00 ">
                             <img className="" src="https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto/v1/attachments/generic_asset/asset/db18b6c9ba3af4778a5796b9e94137d7-1626177278710/SEO_2x.png" alt="SEO" style={{width:'65px'}} />
                             <span className="pl-4 pr-2 text-black font-medium " style={{fontSize:'18px'}}>SEO</span>
@@ -245,7 +271,7 @@ const CategoriesSection = () => {
                         </a>
 
                     </div>
-                    <div className='item  pr-6'  style={{ width: '295px' }}>
+                    <div className='item itemCheck1 pr-6'  style={{ width: '295px' }}>
                         <a href="#" className="flex justify-start items-center px-4 py-2 shadow-lg shadow-gray-00 ">
                             <img className="" src="https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto/v1/attachments/generic_asset/asset/db18b6c9ba3af4778a5796b9e94137d7-1626177278716/SEM_2x.png" alt="SEM" style={{width:'65px'}} />
                             <span className="pl-4 pr-2 text-black font-medium " style={{fontSize:'18px'}}>SEM</span>

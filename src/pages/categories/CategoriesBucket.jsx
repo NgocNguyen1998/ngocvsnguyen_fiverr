@@ -49,9 +49,9 @@ const CategoriesBucket = () => {
                 pb-6 pt-4'>{_.uniqBy(jobTypeDetail,'tenChiTietLoai').map(name => {
                     return name.tenChiTietLoai
                 })}</div>
-                <div className="row grid grid-cols-4 gap-8 mt-10  mx-auto container">
+                <div className="row lg:grid grid-cols-4 gap-8 mt-10  mx-auto container">
                     {jobTypeDetail?.map((list) => {
-                        return <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-white" key={list.index} onClick={() => navigate(`/jobDetail/${list.id}`)}>
+                        return <div className="mb-6 flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg shadow-md bg-white" key={list.index} onClick={() => navigate(`/jobDetail/${list.id}`)}>
                             <div className="flex space-x-4">
                                 <img alt='...' src={list.avatar} className="object-cover w-12 h-12 rounded-full shadow dark:bg-gray-500" />
                                 <div className="flex flex-col space-y-1">
