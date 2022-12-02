@@ -88,8 +88,8 @@ const InfoUser = () => {
   });
   return (
     <div className="pt-40 info-user bg-pink-50">
-      <div className="grid lg:grid-cols-3 container gap-x-9 pb-10">
-        <div className="col-span-1 ml-8">
+      <div className="lg:grid lg:grid-cols-3  container lg:gap-x-9 pb-10">
+        <div className="col-span-1 ml-8 item1">
           <div className="top ">
             <div className=" max-w-lg p-6 space-y-4 overflow-hidden rounded-lg shadow-md bg-white ">
               <div className="text-center">
@@ -652,9 +652,9 @@ const InfoUser = () => {
             </div>
           </div>
         </div>
-        <div className="col-span-2 ml-10 mr-8">
+        <div className="col-span-2 ml-10 mr-8 item2">
           <div
-            className="relative  rounded-md shadow-md sm:py-6 sm:px-8 bg-white "
+            className="relative  rounded-md shadow-md sm:py-6  sm:px-8 bg-white ano1"
             style={{ display: `${adver}` }}
           >
             <button
@@ -688,7 +688,7 @@ const InfoUser = () => {
               </div>
             </div>
           </div>
-          <div className="flex items-center justify-between rounded-md shadow-md sm:py-6 sm:px-8 bg-white my-4">
+          <div className="flex items-center justify-between rounded-md shadow-md sm:py-6 sm:px-8 bg-white my-4 ano2">
             <h2 className=" font-semibold leading-tight tracking-wide text-gray-500">
               It seems that you don't have any active Gigs. Get selling!
             </h2>
@@ -746,23 +746,6 @@ const InfoUser = () => {
                       X
                     </button>
                   </div>
-                  <div className=" flex justify-end pb-2">
-                    <button
-                      className="border-2  py-1 px-4 rounded-md border-pink-400 hover:text-white hover:bg-pink-300 transition-all duration-300 mr-4"
-                      onClick={() => navigate(`/jobDetail/${job.congViec.id}`)}
-                    >
-                      View detail
-                    </button>
-
-                    <button
-                      className="border-2 py-1 px-4 text-red-500 font-medium rounded-md border-pink-400 hover:bg-pink-300 transition-all duration-300"
-                      onClick={() => {
-                        dispatch(deleteRentList(job.id));
-                      }}
-                    >
-                      X
-                    </button>
-                  </div>
                 </div>
               );
             })}
@@ -772,5 +755,4 @@ const InfoUser = () => {
     </div>
   );
 };
-
 export default InfoUser;

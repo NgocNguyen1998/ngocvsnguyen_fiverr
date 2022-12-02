@@ -1,12 +1,14 @@
 import { FileOutlined, UserOutlined } from "@ant-design/icons";
-import { screen } from "@testing-library/react";
+
 import { Breadcrumb, Layout, Menu, Empty } from "antd";
 import React, { useState } from "react";
-import { useLayoutEffect } from "react";
+
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useSelectorAuth } from "../../../storeToolKit/Auth/useSelectorAuth";
-const { Header, Content, Footer, Sider } = Layout;
+import { Header } from "../../Molecules";
+const { Content, Footer, Sider } = Layout;
+
 function getItem(label, key, icon, children) {
   return {
     key,
@@ -66,6 +68,7 @@ const AdminTemplate = () => {
   };
   return (
     <>
+      <Header />
       <Layout style={{ minHeight: "100vh" }}>
         <Sider
           collapsible
@@ -112,10 +115,10 @@ const AdminTemplate = () => {
           />
         </Sider>
         <Layout className="site-layout">
-          <Header
+          {/* <Header
             className="site-layout-background"
             style={{ padding: 0, background: "#fff" }}
-          />
+          /> */}
           <Content style={{ margin: "0 16px" }}>
             <Breadcrumb style={{ margin: "16px 0" }}></Breadcrumb>
             <div

@@ -27,7 +27,10 @@ const SubMenuJobList = () => {
               {job.dsNhomChiTietLoai.map((item) => {
                 return item.dsChiTietLoai.map((data) => {
                   return (
-                    <Menu.Item key={Math.floor(Math.random() * 10000) + 1000}>
+                    <Menu.Item
+                      key={Math.floor(Math.random() * 10000) + 1000}
+                      onClick={() => navigate(`/jobList/${data.id}`)}
+                    >
                       {data.tenChiTiet}
                     </Menu.Item>
                   );
