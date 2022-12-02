@@ -32,7 +32,7 @@ const HomeSlickItem = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 4000,
     pauseOnHover: true,
     nextArrow: <SampleNextArrow />,
@@ -42,8 +42,8 @@ const HomeSlickItem = () => {
     <div className="home-slick-item bg-green-50">
       <div className="container px-12 dot">
         <Slider {...settings}>
-          <div>
-            <div className="lg:grid grid-cols-3 pt-36 pb-6">
+          <div className="video">
+            <div className="lg:grid grid-cols-3 pt-44 pb-6 items1">
               <div className="right col-span-1 pl-6">
                 <div className="video-modal">
                   <div
@@ -85,8 +85,8 @@ const HomeSlickItem = () => {
                   </div>
                 </div>
               </div>
-              <div className="left col-span-2 pl-14">
-                <div className="text-content pt-12">
+              <div className="left col-span-2 2xl:pl-14 xl:pl-14 lg:pl-12 md:pl-10 sm:pl-8 pl-6">
+                <div className="text-content pt-12 ">
                   <h5 className="name flex">
                     <span className="name-user">
                       Tim and Dan Joo, Co-Founders
@@ -166,7 +166,7 @@ const HomeSlickItem = () => {
             </video>
           </div>
           <div className="video1">
-            <div className="lg:grid grid-cols-3 py-36">
+            <div className="lg:grid grid-cols-3 pt-36 items1">
               <div className="right col-span-1 pl-6">
                 <div className="video-modal1">
                   <div
@@ -208,8 +208,8 @@ const HomeSlickItem = () => {
                   </div>
                 </div>
               </div>
-              <div className="left col-span-2 pl-14">
-                <div className="text-content pt-12">
+              <div className="left col-span-2 2xl:pl-14 xl:pl-14 lg:pl-12 md:pl-10 sm:pl-8 pl-6">
+                <div className="text-content pt-8">
                   <h5 className="name flex">
                     <span className="name-user">Kay Kim, Co-Founder</span>
                     <span className="testimonial-logo font-bold text-2xl pl-2">
@@ -285,7 +285,7 @@ const HomeSlickItem = () => {
             </video>
           </div>
           <div className="video2">
-            <div className="lg:grid grid-cols-3 py-36">
+            <div className="lg:grid grid-cols-3 pt-36 pb-32 items1">
               <div className="right col-span-1 pl-6">
                 <div className="video-modal2">
                   <div
@@ -327,7 +327,7 @@ const HomeSlickItem = () => {
                   </div>
                 </div>
               </div>
-              <div className="left col-span-2 pl-14">
+              <div className="left col-span-2 2xl:pl-14 xl:pl-14 lg:pl-12 md:pl-10 sm:pl-8 pl-6">
                 <div className="text-content pt-12">
                   <h5 className="name flex">
                     <span className="name-user">
