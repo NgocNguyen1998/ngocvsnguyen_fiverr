@@ -14,6 +14,7 @@ import UserManagement from "../pages/admin/userManagement/UserManagement";
 import Categories from "../pages/categories/Categories";
 import Home from "../pages/home/Home";
 import InfoUser from "../pages/infoUser/InfoUser";
+import NotFound from "../pages/notFound/NotFound";
 
 const Router = () => {
   const routing = useRoutes([
@@ -27,7 +28,7 @@ const Router = () => {
         { path: "home", element: <Home /> },
         { path: "categories/:ids", element: <Categories /> },
         { path: "infoUser/:idUser", element: <InfoUser /> },
-        //
+        {path: "*", element: <NotFound />}
       ],
     },
     {
@@ -57,6 +58,7 @@ const Router = () => {
         { path: "serviceManagement", element: <ServiceManagement /> },
       ],
     },
+    
   ]);
 
   return routing;
