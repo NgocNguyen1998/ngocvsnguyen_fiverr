@@ -33,8 +33,8 @@ export const JobList = () => {
   return (
     <Components className="  mt-12">
       <div className="flex flex-row justify-between mt-10 container  w-full">
-        <div className="flex flex-row justify-between  pb-8  px-0 gap-12 w-full mx-0   ">
-          <div className="flex gap-2 ">
+        <div className="flex xl:flex-row xl:justify-between items-center flex-col   pb-8  px-0 gap-12 w-full mx-0   ">
+          <div className="sm:flex sm:gap-2 grid grid-cols-3 gap-5">
             <select className="border-2">
               <option value="">Category</option>
             </select>
@@ -67,7 +67,7 @@ export const JobList = () => {
           </div>
         </div>
       </div>
-      <div className="row grid grid-cols-4 gap-8 mt-10 container mx-auto">
+      <div className="row grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-10 container mx-auto">
         {itemRender?.map((list) => (
           <div
             key={Math.random() * 10000}
