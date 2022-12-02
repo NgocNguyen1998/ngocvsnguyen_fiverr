@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import ShowMessageError from "../../pages/Messeage/ShowMessageError";
+import ShowMessageSuccess from "../../pages/Messeage/ShowMessSucces";
 import { chiTietLoaiCongViecServices } from "../../services/ChiTietLoaiCongViecServices";
 
 const initialState = {
@@ -34,7 +36,6 @@ export const getJobDetail = createAsyncThunk(
   async (id = "") => {
     try {
       const result = await chiTietLoaiCongViecServices.jobDetail(id);
-      console.log(result.data.content);
       return result.data.content;
     } catch (err) {
       console.log(err.response.data.content);
@@ -46,11 +47,10 @@ export const deleteJobDetail = createAsyncThunk(
   async (id, { dispatch }) => {
     try {
       const result = await chiTietLoaiCongViecServices.deleteJobDetail(id);
-      console.log(result.data.content);
-      alert("thành công");
+      ShowMessageSuccess("Success !!!");
       await dispatch(getJobDetail());
     } catch (err) {
-      alert(err.response.data.content);
+      ShowMessageError(err.response.data.content);
     }
   }
 );
@@ -60,11 +60,9 @@ export const postJobTypeDetail = createAsyncThunk(
   async (data, { dispatch }) => {
     try {
       const result = await chiTietLoaiCongViecServices.postJobTypeDetail(data);
-      console.log(result.data.content);
-      alert("thành công");
-      dispatch(getJobDetail());
+      ShowMessageSuccess("Success !!!");
     } catch (err) {
-      alert(err.response.data.content);
+      ShowMessageError(err.response.data.content);
     }
   }
 );
@@ -73,11 +71,10 @@ export const putJobTypeDetail = createAsyncThunk(
   async (data, { dispatch }) => {
     try {
       const result = await chiTietLoaiCongViecServices.putJobTypeDetail(data);
-      console.log(result.data.content);
-      alert("thành công");
+      ShowMessageSuccess("Success !!!");
       dispatch(getJobDetail());
     } catch (err) {
-      alert(err.response.data.content);
+      ShowMessageError(err.response.data.content);
     }
   }
 );
@@ -88,11 +85,10 @@ export const postImage = createAsyncThunk(
     try {
       console.log(data);
       const result = await chiTietLoaiCongViecServices.postImage(data);
-      console.log(result.data.content);
-      alert("thành công");
+      ShowMessageSuccess("Success !!!");
       dispatch(getJobDetail());
     } catch (err) {
-      console.log(err.response.data.content);
+      ShowMessageError(err.response.data.content);
     }
   }
 );

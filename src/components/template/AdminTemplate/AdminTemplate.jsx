@@ -1,6 +1,8 @@
 import { FileOutlined, UserOutlined } from "@ant-design/icons";
-import { Breadcrumb, Layout, Menu } from "antd";
+import { screen } from "@testing-library/react";
+import { Breadcrumb, Layout, Menu, Empty } from "antd";
 import React, { useState } from "react";
+import { useLayoutEffect } from "react";
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useSelectorAuth } from "../../../storeToolKit/Auth/useSelectorAuth";
@@ -35,6 +37,33 @@ const AdminTemplate = () => {
       navigate("/home");
     }
   }, [userInfo]);
+  //
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  let resizeWindow = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    resizeWindow();
+    window.addEventListener("resize", resizeWindow);
+    return () => window.removeEventListener("resize", resizeWindow);
+  }, []);
+
+  const renderInfo = () => {
+    if (windowWidth < 1280) {
+      return (
+        <Empty
+          description={
+            <p className="text-blue-400 text-xl">
+              This function is not supported on small screen size yet !!
+            </p>
+          }
+        />
+      );
+    }
+    return <Outlet />;
+  };
   return (
     <>
       <Layout style={{ minHeight: "100vh" }}>
@@ -93,7 +122,8 @@ const AdminTemplate = () => {
               className="site-layout-background"
               style={{ padding: 24, minHeight: 360, background: "#fff" }}
             >
-              <Outlet />
+              {/* <Outlet /> */}
+              {renderInfo()}
             </div>
           </Content>
           <Footer style={{ textAlign: "center" }}>

@@ -27,9 +27,11 @@ const Router = () => {
         { path: "home", element: <Home /> },
         { path: "categories/:ids", element: <Categories /> },
         { path: "infoUser/:idUser", element: <InfoUser /> },
+
         //
       ],
     },
+
     {
       path: "/admin",
       element: <AdminTemplate />,

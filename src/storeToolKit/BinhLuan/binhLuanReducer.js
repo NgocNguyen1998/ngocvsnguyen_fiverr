@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import ShowMessageError from "../../pages/Messeage/ShowMessageError";
+import ShowMessageSuccess from "../../pages/Messeage/ShowMessSucces";
 import { binhLuanService } from "../../services/BinhLuanServies";
 import { congViecServices } from "../../services/CongViecServices";
 
@@ -64,9 +66,10 @@ export const postBinhLuan = createAsyncThunk(
       console.log("result", result.data.content);
       await dispatch(binhLuanTheoCongViec(data.id));
       // console.log(data.idNum);
-      alert("thành công");
+      ShowMessageSuccess("Success !!!");
       return result.data.content;
     } catch (err) {
+      ShowMessageError(err.response.data.content);
       console.log(err.response.data);
     }
   }
@@ -90,10 +93,10 @@ export const deleteComment = createAsyncThunk(
   async (id, { dispatch }) => {
     try {
       const result = await binhLuanService.deleteComment(id);
-      alert("thành công");
+      ShowMessageSuccess("Success !!!");
       dispatch(getComments());
     } catch (err) {
-      alert(err.response.data.content);
+      ShowMessageError(err.response.data.content);
     }
   }
 );

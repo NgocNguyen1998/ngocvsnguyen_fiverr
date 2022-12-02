@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import ShowMessageError from "../../pages/Messeage/ShowMessageError";
+import ShowMessageSuccess from "../../pages/Messeage/ShowMessSucces";
 import { congViecServices } from "../../services/CongViecServices";
 import { NguoiDungServices } from "../../services/NguoiDungServices";
 
@@ -9,18 +11,18 @@ const initialState = {
   jobType: [],
   jobTypeDetail: [],
   dataSignUp1: [],
-  workList:[],
-  searchJob:[],
+  workList: [],
+  searchJob: [],
   isFetchingJobList: false,
   isFetchingItem: false,
   isFetchingJobDetail: false,
   isFetchingjobType: false,
   isFetchingjobTypeDetail: false,
   isFetchingWorkList: false,
-  isFetchingAddJob:false,
-  isFetchingEditJob:false,
-  isFetchingSearchJob:false,
-  isFetchingEditImg:false,
+  isFetchingAddJob: false,
+  isFetchingEditJob: false,
+  isFetchingSearchJob: false,
+  isFetchingEditImg: false,
 };
 export const { reducer: congViecReducer, actions: congViecActions } =
   createSlice({
@@ -89,8 +91,8 @@ export const { reducer: congViecReducer, actions: congViecActions } =
           state.isFetchingjobTypeDetail = false;
           state.jobTypeDetail = action.payload;
         })
-         // getWorkList(admin)
-         .addCase(getWork.pending, (state) => {
+        // getWorkList(admin)
+        .addCase(getWork.pending, (state) => {
           state.isFetchingWorkList = true;
         })
         .addCase(getWork.fulfilled, (state, action) => {
@@ -142,8 +144,7 @@ export const { reducer: congViecReducer, actions: congViecActions } =
         })
         .addCase(editImg.rejected, (state, action) => {
           state.isFetchingEditImg = false;
-        })
-        ;
+        });
     },
   });
 export const menuCongViec = createAsyncThunk(
@@ -207,62 +208,61 @@ export const getTypeWorkDetail = createAsyncThunk(
     }
   }
 );
-export const getWork = createAsyncThunk(
-  "congViec/getWork",
-  async () => {
-    try {
-      const result = await congViecServices.getWork();
-      return result.data.content;
-    } catch (err) {
-      console.log(err.response.data);
-    }
+export const getWork = createAsyncThunk("congViec/getWork", async () => {
+  try {
+    const result = await congViecServices.getWork();
+    return result.data.content;
+  } catch (err) {
+    console.log(err.response.data);
   }
-);
+});
 export const deleteWork = createAsyncThunk(
   "congViec/deleteWork",
-  async (data,{dispatch}) => {
+  async (data, { dispatch }) => {
     try {
       const result = await congViecServices.deleteWork(data);
-     
-     await dispatch(getWork())
-     alert('Delete Job Success')
+
+      await dispatch(getWork());
+      ShowMessageSuccess("Success !!!");
       return result.data.content;
     } catch (err) {
-      console.log(err.response.data);
+      ShowMessageError(err.response.data.content);
     }
   }
 );
 export const postWork = createAsyncThunk(
   "congViec/postWork",
-  async (data,{dispatch}) => {
+  async (data, { dispatch }) => {
     try {
       const result = await congViecServices.postWork(data);
-      await dispatch(getWork())
+      ShowMessageSuccess("Success !!!");
+      await dispatch(getWork());
       return result.data.content;
     } catch (err) {
-      console.log(err.response.data);
+      ShowMessageError(err.response.data.content);
     }
   }
 );
 export const editWork = createAsyncThunk(
   "congViec/editWork",
-  async (data,{dispatch}) => {
+  async (data, { dispatch }) => {
     try {
       const result = await congViecServices.editWork(data);
-      await dispatch(getWork())
+      ShowMessageSuccess("Success !!!");
+      await dispatch(getWork());
       return result.data.content;
     } catch (err) {
-      console.log(err.response.data);
+      ShowMessageError(err.response.data.content);
     }
   }
 );
 export const searchWork = createAsyncThunk(
   "congViec/searchWork",
-  async (data,{dispatch}) => {
+  async (data, { dispatch }) => {
     try {
       const result = await congViecServices.searchWork(data);
-      await dispatch(getWork())
-      
+      await dispatch(getWork());
+
       return result.data.content;
     } catch (err) {
       console.log(err.response.data);
@@ -271,13 +271,14 @@ export const searchWork = createAsyncThunk(
 );
 export const editImg = createAsyncThunk(
   "congViec/editImg",
-  async (data,{dispatch}) => {
+  async (data, { dispatch }) => {
     try {
       const result = await congViecServices.editImg(data);
-      await dispatch(getWork())
+      ShowMessageSuccess("Success !!!");
+      await dispatch(getWork());
       return result.data.content;
     } catch (err) {
-      console.log(err.response.data);
+      ShowMessageError(err.response.data.content);
     }
   }
 );

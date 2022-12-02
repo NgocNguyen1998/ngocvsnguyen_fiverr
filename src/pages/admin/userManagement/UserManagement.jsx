@@ -79,9 +79,12 @@ const UserManagement = () => {
       width: "15%",
       render: (text, data = []) => {
         if (data.skill) {
-          console.log("data", data.skill);
-          return data.skill.map((ski) => {
-            return <span key={Math.random() * 1000}>{ski} ,</span>;
+          return data.skill.map((ski, index) => {
+            return (
+              <span key={Math.random() * 1000}>
+                {ski} <br />
+              </span>
+            );
           });
         }
       },
@@ -93,7 +96,11 @@ const UserManagement = () => {
       render: (text, data = []) => {
         if (data.certification) {
           return data.certification.map((certification) => {
-            return <span key={Math.random() * 1000}>{certification} </span>;
+            return (
+              <span key={Math.random() * 1000}>
+                {certification} <br />{" "}
+              </span>
+            );
           });
         }
       },
