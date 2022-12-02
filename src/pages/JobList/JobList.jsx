@@ -25,11 +25,13 @@ export const JobList = () => {
     backgroundcheck.style.backgroundColor = "white";
   });
   const navigate = useNavigate();
-  useEffect(() => {
-    dispatch(congViecPhanTrangTimKiem(number));
-  }, [number]);
   const { itemRender } = useCongViec();
   console.log(itemRender);
+  useEffect(() => {
+    
+    dispatch(congViecPhanTrangTimKiem({number:number, name: params.jobName}));
+  }, [params.jobName]||[number]);
+
   return (
     <Components className="  mt-12 pt-28">
       <div className="flex flex-row justify-between mt-10 container  w-full">
@@ -123,10 +125,10 @@ export const JobList = () => {
       <div className="mt-8 flex justify-center">
         <Pagination
           onChange={(e) => setNumber(e)}
-          total={36}
-          showTotal={(total, range) =>
-            `${range[0]}-${range[1]} of ${total} items`
-          }
+          total={itemRender.length}
+          // showTotal={(total, range) =>
+          //   `${range[0]}-${range[1]} of ${total} items`
+          // }
           defaultPageSize={12}
           defaultCurrent={1}
         />
