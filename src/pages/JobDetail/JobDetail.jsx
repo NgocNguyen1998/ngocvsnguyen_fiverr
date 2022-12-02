@@ -135,7 +135,7 @@ export const JobDetail = () => {
         </div>
         <div className="flex">
           <span className="text-green-500">
-            <i class="fa-sharp fa-solid fa-check"></i>
+            <i className="fa-sharp fa-solid fa-check"></i>
           </span>
           <span className="ml-5">Include Source Code</span>
         </div>
@@ -193,7 +193,7 @@ export const JobDetail = () => {
   const handleSliders = (job) => {
     return (
       <Slider {...settings}>
-        <div className="wrap-content  mt-9">
+        <div className="wrap-content  mt-9 md:mb-[200px]">
           <div className="wrap-img">
             <img className="w-full " src={job.congViec.hinhAnh} alt="..." />
           </div>
@@ -218,10 +218,13 @@ export const JobDetail = () => {
     }
   };
   return (
-    <Wrapper className="container mx-auto mb-[300px]">
+    <Wrapper className="container mx-auto mb-[300px] relative">
       {jobDetail.map((job, index) => (
-        <div key={index} className="  flex justify-between">
-          <div className="flex-cols mt-[130px] w-[60%] pr-[114px]">
+        <div
+          key={index}
+          className="  flex lg:flex-row lg:justify-between flex-col"
+        >
+          <div className="flex-cols  mx-auto w-full   lg:w-[60%] lg:pr-[114px]">
             <div className="left text-base ">
               <h3 className=" mt-5">
                 <Link to="">{job.tenLoaiCongViec}</Link>
@@ -262,7 +265,7 @@ export const JobDetail = () => {
                 <div>{handleSliders(job)}</div>
               </div>
             </div>
-            <div className="aboutThisGig mt-12 text-gray-400 text-base">
+            <div className="aboutThisGig mt-[600px] sm:mt-[650px] md:mt-[800px]  lg:mt-12 text-gray-400 text-base">
               <h2 className="my-4 text-2xl">About This Gig</h2>
               <p className="text-gray-800">
                 Top Rated Seller with all positive reviews
@@ -352,7 +355,7 @@ export const JobDetail = () => {
               </Collapse>
             </div>
             <div className="text-base">
-              <div className="flex justify-between  gap-3 text-xl mb-6">
+              <div className="flex md:flex-row relative flex-col md:justify-between   md:gap-3 text-xl mb-6">
                 <div className="flex gap-2">
                   <span className="text-black font-bold">
                     {job.congViec.danhGia}
@@ -363,7 +366,7 @@ export const JobDetail = () => {
                     {job.congViec.saoCongViec}
                   </span>
                 </div>
-                <div className=" text-base flex gap-2 items-end text-gray-400">
+                <div className=" text-base flex gap-2 items-end text-gray-400 absolute md:relative top-[200px]">
                   <span className="self-end ">
                     Sort By <strong>Most relevant</strong>{" "}
                   </span>
@@ -372,8 +375,8 @@ export const JobDetail = () => {
                   </span>
                 </div>
               </div>
-              <div className="flex gap-8">
-                <div className="w-[50%]">
+              <div className="flex md:flex-row flex-col  gap-8 ">
+                <div className="md:w-[50%] w-full lg:mb-2 mb-7">
                   <span className="flex">
                     <span className="mr-3 w-[70px] text-blue-400">5 Stars</span>
                     <Progress
@@ -476,7 +479,7 @@ export const JobDetail = () => {
                         src="http://picsum.photos/40/40"
                         alt=".."
                       />
-                      <div class="flex flex-col ml-3">
+                      <div className="flex flex-col ml-3">
                         <div className="flex gap-2">
                           <p className="">{cmt.tenNguoiBinhLuan}</p>
                           <p>
@@ -492,11 +495,11 @@ export const JobDetail = () => {
                             <p className="text-gray-400">{cmt.ngayBinhLuan}</p>
                             <p className="flex gap-5">
                               <span>
-                                <i class="fa-solid fa-thumbs-up"></i>
+                                <i className="fa-solid fa-thumbs-up"></i>
                                 <span className="ml-1">Helpful</span>
                               </span>
                               <span>
-                                <i class="fa-solid fa-thumbs-down"></i>
+                                <i className="fa-solid fa-thumbs-down"></i>
                                 <span className="ml-1">Not Helpful</span>
                               </span>
                             </p>
@@ -550,7 +553,7 @@ export const JobDetail = () => {
               </div>
             </div>
           </div>
-          <div>
+          <div className="absolute lg:-mt-[120px]  w-full mb-[100] mx-auto top-[450px] sm:top-[500px]  md:top-[550px]  lg:relative lg:top-0 ">
             <div
               className={`  right flex-1 mt-[150px] border-2 h-[500px]  w-full`}
             >

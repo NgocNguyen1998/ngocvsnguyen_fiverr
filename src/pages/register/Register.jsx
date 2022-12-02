@@ -46,7 +46,7 @@ const Register = () => {
         className="flex flex-col  p-6 "
       >
         <h1 className="text-2xl text-black mb-3 font-bold mx-auto">Sign Up</h1>
-        <div className="grid grid-cols-2 gap-8 mt-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8 md:mt-2">
           <div className="itemRight">
             <div className=" flex w-full">
               <div className="items-center flex item ">
