@@ -218,7 +218,7 @@ export const JobDetail = () => {
     }
   };
   return (
-    <Wrapper className="container mx-auto mb-[300px] relative">
+    <Wrapper className="container mx-auto mb-[300px] relative pt-32">
       {jobDetail.map((job, index) => (
         <div
           key={index}
@@ -266,7 +266,7 @@ export const JobDetail = () => {
               </div>
             </div>
             <div className="aboutThisGig mt-[600px] sm:mt-[650px] md:mt-[800px]  lg:mt-12 text-gray-400 text-base">
-              <h2 className="my-4 text-2xl">About This Gig</h2>
+              <h2 className="my-4 text-2xl pt-4">About This Gig</h2>
               <p className="text-gray-800">
                 Top Rated Seller with all positive reviews
               </p>
