@@ -122,7 +122,7 @@ const AddUser = () => {
                       message: "Password must be between 3-12 characters",
                     },
                   })}
-                  type="text"
+                  type="password"
                   placeholder="Enter Your Password"
                 />
                 <p className="text-red-400">{errors?.password?.message}</p>
