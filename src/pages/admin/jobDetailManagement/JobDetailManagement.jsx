@@ -110,7 +110,7 @@ export const JobDetailManagement = () => {
     {
       title: "Job code",
       dataIndex: "maLoaiCongviec",
-      width: "5%",
+      width: "10%",
       sorter: (a, b) => a.id - b.id,
       sortDirections: ["descend", "ascend"],
       defaultSortOrder: "descend",
@@ -212,7 +212,7 @@ export const JobDetailManagement = () => {
           </React.Fragment>
         );
       },
-      width: "15%",
+      width: "10%",
     },
   ];
   const data = arr;

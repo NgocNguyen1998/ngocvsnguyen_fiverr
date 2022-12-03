@@ -49,7 +49,7 @@ export const CommentManager = () => {
     {
       title: "Job code",
       dataIndex: "maCongViec",
-      width: "5%",
+      width: "10%",
       sorter: (a, b) => a.maCongViec - b.maCongViec,
       sortDirections: ["descend", "ascend"],
       defaultSortOrder: "descend",
@@ -57,7 +57,7 @@ export const CommentManager = () => {
     {
       title: "Commenter Code",
       dataIndex: "maNguoiBinhLuan",
-      width: "10%",
+      width: "15%",
     },
     {
       title: "Comment Date",

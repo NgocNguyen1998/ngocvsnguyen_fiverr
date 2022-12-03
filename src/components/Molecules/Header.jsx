@@ -64,7 +64,7 @@ export const Header = () => {
           <div className="flex flex-cols m-0">
             <div className="items-end down">
               <p
-                className="mb-0 tagName text-white flex items-center justify-center"
+                className="mb-0 tagName text-white flex items-center justify-center cursor-pointer"
                 onClick={() =>
                   navigate(`/infoUser/${JSON.parse(userLogin).id}`)
                 }
@@ -73,7 +73,7 @@ export const Header = () => {
               </p>
               {/* <i class="fa-sharp fa-solid fa-caret-down"></i> */}
               <div className="w-[180px] h-[335px] ml-[-10px] info top-0  text-base shadow-slate-50 text-gray-400 border  bg-white absolute mt-8">
-                <div className="relative ribbon">
+                <div className="relative ribbon cursor-pointer">
                   <div>
                     <p className="flex justify-start tagp gap-5 mt-4 items-center">
                       <p
