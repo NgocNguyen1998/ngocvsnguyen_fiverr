@@ -44,7 +44,7 @@ const CategoriesBucket = () => {
                     </div>
                 </div>
             </div>
-           {jobTypeDetail.length !==0 ?  <div className='  bg-green-50 pt-6 pb-9' id='detail'>
+           {jobTypeDetail?.length !==0 ?  <div className='  bg-green-50 pt-6 pb-9' id='detail'>
                 <div className='container text-2xl text-pink-400
                 pb-6 pt-4'>{_.uniqBy(jobTypeDetail,'tenChiTietLoai').map(name => {
                     return name.tenChiTietLoai

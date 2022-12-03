@@ -8,6 +8,7 @@ import { menuCongViec } from "../../storeToolKit/CongViec";
 
 const SubMenuJobList = () => {
   const { jobsList } = useCongViec();
+  console.log("jobsList: ", jobsList);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -25,16 +26,19 @@ const SubMenuJobList = () => {
               onTitleClick={() => navigate(`/categories/${job.id}`)}
             >
               {job.dsNhomChiTietLoai.map((item) => {
-                return item.dsChiTietLoai.map((data) => {
+                return <Menu.ItemGroup title={item.tenNhom} key = {item.tenNhom} className="font-bold">
+                {item.dsChiTietLoai.map((data)=>{
                   return (
-                    <Menu.Item
-                      key={Math.floor(Math.random() * 10000) + 1000}
-                      onClick={() => navigate(`/jobList/${data.id}`)}
-                    >
-                      {data.tenChiTiet}
-                    </Menu.Item>
-                  );
-                });
+                        <Menu.Item
+                        className="font-normal"
+                          key={Math.floor(Math.random() * 10000) + 1000}
+                          onClick={() => navigate(`/jobList/${data.id}`)}
+                        >
+                          {data.tenChiTiet}
+                        </Menu.Item>
+                      );
+                })}
+              </Menu.ItemGroup>
               })}
             </Menu.SubMenu>
           );
