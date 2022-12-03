@@ -1,8 +1,6 @@
-import { FileOutlined, UserOutlined } from "@ant-design/icons";
-
+import { FileOutlined, UserOutlined,BookOutlined,WechatOutlined,CustomerServiceOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, Empty } from "antd";
 import React, { useState } from "react";
-
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useSelectorAuth } from "../../../storeToolKit/Auth/useSelectorAuth";
@@ -19,11 +17,11 @@ function getItem(label, key, icon, children) {
 }
 const items = [
   getItem("User Management", "user", <UserOutlined />),
-  getItem("Workflow Management", "workFlow", <FileOutlined />),
-  getItem("Job type Management", "jobType", <FileOutlined />),
-  getItem("Job Detail Management", "jobDetailManagement", <FileOutlined />),
-  getItem("Service Management", "serviceManagement", <FileOutlined />),
-  getItem("Comment Manager", "commentManager", <FileOutlined />),
+  getItem("Workflow Management", "workFlow", <BookOutlined />),
+  getItem("Job type Management", "jobType", <BookOutlined />),
+  getItem("Job Detail Management", "jobDetailManagement", <BookOutlined />),
+  getItem("Service Management", "serviceManagement", <CustomerServiceOutlined />),
+  getItem("Comment Manager", "commentManager", <WechatOutlined />),
 ];
 const AdminTemplate = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -80,7 +78,6 @@ const AdminTemplate = () => {
             style={{
               height: "32px",
               margin: "16px",
-              // background: "rgba(255, 255, 255, 0.3)",
             }}
           >
             <h1

@@ -1,14 +1,11 @@
-import React, { useRef, useState } from "react";
-
-import { Button, Input, Modal, Space, Table } from "antd";
+import React, { useState } from "react";
+import { Input, Modal, Table } from "antd";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   deleteJobDetail,
   getJobDetail,
   postImage,
-  postJobDetail,
-  postJobTypeDetail,
 } from "../../../storeToolKit/ChiTietLoaiCongViec/chiTietLoaiCongViecReducer";
 import { useJobDetail } from "../../../storeToolKit/ChiTietLoaiCongViec/chiTietLoaiSelector";
 import {
@@ -18,7 +15,6 @@ import {
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { isArray } from "lodash";
-import { useForm } from "react-hook-form";
 import { EditJobDetail } from "./EditJobDetail";
 import { AddJobDetail } from "./AddJobDetail";
 import { useFormik } from "formik";
@@ -34,8 +30,6 @@ export const JobDetailManagement = () => {
   //
   const { jobDetail } = useJobDetail();
 
-  // console.log(jobDetail);
-  // modal add job
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -57,13 +51,17 @@ export const JobDetailManagement = () => {
   const handleCancelEdit = () => {
     setIsModalOpenEdit(false);
   };
+  const [isModalOpenEdit1, setIsModalOpenEdit1] = useState(false);
+  const showModalEditImg = () => {
+    setIsModalOpenEdit1(true);
+  };
+  const handleOkEditImg = () => {
+    setIsModalOpenEdit1(false);
+  };
+  const handleCancelEditImg = () => {
+    setIsModalOpenEdit1(false);
+  };
   //
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  //   setValue,
-  // } = useForm();
   const formik = useFormik({
     initialValues: {
       id: 0,
@@ -125,7 +123,6 @@ export const JobDetailManagement = () => {
       dataIndex: "hinhAnh",
       width: "20%",
       render: (text, data) => {
-        // console.log(data);
 
         if (data.hinhAnh) {
           return (
@@ -137,7 +134,10 @@ export const JobDetailManagement = () => {
                   alt={data.hinhAnh}
                 />
                 <div>
-                  <button className="bg-blue-400 text-white h-10 w-[60px] rounded-lg">
+                  <button className="bg-blue-400 text-white h-10 w-[60px] rounded-lg" onClick={() => {
+                    localStorage.setItem("idJobEdit", JSON.stringify(data.id));
+                    showModalEditImg()
+                  }}>
                     <i className="fa-solid fa-pen-to-square"></i> Edit
                   </button>
                 </div>
@@ -159,7 +159,6 @@ export const JobDetailManagement = () => {
                   handleChangeFile(e);
                 }}
               />
-
               <button
                 type="submit"
                 className="bg-blue-400 text-white  rounded-lg  h-10 w-[60px]"
@@ -235,13 +234,40 @@ export const JobDetailManagement = () => {
       </Modal>
       {/*  modal edit */}
       <Modal
-        title="Add Job"
+        title="Edit Job"
         open={isModalOpenEdit}
         onOk={handleOkEdit}
         onCancel={handleCancelEdit}
         footer={null}
       >
         <EditJobDetail />
+      </Modal>
+      {/*  modal editImg */}
+      <Modal
+        title="Edit Image"
+        open={isModalOpenEdit1}
+        onOk={handleOkEditImg}
+        onCancel={handleCancelEditImg}
+        footer={null}
+      >
+        <form
+          className="flex justify-between"
+          onSubmit={formik.handleSubmit}
+        >
+          <input
+            name="hinhAnh"
+            type="file"
+            onChange={(e) => {
+              handleChangeFile(e);
+            }}
+          />
+          <button
+            type="submit"
+            className="bg-blue-400 text-white  rounded-lg  h-10 w-[60px]"
+          >
+            Edit
+          </button>
+        </form>
       </Modal>
       <button
         onClick={showModal}
