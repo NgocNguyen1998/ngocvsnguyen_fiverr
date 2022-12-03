@@ -91,6 +91,18 @@ export const { reducer: congViecReducer, actions: congViecActions } =
           state.isFetchingjobTypeDetail = false;
           state.jobTypeDetail = action.payload;
         })
+        // getTypeWorkDetail1
+        .addCase(getTypeWorkDetail1.pending, (state) => {
+          state.isFetchingItem = true
+        })
+        .addCase(getTypeWorkDetail1.fulfilled, (state, action) => {
+          state.isFetchingItem = false;
+          state.itemRender = action.payload;
+        })
+        .addCase(getTypeWorkDetail1.rejected, (state, action) => {
+          state.isFetchingItem = false;
+          state.itemRender = action.payload;
+        })
         // getWorkList(admin)
         .addCase(getWork.pending, (state) => {
           state.isFetchingWorkList = true;
@@ -202,6 +214,17 @@ export const getTypeWorkDetail = createAsyncThunk(
   async (type) => {
     try {
       const result = await congViecServices.getTypeWorkDetail(type);
+      return result.data.content;
+    } catch (err) {
+      console.log(err.response.data);
+    }
+  }
+);
+export const getTypeWorkDetail1 = createAsyncThunk(
+  "congViec/getTypeWorkDetail1",
+  async (type) => {
+    try {
+      const result = await congViecServices.getTypeWorkDetail1(type);
       return result.data.content;
     } catch (err) {
       console.log(err.response.data);
