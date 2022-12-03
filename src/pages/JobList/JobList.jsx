@@ -3,7 +3,10 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { congViecPhanTrangTimKiem, getTypeWorkDetail1 } from "../../storeToolKit/CongViec/congViecReducer";
+import {
+  congViecPhanTrangTimKiem,
+  getTypeWorkDetail1,
+} from "../../storeToolKit/CongViec/congViecReducer";
 import { Switch } from "antd";
 import { useCongViec } from "../../storeToolKit/CongViec";
 import { Pagination } from "antd";
@@ -29,8 +32,8 @@ export const JobList = () => {
   const navigate = useNavigate();
   const { itemRender } = useCongViec();
   useEffect(() => {
-    if(params.jobName/params.jobName ===1){
-      dispatch(getTypeWorkDetail1(params.jobName))
+    if (params.jobName / params.jobName === 1) {
+      dispatch(getTypeWorkDetail1(params.jobName));
     }
     dispatch(
       congViecPhanTrangTimKiem({ number: number, name: params.jobName })
@@ -74,110 +77,115 @@ export const JobList = () => {
           </div>
         </div>
       </div>
-      {params.jobName/params.jobName !==1 ?<div className="row grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-10 container mx-auto">
-     {itemRender?.map((list) => (
-       <div
-         key={Math.random() * 10000}
-         className="card h-[370px] "
-         onClick={() => navigate(`/jobDetail/${list.id}`)}
-       >
-         <img
-           className="w-full h-[180px] flex-shrink-0"
-           src={list.hinhAnh}
-           alt={list.hinhAnh}
-         />
-         <div
-           className="content flex flex-cols "
-           style={{
-             borderTop: "0",
-             border: "1px solid #33333328",
-             height: "calc(370px - 180px)",
-             flex: 1,
-           }}
-         >
-           <div className="mx-5 pt-5">
-             <div className="user flex">
-               <img
-                 className="rounded-[50%] flex-shrink-0"
-                 src="http://picsum.photos/40/40"
-                 alt="..."
-               />
-               <div className="card-name self-end ml-3">
-                 <span>Mít...</span>
-               </div>
-             </div>
-             <h3 className="mt-4 mb-5 h-11  job">{list.tenCongViec}</h3>
-             <div
-               className="card-footer mx-[-20px]  h-[45px]  "
-               style={{ borderTop: "1px solid #33333328", flex: 1 }}
-             >
-               <div className="flex justify-between mx-5 h-[45px] items-center flex-shrink-0">
-                 <div>
-                   <i className="fa-solid fa-heart"></i>
-                 </div>
-                 <div className="footer-right">
-                   <span>STARTING AT</span> {""}
-                   <span>${list.giaTien}</span>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-     ))}
-   </div> : <div className="row grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-10 container mx-auto">
-     {itemRender?.map((list) => (
-       <div
-         key={Math.random() * 10000}
-         className="card h-[370px] "
-         onClick={() => navigate(`/jobDetail/${list.id}`)}
-       >
-         <img
-           className="w-full h-[180px] flex-shrink-0"
-           src={list.congViec?.hinhAnh}
-           alt='...'
-         />
-         <div
-           className="content flex flex-cols "
-           style={{
-             borderTop: "0",
-             border: "1px solid #33333328",
-             height: "calc(370px - 180px)",
-             flex: 1,
-           }}
-         >
-           <div className="mx-5 pt-5">
-             <div className="user flex">
-               <img
-                 className="rounded-[50%] flex-shrink-0"
-                 src="http://picsum.photos/40/40"
-                 alt="..."
-               />
-               <div className="card-name self-end ml-3">
-                 <span>Mít...</span>
-               </div>
-             </div>
-             <h3 className="mt-4 mb-5 h-11  job">{list.congViec?.tenCongViec}</h3>
-             <div
-               className="card-footer mx-[-20px]  h-[45px]  "
-               style={{ borderTop: "1px solid #33333328", flex: 1 }}
-             >
-               <div className="flex justify-between mx-5 h-[45px] items-center flex-shrink-0">
-                 <div>
-                   <i className="fa-solid fa-heart"></i>
-                 </div>
-                 <div className="footer-right">
-                   <span>STARTING AT</span> {""}
-                   <span>${list.congViec?.giaTien}</span>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-     ))}
-   </div>}
-      
+      {params.jobName / params.jobName !== 1 ? (
+        <div className="row grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-10 container mx-auto">
+          {itemRender?.map((list) => (
+            <div
+              key={Math.random() * 10000}
+              className="card h-[370px] cursor-pointer"
+              onClick={() => navigate(`/jobDetail/${list.id}`)}
+            >
+              <img
+                className="w-full h-[180px] flex-shrink-0"
+                src={list.hinhAnh}
+                alt={list.hinhAnh}
+              />
+              <div
+                className="content flex flex-cols "
+                style={{
+                  borderTop: "0",
+                  border: "1px solid #33333328",
+                  height: "calc(370px - 180px)",
+                  flex: 1,
+                }}
+              >
+                <div className="mx-5 pt-5">
+                  <div className="user flex">
+                    <img
+                      className="rounded-[50%] flex-shrink-0"
+                      src="http://picsum.photos/40/40"
+                      alt="..."
+                    />
+                    <div className="card-name self-end ml-3">
+                      <span>Mít...</span>
+                    </div>
+                  </div>
+                  <h3 className="mt-4 mb-5 h-11  job">{list.tenCongViec}</h3>
+                  <div
+                    className="card-footer mx-[-20px]  h-[45px]  "
+                    style={{ borderTop: "1px solid #33333328", flex: 1 }}
+                  >
+                    <div className="flex justify-between mx-5 h-[45px] items-center flex-shrink-0">
+                      <div>
+                        <i className="fa-solid fa-heart"></i>
+                      </div>
+                      <div className="footer-right">
+                        <span>STARTING AT</span> {""}
+                        <span>${list.giaTien}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="row grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-10 container mx-auto">
+          {itemRender?.map((list) => (
+            <div
+              key={Math.random() * 10000}
+              className="card h-[370px] "
+              onClick={() => navigate(`/jobDetail/${list.id}`)}
+            >
+              <img
+                className="w-full h-[180px] flex-shrink-0"
+                src={list.congViec?.hinhAnh}
+                alt="..."
+              />
+              <div
+                className="content flex flex-cols "
+                style={{
+                  borderTop: "0",
+                  border: "1px solid #33333328",
+                  height: "calc(370px - 180px)",
+                  flex: 1,
+                }}
+              >
+                <div className="mx-5 pt-5">
+                  <div className="user flex">
+                    <img
+                      className="rounded-[50%] flex-shrink-0"
+                      src="http://picsum.photos/40/40"
+                      alt="..."
+                    />
+                    <div className="card-name self-end ml-3">
+                      <span>Mít...</span>
+                    </div>
+                  </div>
+                  <h3 className="mt-4 mb-5 h-11  job">
+                    {list.congViec?.tenCongViec}
+                  </h3>
+                  <div
+                    className="card-footer mx-[-20px]  h-[45px]  "
+                    style={{ borderTop: "1px solid #33333328", flex: 1 }}
+                  >
+                    <div className="flex justify-between mx-5 h-[45px] items-center flex-shrink-0">
+                      <div>
+                        <i className="fa-solid fa-heart"></i>
+                      </div>
+                      <div className="footer-right">
+                        <span>STARTING AT</span> {""}
+                        <span>${list.congViec?.giaTien}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
 
       <div className="mt-8 flex justify-center">
         <Pagination

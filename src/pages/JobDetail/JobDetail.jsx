@@ -625,6 +625,10 @@ const Wrapper = styled.div`
     content: ">";
     color: #616060;
   }
+  .slick-next,
+  .slick-prev {
+    top: 38%;
+  }
   .slick-prev::before {
     content: "<";
     color: #616060;
@@ -636,11 +640,9 @@ const Wrapper = styled.div`
     display: inline-block;
     position: absolute;
     top: 50%;
-
     transform: translate(-50%, -50%);
     background-color: #fff;
     padding: 20px;
-
     border-radius: 50%;
     box-shadow: 0 0 0 #333;
     display: flex;
