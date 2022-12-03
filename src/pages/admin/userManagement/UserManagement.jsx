@@ -16,9 +16,20 @@ import {
   searchUser,
 } from "../../../storeToolKit/NguoiDung/nguoiDungReducer";
 import { isArray } from "lodash";
-
+import { useSelectorAuth } from "../../../storeToolKit/Auth";
 const { Search } = Input;
 const UserManagement = () => {
+  const { userInfo } = useSelectorAuth();
+  // check Role
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userLogin"));
+    console.log("user", user);
+    if (user && user.role === "ADMIN") {
+      navigate("/admin");
+    } else {
+      navigate("/home");
+    }
+  }, [userInfo]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { usersList, user } = useNguoiDung();

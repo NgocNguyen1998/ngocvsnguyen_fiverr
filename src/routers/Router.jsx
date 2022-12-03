@@ -18,9 +18,7 @@ import NotFound from "../pages/notFound/NotFound";
 
 const Router = () => {
   const routing = useRoutes([
-    {
-      path: "/",
-      element: <MainLayout />,
+    {path: "/",element: <MainLayout />,
       children: [
         { path: "jobList/:jobName", element: <JobList /> },
         { path: "jobDetail/:id", element: <JobDetail /> },
@@ -31,23 +29,14 @@ const Router = () => {
         {path: "*", element: <NotFound />}
       ],
     },
-
-    {
-      path: "/admin",
-      element: <AdminTemplate />,
+    {path: "/admin",element: <AdminTemplate />,
       children: [
         { path: "", element: <Navigate to="/admin/userManagement" /> },
         { path: "userManagement", element: <UserManagement /> },
         { path: "editUser/:id", element: <EditUser /> },
         { path: "addUser", element: <AddUser /> },
-        {
-          path: "jobType",
-          element: <JobTypeManagement />,
-        },
-        {
-          path: "workFlow",
-          element: <JobManagement />,
-        },
+        {path: "jobType", element: <JobTypeManagement />},
+        { path: "workFlow",element: <JobManagement /> },
         {
           path: "jobDetailManagement",
           element: <JobDetailManagement />,
@@ -59,7 +48,6 @@ const Router = () => {
         { path: "serviceManagement", element: <ServiceManagement /> },
       ],
     },
-    
   ]);
 
   return routing;
