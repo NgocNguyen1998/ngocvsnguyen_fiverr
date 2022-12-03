@@ -105,7 +105,7 @@ export const JobTypeManagement = () => {
         </form>
       </Modal>
       <Modal
-        title="Add JobType"
+        title="Edit JobType"
         open={isModalOpenEdit}
         onOk={handleOkEdit}
         onCancel={handleCancelEdit}
@@ -127,7 +127,7 @@ export const JobTypeManagement = () => {
           </div>
           <div>
             <Search
-              placeholder="input search id"
+              placeholder="Search by id"
               enterButton={<SearchOutlined />}
               size="small"
               onSearch={onSearch}
@@ -142,8 +142,6 @@ export const JobTypeManagement = () => {
             <div className="flex items-center  text-white p-2 justify-between rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 mb-3 w-[500px]">
               <EditText
                 className="mb-0"
-                // showEditButton
-                // style={{ outline: "none" }}
                 editButtonContent={job.tenLoaiCongViec}
                 defaultValue={job.tenLoaiCongViec}
                 name="textbox3"
