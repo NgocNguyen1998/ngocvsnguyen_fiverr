@@ -35,10 +35,15 @@ const Register = () => {
             data.birthday = moment(data.birthday).format("DD-MM-YYYY");
           }
           if (data.skill) {
-            data.skill = [...data.skill];
+            const ski = [...data.skill.toString().split(",")];
+            data.skill = ski;
+            // data.skill = [...data.skill];
           }
           if (data.certification) {
-            data.certification = [...data.certification];
+            const certi = [...data.certification.toString().split(",")];
+
+            data.certification = certi;
+            // data.certification = [...data.certification];
           }
           console.log(data);
           dispatch(signUp(data));
