@@ -62,17 +62,17 @@ const JobManagement = () => {
         {
             title: "Job Name",
             dataIndex: "tenCongViec",
-            width: "21%",
+            width: "20%",
         },
         {
             title: "Desc",
             dataIndex: "moTaNgan",
-            width: "30%",
+            width: "29%",
         },
         {
-            title: "JobType Code",
+            title: "Code",
             dataIndex: "maChiTietLoaiCongViec",
-            width: "5%",
+            width: "4%",
             sorter: (a, b) => a.maChiTietLoaiCongViec - b.maChiTietLoaiCongViec,
         },
         {
@@ -164,7 +164,7 @@ const JobManagement = () => {
                     </React.Fragment>
                 );
             },
-            width: "8%",
+            width: "10%",
         },
     ];
 
