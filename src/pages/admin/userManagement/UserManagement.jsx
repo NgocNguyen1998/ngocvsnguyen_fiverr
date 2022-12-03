@@ -22,7 +22,6 @@ const UserManagement = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { usersList, user } = useNguoiDung();
-  // console.log("usersList", isArray({}));
   let arr = [];
   if (isArray(usersList)) {
     arr = usersList;
@@ -113,10 +112,7 @@ const UserManagement = () => {
           <React.Fragment key={Date.now()}>
             <button
               onClick={() => {
-                // console.log(data);
-                // const user = usersList.find((item) => item.id === data.id);
                 localStorage.setItem("editUser", JSON.stringify(data));
-                // dispatch(getInfoUser(data.id));
                 navigate(`/admin/editUser/${data.id}`);
               }}
               title="chỉnh sửa"
@@ -154,7 +150,7 @@ const UserManagement = () => {
       </button>
       <br />
       <Search
-        placeholder="input search id"
+        placeholder="Search by id"
         enterButton={<SearchOutlined />}
         size="large"
         onSearch={onSearch}
