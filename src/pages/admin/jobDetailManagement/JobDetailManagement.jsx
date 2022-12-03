@@ -129,7 +129,7 @@ export const JobDetailManagement = () => {
             <>
               <div className="flex justify-between">
                 <img
-                  className="w-[50%] h-[100px]"
+                  className="w-[50%] h-[100px] rounded-md"
                   src={data.hinhAnh}
                   alt={data.hinhAnh}
                 />
