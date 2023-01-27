@@ -40,7 +40,7 @@ export const JobList = () => {
   }, [params.jobName] || [number]);
 
   return (
-    <Components className="  mt-12 pt-28">
+    <Components className="  mt-12 pt-8">
       <div className="flex flex-row justify-between mt-10 container  w-full">
         <div className="flex xl:flex-row xl:justify-between items-center flex-col   pb-8  px-0 gap-12 w-full mx-0   ">
           <div className="sm:flex sm:gap-2 grid grid-cols-3 gap-5">

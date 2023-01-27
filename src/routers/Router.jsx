@@ -28,7 +28,7 @@ const Router = () => {
         { path: "home", element: <Home /> },
         { path: "categories/:ids", element: <Categories /> },
         { path: "infoUser/:idUser", element: <InfoUser /> },
-        {path: "*", element: <NotFound />}
+        { path: "*", element: <NotFound /> },
       ],
     },
 
@@ -36,7 +36,7 @@ const Router = () => {
       path: "/admin",
       element: <AdminTemplate />,
       children: [
-        { path: "", element: <Navigate to="/admin/userManagement" /> },
+        { path: "", element: <Navigate to="userManagement" /> },
         { path: "userManagement", element: <UserManagement /> },
         { path: "editUser/:id", element: <EditUser /> },
         { path: "addUser", element: <AddUser /> },
@@ -59,7 +59,6 @@ const Router = () => {
         { path: "serviceManagement", element: <ServiceManagement /> },
       ],
     },
-    
   ]);
 
   return routing;

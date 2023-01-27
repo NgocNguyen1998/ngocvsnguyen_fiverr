@@ -218,7 +218,7 @@ export const JobDetail = () => {
     }
   };
   return (
-    <Wrapper className="container mx-auto mb-[300px] relative pt-32">
+    <Wrapper className="container mx-auto mb-[300px] relative pt-5">
       {jobDetail.map((job, index) => (
         <div
           key={index}
@@ -555,7 +555,7 @@ export const JobDetail = () => {
           </div>
           <div className="absolute lg:-mt-[120px]  w-full mb-[100] mx-auto top-[450px] sm:top-[500px]  md:top-[550px]  lg:relative lg:top-0 ">
             <div
-              className={`  right flex-1 mt-[150px] border-2 h-[500px]  w-full`}
+              className={`right flex-1 mt-[200px] border-2 h-[500px]  w-full`}
             >
               <Tabs
                 className="flex justify-around"
@@ -624,10 +624,24 @@ const Wrapper = styled.div`
     content: ">";
     color: #616060;
   }
+
   .slick-next,
   .slick-prev {
     top: 38%;
   }
+  @media screen and (max-width: 768px) {
+    .slick-next,
+    .slick-prev {
+      top: 40%;
+    }
+  }
+  @media screen and (max-width: 568px) {
+    .slick-next,
+    .slick-prev {
+      top: 50%;
+    }
+  }
+
   .slick-prev::before {
     content: "<";
     color: #616060;
