@@ -36,6 +36,7 @@ export const JobDetail = () => {
     inputcheck.style.display = "block";
     subcheck.style.display = "block";
     backgroundcheck.style.backgroundColor = "white";
+    backgroundcheck.style.position = 'fixed';
   });
   useEffect(() => {
     dispatch(layCongViecChiTiet(id));

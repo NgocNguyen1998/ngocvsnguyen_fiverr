@@ -1,6 +1,7 @@
 import React from 'react'
 import { CloseOutlined } from "@ant-design/icons";
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 const CategoriesBanner = () => {
     const [videocate, setVideoCate] = useState(1);
@@ -9,8 +10,18 @@ const CategoriesBanner = () => {
     function pauseVid() {
         x.pause();
     }
+    useEffect(() => {
+        const inputcheck = document.body.querySelector('.inputcheck')
+        const backgroundcheck = document.body.querySelector('.backgroundcheck')
+        const subcheck = document.body.querySelector('.subcheck')
+        inputcheck.style.display = 'block';
+        subcheck.style.display = 'block';
+        backgroundcheck.style.backgroundColor = 'white';
+        backgroundcheck.style.position = 'fixed';
+      })
+    
     return (
-        <div className='categories-banner'>
+        <div className='categories-banner mt-40'>
 
             <div className="categories-banner-wrapper container rounded-lg bg-contain bg-center bg-no-repeat" style={{ backgroundImage: `url('https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto/v1/attachments/generic_asset/asset/3f1b7ea10295936b6846bcff0afd38cf-1626595415207/digital-marketing-desktop.png')`, height: '300px' }}>
                 <div className="categories-banner ">

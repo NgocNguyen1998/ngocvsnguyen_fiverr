@@ -27,6 +27,7 @@ export const JobList = () => {
     inputcheck.style.display = "block";
     subcheck.style.display = "block";
     backgroundcheck.style.backgroundColor = "white";
+    backgroundcheck.style.position = 'fixed';
   });
   const navigate = useNavigate();
   const { itemRender } = useCongViec();
