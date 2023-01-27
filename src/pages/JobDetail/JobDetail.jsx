@@ -31,12 +31,12 @@ export const JobDetail = () => {
   });
   useEffect(() => {
     const inputcheck = document.body.querySelector(".inputcheck");
-    const backgroundcheck = document.body.querySelector(".backgroundcheck");
+    // const backgroundcheck = document.body.querySelector(".backgroundcheck");
     const subcheck = document.body.querySelector(".subcheck");
     inputcheck.style.display = "block";
     subcheck.style.display = "block";
-    backgroundcheck.style.backgroundColor = "white";
-    backgroundcheck.style.position = 'fixed';
+    // backgroundcheck.style.backgroundColor = "white";
+    // backgroundcheck.style.position = 'fixed';
   });
   useEffect(() => {
     dispatch(layCongViecChiTiet(id));
@@ -219,7 +219,7 @@ export const JobDetail = () => {
     }
   };
   return (
-    <Wrapper className="container mx-auto mb-[300px] relative pt-5">
+    <Wrapper className="container mx-auto mb-[300px] relative pt-[130px]">
       {jobDetail.map((job, index) => (
         <div
           key={index}
