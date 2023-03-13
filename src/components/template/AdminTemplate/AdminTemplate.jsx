@@ -1,4 +1,10 @@
-import { FileOutlined, UserOutlined,BookOutlined,WechatOutlined,CustomerServiceOutlined } from "@ant-design/icons";
+import {
+  FileOutlined,
+  UserOutlined,
+  BookOutlined,
+  WechatOutlined,
+  CustomerServiceOutlined,
+} from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, Empty } from "antd";
 import React, { useState } from "react";
 import { useEffect } from "react";
@@ -20,7 +26,11 @@ const items = [
   getItem("Workflow Management", "workFlow", <BookOutlined />),
   getItem("Job type Management", "jobType", <BookOutlined />),
   getItem("Job Detail Management", "jobDetailManagement", <BookOutlined />),
-  getItem("Service Management", "serviceManagement", <CustomerServiceOutlined />),
+  getItem(
+    "Service Management",
+    "serviceManagement",
+    <CustomerServiceOutlined />
+  ),
   getItem("Comment Manager", "commentManager", <WechatOutlined />),
 ];
 const AdminTemplate = () => {
@@ -104,7 +114,7 @@ const AdminTemplate = () => {
               }
             }}
             theme="dark"
-            defaultSelectedKeys={["1"]}
+            // defaultSelectedKeys={["user"]}
             mode="inline"
             items={items}
           />
