@@ -41,9 +41,11 @@ const AdminTemplate = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userLogin"));
     console.log("user", user);
-    if (user && user.role !== "ADMIN") {
+    if (user && user.role !== "ADMIN" ) {
       navigate("/home");
-    } 
+    } if(!user){
+      navigate("*")
+    }
   }, [userInfo]);
   
   const [windowWidth, setWindowWidth] = useState(0);
